@@ -61,28 +61,31 @@
       verificar la evolución del tipo de estas variables (imprime todos los componentes de losarreglo):</p>
 
     <?php
-    $a = "PHP5";
-    echo '$a:' . $a . '<br>';
+$a = "PHP5";
+echo '$a:' . $a . '<br>';
 
-    $z[] = &$a;
-    foreach($z as $valor){
-      echo '$z:' . $valor . '<br>';
-    } 
+$z[] = &$a;
+foreach($z as $valor){
+    echo '$z:' . $valor . '<br>';
+}
 
-    $b = "5a version de PHP";
-    echo '$b:' . $b . '<br>';
-    $c = $b*10;
-    echo '$c:' . $c . '<br>';
-    $a .= $b;
-    echo '$a:' . $a . '<br>';
-    $b *= $c;
-    echo '$b:' . $b . '<br>';
+$b = "5a version de PHP";
+echo '$b:' . $b . '<br>';
+$c = $b * 10;
+echo '$c:' . $c . '<br>';
 
-    $z[0] = "MySQL";
-    foreach($z as $valor){
-      echo '$z:' . $valor . '<br>';
-    } 
-    ?>
+$a .= $b;
+echo '$a:' . $a . '<br>';
+
+$b *= $c;
+echo '$b:' . $b . '<br>';
+
+$z[0] = "MySQL";
+foreach($z as $valor){
+    echo '$z:' . $valor . '<br>';
+}
+?>
+
 
   </body>
 
