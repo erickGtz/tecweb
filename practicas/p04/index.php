@@ -86,6 +86,37 @@ foreach($z as $valor){
 }
 ?>
 
+<h2>Ejercicio 4</h2>
+<p>Imprimiremos las variables usando la matriz GLOBALS:</p>
+
+<?php
+$a = "PHP5";
+echo '$a:' . $GLOBALS['a'] . '<br>';
+
+$z[] = &$GLOBALS['a'];
+foreach($GLOBALS['z'] as $valor){
+    echo '$z:' . $valor . '<br>';
+}
+
+$b = "5a version de PHP";
+echo '$b:' . $GLOBALS['b'] . '<br>';
+
+$c = $GLOBALS['b'] * 10;
+echo '$c:' . $c . '<br>';
+
+$GLOBALS['a'] .= $GLOBALS['b'];
+echo '$a:' . $GLOBALS['a'] . '<br>';
+
+$GLOBALS['b'] *= $c;
+echo '$b:' . $GLOBALS['b'] . '<br>';
+
+$GLOBALS['z'][0] = "MySQL";
+foreach($GLOBALS['z'] as $valor){
+    echo '$z:' . $valor . '<br>';
+}
+?>
+
+
 
   </body>
 
