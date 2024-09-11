@@ -17,7 +17,7 @@
     <p>$myvar: Valida, debido a que comienza con letras.</p>
     <p>$var7: Valida, debido a que comienza con letras.</p>
     <p>$_element1: Valida, debido a que comienza con un guión bajo.</p>
-    <p>$house*5: Invalida, debido a que tiene el caracter de asterisco. Php toma este caracter como un operador.</p>
+    <p>$house*5: Invalida, debido a que tiene el caracter de asterisco. Php toma este caracter como un operador.</p><br>
 
     <h2>Ejercicio 2</h2>
     <p>Proporcionar los valores de $a, $b, $c como sigue:</p>
@@ -32,9 +32,9 @@
 
     <p>a. Ahora muestra el contenido de cada variable</p>
     <?php
-    echo $a;
-    echo $b;
-    echo $c;
+    echo $a . '<br>';
+    echo $b . '<br>';
+    echo $c . '<br>';
     ?>
 
     <p>b. Agrega al código actual las siguientes asignaciones:</p>
@@ -46,13 +46,15 @@
 
     <p>c. Vuelve a mostrar el contenido de cada uno</p>
     <?php
-    echo $a;
-    echo $b;
-    echo $c;
+    echo $a . '<br>';
+    echo $b . '<br>';
+    echo $c . '<br>';
     ?>
 
-    <p>d. Describe en y muestra en la página obtenida qué ocurrió en el segundo bloque de asignaciones</p>
-  
+    <p>d. Describe en y muestra en la página obtenida qué ocurrió en el segundo bloque de asignaciones:</p> <br>
+    <p>Lo que sucede en la segunda asignacion es que se cambia el valor de la variable a por una nueva cadena,
+       y que la variable b ahora guarda la dirección de la variable, así como la variable c. Por lo que compartiran el valor que tenga la variable a.
+       Esto lo vemos al momento de imprimir las tres variables, dan el mismo resultado. </p>
 
   </body>
 
