@@ -51,11 +51,39 @@
     echo $c . '<br>';
     ?>
 
-    <p>d. Describe en y muestra en la página obtenida qué ocurrió en el segundo bloque de asignaciones:</p> <br>
+    <p>d. Describe en y muestra en la página obtenida qué ocurrió en el segundo bloque de asignaciones:</p>
     <p>Lo que sucede en la segunda asignacion es que se cambia el valor de la variable a por una nueva cadena,
        y que la variable b ahora guarda la dirección de la variable, así como la variable c. Por lo que compartiran el valor que tenga la variable a.
        Esto lo vemos al momento de imprimir las tres variables, dan el mismo resultado. </p>
 
+    <h2>Ejercicio 3</h2>
+    <p>Muestra el contenido de cada variable inmediatamente después de cada asignación, 
+      verificar la evolución del tipo de estas variables (imprime todos los componentes de losarreglo):</p>
+
+    <?php
+    $a = "PHP5";
+    echo $a . '<br>';
+
+    $z[] = &$a;
+    foreach($z as $valor){
+      echo $valor . '<br>';
+    } 
+
+    $b = "5a version de PHP";
+    echo $b . '<br>';
+    $c = $b*10;
+    echo $c . '<br>';
+    $a .= $b;
+    echo $a . '<br>';
+    $b *= $c;
+    echo $b . '<br>';
+
+    $z[0] = "MySQL";
+    foreach($z as $valor){
+      echo $valor . '<br>';
+    } 
+    ?>
+    
   </body>
 
 </html>
