@@ -53,70 +53,74 @@
 
     <p>d. Describe en y muestra en la página obtenida qué ocurrió en el segundo bloque de asignaciones:</p>
     <p>Lo que sucede en la segunda asignacion es que se cambia el valor de la variable a por una nueva cadena,
-       y que la variable b ahora guarda la dirección de la variable, así como la variable c. Por lo que compartiran el valor que tenga la variable a.
-       Esto lo vemos al momento de imprimir las tres variables, dan el mismo resultado. </p>
+      y que la variable b ahora guarda la dirección de la variable, así como la variable c. Por lo que compartiran el
+      valor que tenga la variable a.
+      Esto lo vemos al momento de imprimir las tres variables, dan el mismo resultado. </p>
 
     <h2>Ejercicio 3</h2>
-    <p>Muestra el contenido de cada variable inmediatamente después de cada asignación, 
-      verificar la evolución del tipo de estas variables (imprime todos los componentes de losarreglo):</p>
+    <p>Muestra el contenido de cada variable inmediatamente después de cada asignación,
+      verificar la evolución del tipo de estas variables (imprime todos los componentes del arreglo):</p>
 
     <?php
-$a = "PHP5";
-echo '$a:' . $a . '<br>';
+    $a = "PHP5";
+    echo '$a: ' . $a . ' (Type: ' . gettype($a) . ')<br>';
 
-$z[] = &$a;
-foreach($z as $valor){
-    echo '$z:' . $valor . '<br>';
-}
+    $z[] = &$a;
+    foreach ($z as $valor) {
+      echo '$z: ' . $valor . ' (Type: ' . gettype($valor) . ')<br>';
+    }
 
-$b = "5a version de PHP";
-echo '$b:' . $b . '<br>';
-$c = $b * 10;
-echo '$c:' . $c . '<br>';
+    $b = "5a version de PHP";
+    echo '$b: ' . $b . ' (Type: ' . gettype($b) . ')<br>';
+    $c = $b * 10;
+    echo '$c: ' . $c . ' (Type: ' . gettype($c) . ')<br>';
 
-$a .= $b;
-echo '$a:' . $a . '<br>';
+    $a .= $b;
+    echo '$a: ' . $a . ' (Type: ' . gettype($a) . ')<br>';
 
-$b *= $c;
-echo '$b:' . $b . '<br>';
+    $b *= $c;
+    echo '$b: ' . $b . ' (Type: ' . gettype($b) . ')<br>';
 
-$z[0] = "MySQL";
-foreach($z as $valor){
-    echo '$z:' . $valor . '<br>';
-}
-?>
-
-<h2>Ejercicio 4</h2>
-<p>Imprimiremos las variables usando la matriz GLOBALS:</p>
-
-<?php
-$a = "PHP5";
-echo '$a:' . $GLOBALS['a'] . '<br>';
-
-$z[] = &$GLOBALS['a'];
-foreach($GLOBALS['z'] as $valor){
-    echo '$z:' . $valor . '<br>';
-}
-
-$b = "5a version de PHP";
-echo '$b:' . $GLOBALS['b'] . '<br>';
-
-$c = $GLOBALS['b'] * 10;
-echo '$c:' . $c . '<br>';
-
-$GLOBALS['a'] .= $GLOBALS['b'];
-echo '$a:' . $GLOBALS['a'] . '<br>';
-
-$GLOBALS['b'] *= $c;
-echo '$b:' . $GLOBALS['b'] . '<br>';
-
-$GLOBALS['z'][0] = "MySQL";
-foreach($GLOBALS['z'] as $valor){
-    echo '$z:' . $valor . '<br>';
-}
-?>
+    $z[0] = "MySQL";
+    foreach ($z as $valor) {
+      echo '$z: ' . $valor . ' (Type: ' . gettype($valor) . ')<br>';
+    }
+    ?>
 
 
+    <h2>Ejercicio 4</h2>
+    <p>Imprimiremos las variables usando la matriz GLOBALS:</p>
+
+    <?php
+    $a = "PHP5";
+    echo '$a: ' . $GLOBALS['a'] . ' (Type: ' . gettype($GLOBALS['a']) . ')<br>';
+
+    $z[] = &$GLOBALS['a'];
+    foreach ($GLOBALS['z'] as $valor) {
+      echo '$z: ' . $valor . ' (Type: ' . gettype($valor) . ')<br>';
+    }
+
+    $b = "5a version de PHP";
+    echo '$b: ' . $GLOBALS['b'] . ' (Type: ' . gettype($GLOBALS['b']) . ')<br>';
+
+    $c = $GLOBALS['b'] * 10;
+    echo '$c: ' . $c . ' (Type: ' . gettype($c) . ')<br>';
+
+    $GLOBALS['a'] .= $GLOBALS['b'];
+    echo '$a: ' . $GLOBALS['a'] . ' (Type: ' . gettype($GLOBALS['a']) . ')<br>';
+
+    $GLOBALS['b'] *= $c;
+    echo '$b: ' . $GLOBALS['b'] . ' (Type: ' . gettype($GLOBALS['b']) . ')<br>';
+
+    $GLOBALS['z'][0] = "MySQL";
+    foreach ($GLOBALS['z'] as $valor) {
+      echo '$z: ' . $valor . ' (Type: ' . gettype($valor) . ')<br>';
+    }
+    ?>
+
+
+    <h2>Ejercicio 5</h2>
+    <p>Imprimiremos las variables usando la matriz GLOBALS:</p>
 
   </body>
 
