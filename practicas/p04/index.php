@@ -150,8 +150,8 @@
     $a = "0";
     $b = "TRUE";
     $c = FALSE;
-    $d = ($a or $b);  
-    $e = ($a and $c); 
+    $d = ($a or $b);
+    $e = ($a and $c);
     $f = ($a XOR $b);
 
     var_dump($a);
@@ -169,14 +169,25 @@
 
     ?>
 
-    <p>Después investiga una función de PHP que permita transformar el valor booleano de $c y $e en uno que se pueda mostrar con un echo:</p>
+    <p>Después investiga una función de PHP que permita transformar el valor booleano de $c y $e en uno que se pueda
+      mostrar con un echo:</p>
     <?php
 
-    echo '$c: ' . ($c ? 'true' : 'false') . '<br>'; 
+    echo '$c: ' . ($c ? 'true' : 'false') . '<br>';
     echo '$e: ' . ($e ? 'true' : 'false') . '<br>';
-    
+
     ?>
 
+    <h2>Ejercicio 7</h2>
+    <p>Usando la variable predefinida $_SERVER, determina lo siguiente:</p>
+    <p>a. La versión de Apache y PHP, b. El nombre del sistema operativo (servidor), c. El idioma del navegador
+      (cliente)</p>
+
+    <?php
+    echo "Versión de PHP: " . phpversion() . "<br>";
+    echo "Versión del servidor: " . $_SERVER['SERVER_SOFTWARE'] . "<br>";
+    echo "Idioma del navegador: " . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "<br>";
+    ?>
 
   </body>
 
