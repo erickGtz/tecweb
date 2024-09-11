@@ -66,6 +66,7 @@
     echo '$a: ' . $a . ' (Type: ' . gettype($a) . ')<br>';
 
     $z[] = &$a;
+
     foreach ($z as $valor) {
       echo '$z: ' . $valor . ' (Type: ' . gettype($valor) . ')<br>';
     }
@@ -95,7 +96,6 @@
     $a = "PHP5";
     echo '$a: ' . $GLOBALS['a'] . ' (Type: ' . gettype($GLOBALS['a']) . ')<br>';
 
-    $z[] = &$GLOBALS['a'];
     foreach ($GLOBALS['z'] as $valor) {
       echo '$z: ' . $valor . ' (Type: ' . gettype($valor) . ')<br>';
     }
@@ -112,7 +112,6 @@
     $GLOBALS['b'] *= $c;
     echo '$b: ' . $GLOBALS['b'] . ' (Type: ' . gettype($GLOBALS['b']) . ')<br>';
 
-    $GLOBALS['z'][0] = "MySQL";
     foreach ($GLOBALS['z'] as $valor) {
       echo '$z: ' . $valor . ' (Type: ' . gettype($valor) . ')<br>';
     }
@@ -120,7 +119,35 @@
 
 
     <h2>Ejercicio 5</h2>
-    <p>Imprimiremos las variables usando la matriz GLOBALS:</p>
+    <p>Dar el valor de las variables $a, $b, $c al final del siguiente script:</p>
+    <p>$a = “7 personas”; $b = (integer) $a; $a = “9E3”; $c = (double) $a;</p>
+
+    <?php
+    $a = "7 personas";
+
+    echo $a . '<br>';
+
+    $b = (integer) $a;
+
+    echo $b . '<br>';
+
+    $a = "9E3";
+
+    echo $a . '<br>';
+
+    $c = (double) $a;
+
+    echo $c . '<br>';
+
+    ?>
+
+    <h2>Ejercicio 6</h2>
+    <p>Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y muéstralas usando la función var_dump(<datos>):</p>
+    <p>$a = “0”; $b = “TRUE”; $c = FALSE; $d = ($a OR $b); $e = ($a AND $c); $f = ($a XOR $b);</p>
+
+    <?php
+
+    ?>
 
   </body>
 
