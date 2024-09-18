@@ -42,4 +42,27 @@ function genRepit()
   echo "<p>$totalNumeros números obtenidos en $iteraciones iteraciones</p>";
 }
 
+function encontrarMultiploWhile($divisor) {
+    $i = 0; 
+    $num = random_int(1, 999);
+
+    while ($num % $divisor != 0) {
+        $num = random_int(1, 999);
+        $i++; 
+    }
+    $i++;
+
+    echo "<p> Numero: $divisor. Primer número múltiplo encontrado usando while: $num , Iteraciones realizadas con while: $i </p>";
+}
+
+function encontrarMultiploDoWhile($divisor) {
+    $i = 0; 
+    do {
+        $num = random_int(1, 999); 
+        $i++; 
+    } while ($num % $divisor != 0);
+
+    echo "<p> Numero: $divisor. Primer número múltiplo encontrado usando do-while: $num , Iteraciones realizadas con do-while: $i </p>";
+}
+
 
