@@ -18,6 +18,8 @@ include_once 'funciones.php';
             if (isset($_GET['numero'])) {
                 $num = intval($_GET['numero']);
                 echo multiplo5y7($num) . '<br>';
+            } else{
+                echo '<p> No esta la variable numero en la URL. </p>';
             }
         ?>
 
@@ -30,6 +32,12 @@ include_once 'funciones.php';
             <input type="submit">
         </form>
         <br>
+
+-->
+    </body>
+
+</html>
+
         <?php
         if (isset($_POST["name"]) && isset($_POST["email"])) {
             echo $_POST["name"];
@@ -37,7 +45,3 @@ include_once 'funciones.php';
             echo $_POST["email"];
         }
         ?>
--->
-    </body>
-
-</html>
