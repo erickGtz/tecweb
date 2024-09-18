@@ -11,7 +11,8 @@ include_once 'funciones.php';
     </head>
 
     <body>
-        <h2>Ejercicio 1</h2>
+        <!-- Completado correctamente -->
+        <h2>Ejercicio 1</h2> 
         <p>Escribir programa para comprobar si un número es un múltiplo de 5 y 7</p>
 
         <?php
@@ -23,6 +24,7 @@ include_once 'funciones.php';
         }
         ?>
 
+        <!-- Completado correctamente -->
         <h2>Ejercicio 2</h2>
         <p>Crea un programa para la generación repetitiva de 3 números aleatorios hasta obtener una secuencia compuesta
             por
@@ -33,6 +35,8 @@ include_once 'funciones.php';
         genRepit();
         ?>
 
+
+        <!-- Completado correctamente -->
         <h3>Ejercicio 3</h3>
         <p>Utiliza un ciclo while para encontrar el primer número entero obtenido aleatoriamente, pero que además sea
             múltiplo de un número dado. </p>
