@@ -9,3 +9,37 @@ function multiplo5y7($num)
   }
 }
 
+function genRepit()
+{
+  $i = 0;
+  $matriz = [];
+  $bandera = false;
+
+  do {
+    $num1 = random_int(0, 999);
+    $num2 = random_int(0, 999);
+    $num3 = random_int(0, 999);
+
+    $matriz[$i][0] = $num1;
+    $matriz[$i][1] = $num2;
+    $matriz[$i][2] = $num3;
+
+    if ($num1 % 2 != 0 && $num2 % 2 == 0 && $num3 % 2 != 0) {
+      $bandera = true;
+    } else {
+      $i++;
+    }
+  } while (!$bandera);
+
+  $totalNumeros = ($i + 1) * 3;
+  $iteraciones = $i + 1;
+
+  echo "<h3>Matriz de números generados:</h3>";
+  for ($j = 0; $j < count($matriz); $j++) {
+    echo $matriz[$j][0] . ", " . $matriz[$j][1] . ", " . $matriz[$j][2] . "<br>";
+  }
+
+  echo "<p>$totalNumeros números obtenidos en $iteraciones iteraciones</p>";
+}
+
+
