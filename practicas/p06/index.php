@@ -1,3 +1,6 @@
+<?php
+include_once 'funciones.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +11,9 @@
 <body>
     <h2>Ejercicio 1</h2>
     <p>Escribir programa para comprobar si un número es un múltiplo de 5 y 7</p>
+    <form action=""></form>
+
+
     <?php
         if(isset($_GET['numero']))
         {
