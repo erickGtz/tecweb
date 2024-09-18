@@ -38,7 +38,7 @@ include_once 'funciones.php';
             múltiplo de un número dado. </p>
 
         <form action="index.php" method="GET">
-            Número: <input type="text" name="numero_2"> <input type="submit" name="submit">
+            Número: <input type="text" name="numero_2"> <input type="submit" name="submit" value="Enviar">
         </form>
 
         <?php
