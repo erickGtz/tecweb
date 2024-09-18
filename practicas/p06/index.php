@@ -37,7 +37,7 @@ include_once 'funciones.php';
         <p>Utiliza un ciclo while para encontrar el primer número entero obtenido aleatoriamente, pero que además sea
             múltiplo de un número dado. </p>
 
-        <form action="index.php" method="GET">
+        <form action="funciones.php" method="GET">
             Número: <input type="text" name="numero_2"> <input type="submit" name="submit" value="Enviar">
         </form>
 
