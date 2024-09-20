@@ -1,10 +1,6 @@
 <?php
 
-echo "<p>Hola2</p>";
-
 if (isset($_POST['matricula'])) {
-
-  echo "<p>Hola</p>";
 
   $matricula = $_POST['matricula'];
 
