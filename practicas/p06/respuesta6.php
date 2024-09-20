@@ -218,11 +218,7 @@ if (isset($_POST['matricula'])) {
     echo "<h2>Matrícula no encontrada</h2>";
   }
 
-} else{
-  echo "<br>";
-}
-
-if (isset($_POST['mostrar_todos'])) {
+}else if (isset($_POST['mostrar_todos'])) {
 
   echo "<h2>Todos los Autos:</h2>";
 
@@ -235,9 +231,7 @@ if (isset($_POST['mostrar_todos'])) {
     echo "Ciudad: " . $datos['Propietario']['ciudad'] . "<br>";
     echo "Dirección: " . $datos['Propietario']['direccion'] . "<br><br>";
   }
-} else {
-  echo "<br>";
-}
+} 
 
 echo "</body>";
 echo "</html>";
