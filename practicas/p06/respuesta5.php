@@ -1,5 +1,4 @@
 <?php
-// respuesta.php
 
 if (isset($_POST['edad']) && isset($_POST['sexo'])) {
     $edad = intval($_POST['edad']);
