@@ -193,7 +193,20 @@ echo "<title>Resultado</title>";
 echo "</head>";
 echo "<body>";
 
-if (isset($_POST['matricula'])) {
+if (isset($_POST['mostrar_todos'])) {
+
+  echo "<h2>Todos los Autos:</h2>";
+
+  foreach ($autos as $matricula => $datos) {
+    echo "<h3>Matrícula: $matricula</h3>";
+    echo "Marca: " . $datos['Auto']['marca'] . "<br>";
+    echo "Modelo: " . $datos['Auto']['modelo'] . "<br>";
+    echo "Tipo: " . $datos['Auto']['tipo'] . "<br>";
+    echo "Propietario: " . $datos['Propietario']['nombre'] . "<br>";
+    echo "Ciudad: " . $datos['Propietario']['ciudad'] . "<br>";
+    echo "Dirección: " . $datos['Propietario']['direccion'] . "<br><br>";
+  }
+} else if (isset($_POST['matricula'])) {
 
   $matricula = $_POST['matricula'];
 
@@ -218,20 +231,8 @@ if (isset($_POST['matricula'])) {
     echo "<h2>Matrícula no encontrada</h2>";
   }
 
-}else if (isset($_POST['mostrar_todos'])) {
+}
 
-  echo "<h2>Todos los Autos:</h2>";
-
-  foreach ($autos as $matricula => $datos) {
-    echo "<h3>Matrícula: $matricula</h3>";
-    echo "Marca: " . $datos['Auto']['marca'] . "<br>";
-    echo "Modelo: " . $datos['Auto']['modelo'] . "<br>";
-    echo "Tipo: " . $datos['Auto']['tipo'] . "<br>";
-    echo "Propietario: " . $datos['Propietario']['nombre'] . "<br>";
-    echo "Ciudad: " . $datos['Propietario']['ciudad'] . "<br>";
-    echo "Dirección: " . $datos['Propietario']['direccion'] . "<br><br>";
-  }
-} 
 
 echo "</body>";
 echo "</html>";
