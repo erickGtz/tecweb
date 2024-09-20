@@ -76,7 +76,8 @@ include_once 'funciones.php';
         <h2>Ejercicio 5</h2>
         <p><a href="ejercicio5.html">Ir al Ejercicio 5</a></p>
 
-        
+        <h2>Ejercicio 6</h2>
+        <p><a href="ejercicio6.html">Ir al Ejercicio 5</a></p>
 
     </body>
 
