@@ -24,4 +24,4 @@ if (isset($_POST['edad']) && isset($_POST['sexo'])) {
     echo "</body>";
     echo "</html>";
 }
-?>
+
