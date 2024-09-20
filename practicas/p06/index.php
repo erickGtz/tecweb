@@ -12,7 +12,7 @@ include_once 'funciones.php';
 
     <body>
         <!-- Completado correctamente -->
-        <h2>Ejercicio 1</h2> 
+        <h2>Ejercicio 1</h2>
         <p>Escribir programa para comprobar si un número es un múltiplo de 5 y 7</p>
 
         <?php
@@ -51,6 +51,26 @@ include_once 'funciones.php';
             encontrarMultiploWhile($divisor);
             encontrarMultiploDoWhile($divisor);
         }
+        ?>
+
+        <h3>Ejercicio 4</h3>
+        <p>Crear un arreglo cuyos índices van de 97 a 122 y cuyos valores son las letras de la ‘a’ 
+            a la ‘z’. Usa la función chr(n) que devuelve el caracter cuyo código ASCII es n para poner el valor en cada índice.</p>
+
+        <?php
+            $arreglo = [];
+
+            for ($i = 97; $i <= 122; $i++) {
+                $arreglo[$i] = chr($i);
+            }
+
+            echo "<table border='1'>";
+            echo "<tr><th>Índice</th><th>Letra</th></tr>";
+
+            foreach ($arreglo as $key => $value) {
+                echo "<tr><td>$key</td><td>$value</td></tr>";
+            }
+            echo "</table>";
         ?>
 
     </body>
