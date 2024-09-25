@@ -55,7 +55,7 @@
 				</thead>
 				<tbody>
 					<tr>
-						<th scope="row"><?= $row['id'] ?></th>
+						<th scope="row"><?= $row['ID'] ?></th>
 						<td><?= $row['nombre'] ?></td>
 						<td><?= $row['marca'] ?></td>
 						<td><?= $row['modelo'] ?></td>
