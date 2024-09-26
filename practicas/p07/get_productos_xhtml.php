@@ -50,7 +50,7 @@
   </head>
 
   <body>
-    <h3>PRODUCTO</h3>
+    <h3>PRODUCTOS</h3>
 
     <br />
 
