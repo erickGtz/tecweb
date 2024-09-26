@@ -69,7 +69,7 @@
         </thead>
         <tbody>
           <?php
-          foreach ($data as $index => $produtos) {
+          foreach ($data as $index => $productos) {
             echo "<th scope='row'> . " . $productos['id'] . "</th>";
             echo "<td>" . $productos['nombre'] . "</td>";
             echo "<td>" . $productos['marca'] . "</td>";
