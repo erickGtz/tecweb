@@ -28,7 +28,7 @@
       /** Se crea un arreglo con la estructura deseada */
       foreach ($row as $num => $registro) {            // Se recorren tuplas
         foreach ($registro as $key => $value) {      // Se recorren campos
-          $data[$num][$key] = utf8_encode($value);
+          mb_convert_encoding($value, 'UTF-8', 'ISO-8859-1');
         }
       }
 
@@ -71,14 +71,14 @@
           <?php
           foreach ($data as $index => $productos) {
             echo "<tr>";
-            echo "<th scope='row'> . " . $productos['ID'] . "</th>";
+            echo "<th scope='row'> " . $productos['ID'] . "</th>";
             echo "<td>" . $productos['nombre'] . "</td>";
             echo "<td>" . $productos['marca'] . "</td>";
             echo "<td>" . $productos['modelo'] . "</td>";
             echo "<td>" . $productos['precio'] . "</td>";
             echo "<td>" . $productos['unidades'] . "</td>";
-            echo "<td>" . utf8_encode($productos['detalles']) . "</td>";
-            echo "<td><img src='" . $productos['nombre'] . "'></td>";
+            echo "<td>" . mb_convert_encoding($productos['detalles'], 'UTF-8', 'ISO-8859-1') . "</td>";
+            echo "<td><img src='" . $productos['imagen'] . "'></td>";
             echo "</tr>";
           }
           ?>
