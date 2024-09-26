@@ -70,7 +70,8 @@
         <tbody>
           <?php
           foreach ($data as $index => $productos) {
-            echo "<th scope='row'> . " . $productos['id'] . "</th>";
+            echo "<tr>";
+            echo "<th scope='row'> . " . $productos['ID'] . "</th>";
             echo "<td>" . $productos['nombre'] . "</td>";
             echo "<td>" . $productos['marca'] . "</td>";
             echo "<td>" . $productos['modelo'] . "</td>";
@@ -78,9 +79,9 @@
             echo "<td>" . $productos['unidades'] . "</td>";
             echo "<td>" . utf8_encode($productos['detalles']) . "</td>";
             echo "<td><img src='" . $productos['nombre'] . "'></td>";
+            echo "</tr>";
           }
           ?>
-          </tr>
         </tbody>
       </table>
 
