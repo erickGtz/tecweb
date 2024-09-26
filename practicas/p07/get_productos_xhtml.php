@@ -14,6 +14,8 @@
     @$link = new mysqli('localhost', 'root', 'fk1322', 'marketzone');
     /** NOTA: con @ se suprime el Warning para gestionar el error por medio de código */
 
+    $link->set_charset("utf8");
+
     /** comprobar la conexión */
     if ($link->connect_errno) {
       die('Falló la conexión: ' . $link->connect_error . '<br/>');
@@ -28,7 +30,7 @@
       /** Se crea un arreglo con la estructura deseada */
       foreach ($row as $num => $registro) {            // Se recorren tuplas
         foreach ($registro as $key => $value) {      // Se recorren campos
-          $data[$num][$key] = utf8_encode($value);
+          $data[$num][$key] = $value;
         }
       }
 
@@ -71,13 +73,13 @@
           <?php
           foreach ($data as $index => $productos) {
             echo "<tr>";
-            echo "<th scope='row'> " . $productos['id'] . "</th>";
+            echo "<th scope='row'> " . $productos['ID'] . "</th>";
             echo "<td>" . $productos['nombre'] . "</td>";
             echo "<td>" . $productos['marca'] . "</td>";
             echo "<td>" . $productos['modelo'] . "</td>";
             echo "<td>" . $productos['precio'] . "</td>";
             echo "<td>" . $productos['unidades'] . "</td>";
-            echo "<td>" . utf8_encode($productos['detalles']) . "</td>";
+            echo "<td>" . htmlspecialchars($productos['detalles'], ENT_QUOTES, 'UTF-8') . "</td>";
             echo "<td><img src='" . $productos['imagen'] . "'></td>";
             echo "</tr>";
           }
