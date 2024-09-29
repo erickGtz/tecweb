@@ -52,7 +52,7 @@
   <body>
     <h3>PRODUCTOS</h3>
 
-    <br />
+    <br/>
 
     <?php if (isset($data)): ?>
 
