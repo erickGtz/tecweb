@@ -22,7 +22,7 @@
     <h2>Ejercicio 2</h2>
     <p>Proporcionar los valores de $a, $b, $c como sigue:</p>
 
-    <p>$a = “ManejadorSQL”; $b = 'MySQL’; $c = &$a;</p>
+    <p>$a = "ManejadorSQL"; $b = 'MySQL'; $c = &$a;</p>
 
     <?php
     $a = "ManejadorSQL";
@@ -31,11 +31,13 @@
     ?>
 
     <p>a. Ahora muestra el contenido de cada variable</p>
+    <div>
     <?php
-    echo $a . '<br>';
-    echo $b . '<br>';
-    echo $c . '<br>';
+    echo $a . '<br />';
+    echo $b . '<br />';
+    echo $c . '<br />';
     ?>
+    </div>
 
     <p>b. Agrega al código actual las siguientes asignaciones:</p>
     <p>$a = “PHP server”; $b = &$a;</p>
@@ -45,11 +47,14 @@
     ?>
 
     <p>c. Vuelve a mostrar el contenido de cada uno</p>
+
+    <div>
     <?php
-    echo $a . '<br>';
-    echo $b . '<br>';
-    echo $c . '<br>';
+    echo $a . '<br />';
+    echo $b . '<br />';
+    echo $c . '<br />';
     ?>
+    </div>
 
     <p>d. Describe en y muestra en la página obtenida qué ocurrió en el segundo bloque de asignaciones:</p>
     <p>Lo que sucede en la segunda asignacion es que se cambia el valor de la variable a por una nueva cadena,
@@ -63,28 +68,28 @@
 
     <?php
     $a = "PHP5";
-    echo '$a: ' . $a . ' (Type: ' . gettype($a) . ')<br>';
+    echo '<p>$a: ' . $a . ' (Type: ' . gettype($a) . ')</p>';
 
     $z[] = &$a;
 
     foreach ($z as $valor) {
-      echo '$z: ' . $valor . ' (Type: ' . gettype($valor) . ')<br>';
+      echo '<p>$z: ' . $valor . ' (Type: ' . gettype($valor) . ')</p>';
     }
 
     $b = "5a version de PHP";
-    echo '$b: ' . $b . ' (Type: ' . gettype($b) . ')<br>';
+    echo '<p>$b: ' . $b . ' (Type: ' . gettype($b) . ')</p>';
     $c = $b * 10;
-    echo '$c: ' . $c . ' (Type: ' . gettype($c) . ')<br>';
+    echo '<p>$c: ' . $c . ' (Type: ' . gettype($c) . ')</p>';
 
     $a .= $b;
-    echo '$a: ' . $a . ' (Type: ' . gettype($a) . ')<br>';
+    echo '<p>$a: ' . $a . ' (Type: ' . gettype($a) . ')</p>';
 
     $b *= $c;
-    echo '$b: ' . $b . ' (Type: ' . gettype($b) . ')<br>';
+    echo '<p>$b: ' . $b . ' (Type: ' . gettype($b) . ')</p>';
 
     $z[0] = "MySQL";
     foreach ($z as $valor) {
-      echo '$z: ' . $valor . ' (Type: ' . gettype($valor) . ')<br>';
+      echo '<p>$z: ' . $valor . ' (Type: ' . gettype($valor) . ')</p>';
     }
     ?>
 
@@ -94,26 +99,26 @@
 
     <?php
     $a = "PHP5";
-    echo '$a: ' . $GLOBALS['a'] . ' (Type: ' . gettype($GLOBALS['a']) . ')<br>';
+    echo '<p>$a: ' . $GLOBALS['a'] . ' (Type: ' . gettype($GLOBALS['a']) . ')</p>';
 
     foreach ($GLOBALS['z'] as $valor) {
-      echo '$z: ' . $valor . ' (Type: ' . gettype($valor) . ')<br>';
+      echo '<p>$z: ' . $valor . ' (Type: ' . gettype($valor) . ')</p>';
     }
 
     $b = "5a version de PHP";
-    echo '$b: ' . $GLOBALS['b'] . ' (Type: ' . gettype($GLOBALS['b']) . ')<br>';
+    echo '<p>$b: ' . $GLOBALS['b'] . ' (Type: ' . gettype($GLOBALS['b']) . ')</p>';
 
     $c = $GLOBALS['b'] * 10;
-    echo '$c: ' . $c . ' (Type: ' . gettype($c) . ')<br>';
+    echo '<p>$c: ' . $c . ' (Type: ' . gettype($c) . ')</p>';
 
     $GLOBALS['a'] .= $GLOBALS['b'];
-    echo '$a: ' . $GLOBALS['a'] . ' (Type: ' . gettype($GLOBALS['a']) . ')<br>';
+    echo '<p>$a: ' . $GLOBALS['a'] . ' (Type: ' . gettype($GLOBALS['a']) . ')</p>';
 
     $GLOBALS['b'] *= $c;
-    echo '$b: ' . $GLOBALS['b'] . ' (Type: ' . gettype($GLOBALS['b']) . ')<br>';
+    echo '<p>$b: ' . $GLOBALS['b'] . ' (Type: ' . gettype($GLOBALS['b']) . ')</p>';
 
     foreach ($GLOBALS['z'] as $valor) {
-      echo '$z: ' . $valor . ' (Type: ' . gettype($valor) . ')<br>';
+      echo '<p>$z: ' . $valor . ' (Type: ' . gettype($valor) . ')</p>';
     }
     ?>
 
@@ -125,27 +130,28 @@
     <?php
     $a = "7 personas";
 
-    echo $a . '<br>';
+    echo '<p>' . $a . '</p>';
 
     $b = (integer) $a;
 
-    echo $b . '<br>';
+    echo '<p>' . $b . '</p>';
 
     $a = "9E3";
 
-    echo $a . '<br>';
+    echo '<p>' . $a . '</p>';
 
     $c = (double) $a;
 
-    echo $c . '<br>';
+    echo '<p>' . $c . '</p>';
 
     ?>
 
     <h2>Ejercicio 6</h2>
     <p>Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y muéstralas usando la función
       var_dump(<datos>):</p>
-    <p>$a = “0”; $b = “TRUE”; $c = FALSE; $d = ($a OR $b); $e = ($a AND $c); $f = ($a XOR $b);</p>
+    <p>$a = "0"; $b = "TRUE"; $c = FALSE; $d = ($a OR $b); $e = ($a AND $c); $f = ($a XOR $b);</p>
 
+    <div>
     <?php
     $a = "0";
     $b = "TRUE";
@@ -155,38 +161,38 @@
     $f = ($a XOR $b);
 
     var_dump($a);
-    echo '<br>';
+    echo '<br />';
     var_dump($b);
-    echo '<br>';
+    echo '<br />';
     var_dump($c);
-    echo '<br>';
+    echo '<br />';
     var_dump($d);
-    echo '<br>';
+    echo '<br />';
     var_dump($e);
-    echo '<br>';
+    echo '<br />';
     var_dump($f);
-    echo '<br>';
+    echo '<br />';
 
     ?>
+    </div>
 
     <p>Después investiga una función de PHP que permita transformar el valor booleano de $c y $e en uno que se pueda
       mostrar con un echo:</p>
     <?php
 
-    echo '$c: ' . ($c ? 'true' : 'false') . '<br>';
-    echo '$e: ' . ($e ? 'true' : 'false') . '<br>';
+    echo '<p>$c: ' . ($c ? 'true' : 'false') . '</p>';
+    echo '<p>$e: ' . ($e ? 'true' : 'false') . '</p>';
 
     ?>
 
     <h2>Ejercicio 7</h2>
     <p>Usando la variable predefinida $_SERVER, determina lo siguiente:</p>
-    <p>a. La versión de Apache y PHP, b. El nombre del sistema operativo (servidor), c. El idioma del navegador
-      (cliente)</p>
+    <p>a. La versión de Apache y PHP, b. El nombre del sistema operativo (servidor), c. El idioma del navegador (cliente)</p>
 
     <?php
-    echo "Versión de PHP: " . phpversion() . "<br>";
-    echo "Versión del servidor: " . $_SERVER['SERVER_SOFTWARE'] . "<br>";
-    echo "Idioma del navegador: " . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "<br>";
+    echo "<p>Versión de PHP: " . phpversion() . "</p>";
+    echo "<p>Versión del servidor: " . $_SERVER['SERVER_SOFTWARE'] . "</p>";
+    echo "<p>Idioma del navegador: " . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "</p>";
     ?>
 
   </body>
