@@ -17,12 +17,12 @@
     <p>$myvar: Valida, debido a que comienza con letras.</p>
     <p>$var7: Valida, debido a que comienza con letras.</p>
     <p>$_element1: Valida, debido a que comienza con un guión bajo.</p>
-    <p>$house*5: Invalida, debido a que tiene el caracter de asterisco. Php toma este caracter como un operador.</p><br>
+    <p>$house*5: Invalida, debido a que tiene el caracter de asterisco. Php toma este caracter como un operador.</p>
 
     <h2>Ejercicio 2</h2>
     <p>Proporcionar los valores de $a, $b, $c como sigue:</p>
 
-    <p>$a = "ManejadorSQL"; $b = 'MySQL'; $c = &$a;</p>
+    <p>$a = "ManejadorSQL"; $b = 'MySQL'; $c = "&$a;"</p>
 
     <?php
     $a = "ManejadorSQL";
@@ -40,7 +40,7 @@
     </div>
 
     <p>b. Agrega al código actual las siguientes asignaciones:</p>
-    <p>$a = “PHP server”; $b = &$a;</p>
+    <p>$a = "PHP server"; $b = "&$a;"</p>
     <?php
     $a = "PHP server";
     $b = &$a;
@@ -66,6 +66,7 @@
     <p>Muestra el contenido de cada variable inmediatamente después de cada asignación,
       verificar la evolución del tipo de estas variables (imprime todos los componentes del arreglo):</p>
 
+    <div>
     <?php
     $a = "PHP5";
     echo '<p>$a: ' . $a . ' (Type: ' . gettype($a) . ')</p>';
@@ -92,7 +93,7 @@
       echo '<p>$z: ' . $valor . ' (Type: ' . gettype($valor) . ')</p>';
     }
     ?>
-
+    </div>
 
     <h2>Ejercicio 4</h2>
     <p>Imprimiremos las variables usando la matriz GLOBALS:</p>
@@ -148,7 +149,7 @@
 
     <h2>Ejercicio 6</h2>
     <p>Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y muéstralas usando la función
-      var_dump(<datos>):</p>
+      var_dump(datos):</p>
     <p>$a = "0"; $b = "TRUE"; $c = FALSE; $d = ($a OR $b); $e = ($a AND $c); $f = ($a XOR $b);</p>
 
     <div>
