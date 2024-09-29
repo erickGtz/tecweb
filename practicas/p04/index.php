@@ -22,7 +22,7 @@
     <h2>Ejercicio 2</h2>
     <p>Proporcionar los valores de $a, $b, $c como sigue:</p>
 
-    <p>$a = "ManejadorSQL"; $b = 'MySQL'; $c = "&$a;"</p>
+    <p>$a = "ManejadorSQL"; $b = 'MySQL'; $c = &amp;$a;</p>
 
     <?php
     $a = "ManejadorSQL";
@@ -40,7 +40,7 @@
     </div>
 
     <p>b. Agrega al código actual las siguientes asignaciones:</p>
-    <p>$a = "PHP server"; $b = "&$a;"</p>
+    <p>$a = "PHP server"; $b = &amp;$a;</p>
     <?php
     $a = "PHP server";
     $b = &$a;
