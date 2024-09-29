@@ -46,13 +46,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Producto</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   </head>
 
   <body>
     <h3>PRODUCTOS</h3>
 
-    <br/>
+    <br />
 
     <?php if (isset($data)): ?>
 
@@ -80,7 +80,7 @@
             echo "<td>" . $productos['precio'] . "</td>";
             echo "<td>" . $productos['unidades'] . "</td>";
             echo "<td>" . htmlspecialchars($productos['detalles'], ENT_QUOTES, 'UTF-8') . "</td>";
-            echo "<td><img src='" . $productos['imagen'] . "'></td>";
+            echo '<td><img src="' . $productos['imagen'] . '" /></td>';
             echo "</tr>";
           }
           ?>
