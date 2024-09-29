@@ -97,7 +97,7 @@
 
     <h2>Ejercicio 4</h2>
     <p>Imprimiremos las variables usando la matriz GLOBALS:</p>
-
+    <div>
     <?php
     $a = "PHP5";
     echo '<p>$a: ' . $GLOBALS['a'] . ' (Type: ' . gettype($GLOBALS['a']) . ')</p>';
@@ -122,7 +122,7 @@
       echo '<p>$z: ' . $valor . ' (Type: ' . gettype($valor) . ')</p>';
     }
     ?>
-
+    </div>
 
     <h2>Ejercicio 5</h2>
     <p>Dar el valor de las variables $a, $b, $c al final del siguiente script:</p>
