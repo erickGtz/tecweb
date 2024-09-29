@@ -59,7 +59,10 @@
 						<td><?= $row['precio'] ?></td>
 						<td><?= $row['unidades'] ?></td>
 						<td><?= utf8_encode($row['detalles']) ?></td>
-						<td><img src="<?= $row['imagen']; echo ' alt="' . $row['imagen'] . '"' ?>" /></td>
+						<td><img src="
+						<?php
+						echo $row['imagen'] . '" alt="' . $row['imagen']
+							?>" /></td>
 					</tr>
 				</tbody>
 			</table>
