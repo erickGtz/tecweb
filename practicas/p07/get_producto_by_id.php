@@ -33,9 +33,7 @@
 	</head>
 
 	<body>
-		<h3>PRODUCTO</h3>
-
-		<br />
+		<h3>PRODUCTO <br /></h3>
 
 		<?php if (isset($row)): ?>
 
@@ -61,7 +59,7 @@
 						<td><?= $row['precio'] ?></td>
 						<td><?= $row['unidades'] ?></td>
 						<td><?= utf8_encode($row['detalles']) ?></td>
-						<td><img src="<?= $row['imagen'] ?>" /></td>
+						<td><img src="<?= $row['imagen']; echo ' alt="' . $row['imagen'] . '"' ?>" /></td>
 					</tr>
 				</tbody>
 			</table>
