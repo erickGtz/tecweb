@@ -1,11 +1,11 @@
 <?php
-$nombre = 'nombre_producto';
-$marca  = 'marca_producto';
-$modelo = 'modelo_producto';
-$precio = 1.0;
-$detalles = 'detalles_producto';
-$unidades = 1;
-$imagen   = 'img/imagen.png';
+$nombre = 'Peluche Dr Simi';
+$marca  = 'Farmacias Similares';
+$modelo = 'Original Dr Simi';
+$precio = 149.00;
+$detalles = 'Peluche hipoalergénico del Dr Simi';
+$unidades = 47;
+$imagen   = 'img/peluche-dr-simi.png';
 
 /** SE CREA EL OBJETO DE CONEXION */
 @$link = new mysqli('localhost', 'root', 'fk1322', 'marketzone');	
