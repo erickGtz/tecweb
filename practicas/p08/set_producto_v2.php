@@ -39,7 +39,7 @@ if ($link->connect_errno) {
         if ($result->num_rows > 0) {
             echo '<p>Error: Ya existe un producto con el mismo nombre, marca y modelo.</p>';
         } else {
-            $sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}')";
+            $sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}', 0)";
             if ($link->query($sql)) {
 
                 echo '<h1>Producto</h1>';
