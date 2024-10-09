@@ -67,7 +67,7 @@ function calcularNota() {
 }
 
 //JS03 pag. 11
-function calcularNota() {
+function calcularMayorMenor() {
   var num1 = prompt('Ingresa el primer numero: ', 0);
   var num2 = prompt('Ingresa el segundo numero: ', 0);
 
