@@ -98,12 +98,12 @@ function calcularPromedio() {
   var div = document.getElementById('promedio');
 
   if (pro >= 7) {
-    div.innerHTML = '<p>Aprobado</p>';
+    div.innerHTML = '<p>Aprobado con: ' + pro + '</p>';
   } else {
     if (pro >= 4) {
-      div.innerHTML = '<p>Regular</p>';
+      div.innerHTML = '<p>Regular con: ' + pro + '</p>';
     } else {
-      div.innerHTML = '<p>Reprobado</p>';
+      div.innerHTML = '<p>Reprobado con: ' + pro + '</p>';
     }
   }
 }
