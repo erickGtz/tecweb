@@ -13,6 +13,6 @@ function getDatos() {
 
 //JS01 pag. 8
 
-function saludo(){
+function saludo() {
   document.write('Hola mundo (=');
 }
