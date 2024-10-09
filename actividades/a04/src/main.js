@@ -192,22 +192,22 @@ function sumarValores() {
 //JS04 pag. 12
 function cicloDoWhile() {
   var valor;
-  var div = document.getElementById('ciclo-do');
 
   do {
     valor = prompt('Ingresa un valor entre el 0 y 999: ', 0);
     valor = parseInt(valor);
 
-    div.innerHTML = '<p>El valor ' + valor + ' tiene';
+    document.write('El valor ' + valor + ' tiene');
 
     if (valor < 10) {
-      div.innerHTML += '1 digito.</p>';
+      document.write(' 1 digito');
     } else {
       if (valor < 100) {
-        div.innerHTML += '2 digitos.</p>';
+        document.write('2 digitos');
       } else {
-        div.innerHTML += '3 digitos.</p>';
+        document.write('3 digitos');
       }
     }
+    document.write('<br />');
   } while (valor != 0);
 }
