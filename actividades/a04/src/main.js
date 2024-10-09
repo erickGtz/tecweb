@@ -21,7 +21,6 @@ function mostrarDatosJuan() {
   var nombre = 'Juan';
   var edad = '10';
 
-
   var div = document.getElementById('datosJuan');
   div.innerHTML = '<p>Nombre: ' + nombre + '</p>';
   div.innerHTML += '<p>Edad: ' + edad + '</p>';
@@ -35,7 +34,8 @@ function getDatosTeclado() {
   var edad = prompt('Ingresa tu edad: ', 0);
 
   var div = document.getElementById('datosTeclado');
-  div.innerHTML = '<p>Hola ' + nombre + ', asi que tienes '+ edad + ' años.</p>';
+  div.innerHTML =
+    '<p>Hola ' + nombre + ', asi que tienes ' + edad + ' años.</p>';
 }
 
 //JS03 pag. 3
@@ -59,8 +59,26 @@ function calcularNota() {
   var div = document.getElementById('notas');
 
   if (nota >= 4) {
-      div.innerHTML = '<p>' + nombre + ' esta aprobado con ' + nota + ' .</p>';
-  }else{
-      div.innerHTML = '<p>' + nombre + ' reprobaste con ' + nota + ', echale más ganas.</p>';
+    div.innerHTML = '<p>' + nombre + ' esta aprobado con ' + nota + ' .</p>';
+  } else {
+    div.innerHTML =
+      '<p>' + nombre + ' reprobaste con ' + nota + ', echale más ganas.</p>';
+  }
+}
+
+//JS03 pag. 11
+function calcularNota() {
+  var num1 = prompt('Ingresa el primer numero: ', 0);
+  var num2 = prompt('Ingresa el segundo numero: ', 0);
+
+  num1 = parseInt(num1);
+  num2 = parseInt(num2);
+
+  var div = document.getElementById('mayorMenor');
+
+  if (num1 > num2) {
+    div.innerHTML = '<p>El mayor es ' + num1 + ' .</p>';
+  } else {
+    div.innerHTML = '<p>El mayor es ' + num2 + ' .</p>';
   }
 }
