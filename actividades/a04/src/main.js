@@ -218,6 +218,18 @@ function sentenciaFor() {
   var div = document.getElementById('sentencia-for');
 
   for (f = 1; f <= 10; f++) {
-    div.innerHTML += (f + ' ');
+    div.innerHTML += f + ' ';
   }
+}
+
+//JS05 pag. 5
+function mensaje1() {
+  var div = document.getElementById('implementacion1');
+
+  div.innerHTML = '<p>Cuidado</p>';
+  div.innerHTML += '<p>Ingresa tu documento correctamente</p>';
+  div.innerHTML = '<p>Cuidado</p>';
+  div.innerHTML += '<p>Ingresa tu documento correctamente</p>';
+  div.innerHTML = '<p>Cuidado</p>';
+  div.innerHTML += '<p>Ingresa tu documento correctamente</p>';
 }
