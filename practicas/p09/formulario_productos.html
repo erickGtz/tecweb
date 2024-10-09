@@ -5,13 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario Productos</title>
-
-    <script src="./formulario_productos.html"></script>
   </head>
 
   <body>
     <h1>Bazar de libros "Patricia e hijas"</h1>
     <h2>Registro de producto</h2>
+
+    <script type="text/javascript">
+      function validarEntradas(){
+        var nombre = document.getElementById('form-nombre').value;
+        //var marca = document.getElementById('form-marca').value;
+        //var modelo = document.getElementById('form-modelo').value;
+        var div = document.getElementById('respuesta');
+        var validado = 1;
+
+        if(nombre.value = 0){
+          alert('Nombre requerido');
+          validado = 0;
+        } else{
+          if(nombre.length > 100){
+            alert('Nombre debe ser menor o igual a 100 caracteres');
+            validado = 0;
+          }
+        }
+
+
+        if(validado = 1){
+          div.innerHTML = '<h3>Datos de producto agregado</h3>';
+          div.innerHTML += '<p>Nombre' + nombre + '</p>';
+        }
+      }
+    </script>
 
     <form id="formularioProducto"  method="post">
       <fieldset>
@@ -39,32 +63,6 @@
 
     <div id="respuesta">
     </div>
-
-        <script type="text/javascript">
-      function validarEntradas(){
-        var nombre = document.getElementById('form-nombre').value;
-        //var marca = document.getElementById('form-marca').value;
-        //var modelo = document.getElementById('form-modelo').value;
-        var div = document.getElementById('respuesta');
-        var validado = 1;
-
-        if(nombre.value = 0){
-          alert('Nombre requerido');
-          validado = 0;
-        } else{
-          if(nombre.length > 100){
-            alert('Nombre debe ser menor o igual a 100 caracteres');
-            validado = 0;
-          }
-        }
-
-
-        if(validado = 1){
-          div.innerHTML = '<h3>Datos de producto agregado</h3>';
-          div.innerHTML += '<p>Nombre' + nombre + '</p>';
-        }
-      }
-    </script>
 
   </body>
 
