@@ -1,3 +1,5 @@
+//Ejemplo mostrado en clase
+
 function getDatos() {
   var nombre = prompt('Nombre: ', '');
   var edad = prompt('Edad: ', 0);
@@ -7,4 +9,10 @@ function getDatos() {
 
   var div2 = document.getElementById('edad');
   div2.innerHTML = '<h3>Edad: ' + edad + ' </h3>';
+}
+
+//JS01 pag. 8
+
+function saludo(){
+  document.write('Hola mundo (=');
 }
