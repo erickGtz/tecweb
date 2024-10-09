@@ -20,12 +20,20 @@ function saludo() {
 function mostrarDatosJuan() {
   var nombre = 'Juan';
   var edad = '10';
-  var altura = '1.92';
-  var casado = 'false';
+
 
   var div = document.getElementById('datosJuan');
   div.innerHTML = '<p>Nombre: ' + nombre + '</p>';
   div.innerHTML += '<p>Edad: ' + edad + '</p>';
   div.innerHTML += '<p>Altura: ' + altura + '</p>';
   div.innerHTML += '<p>Casado: ' + casado + '</p>';
+}
+
+//JS02 pag. 12
+function getDatosTeclado() {
+  var nombre = prompt('Ingresa tu nombre: ', '');
+  var edad = prompt('Ingresa tu edad: ', 0);
+
+  var div = document.getElementById('datosTeclado');
+  div.innerHTML = '<p>Hola ' + nombre + ', asi que tienes '+ edad + ' años</p>';
 }
