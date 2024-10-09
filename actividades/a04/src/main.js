@@ -290,5 +290,5 @@ function retornarValor() {
   var valor = prompt('Ingresa un valor entre 1 y 5', 0);
   valor = parseInt(valor);
   var r = convertirCastellano(valor);
-  div.innerHTML = r;
+  div.innerHTML = '<p>' + r + '</p>';
 }
