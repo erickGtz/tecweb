@@ -138,7 +138,10 @@ function valorComprendido() {
 
 //JS03 pag. 18
 function cambiarColor() {
-  var col = prompt('Ingresa el color para pintar el fondo de la ventana (rojo, verde, azul): ','');
+  var col = prompt(
+    'Ingresa el color para pintar el fondo de la ventana (rojo, verde, azul): ',
+    ''
+  );
   var div = document.getElementById('color');
 
   switch (col) {
@@ -158,12 +161,32 @@ function cambiarColor() {
 
 //JS04 pag. 5
 
-function cicloWhile(){
+function cicloWhile() {
   var x = 1;
-    var div = document.getElementById('ciclo');
+  var div = document.getElementById('ciclo');
 
-    while(x <= 100){
-      div.innerHTML += x + '<br />';
-      x += 1;
-    }
+  while (x <= 100) {
+    div.innerHTML += x + '<br />';
+    x += 1;
+  }
+}
+
+//JS04 pag. 6
+
+function sumarValores() {
+  var x = 1;
+  var suma = 0;
+  var valor;
+
+  var div = document.getElementById('acumulador');
+
+  while (x <= 5) {
+    valor = prompt('Ingresa el valor: ', 0);
+    valor = parseInt(valor);
+
+    suma += valor;
+    x += 1;
+  }
+
+  div.innerHTML = '<p>La suma de los valores es ' + suma + ' .</p>';
 }
