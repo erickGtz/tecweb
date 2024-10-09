@@ -247,3 +247,24 @@ function mensaje2() {
   mostrarMensaje();
   mostrarMensaje();
 }
+
+//JS05 pag. 10
+function mensaje5() {
+  var div = document.getElementById('implementacion5');
+
+  function mostrarRango(x1, x2) {
+    var inicio;
+
+    for (inicio = x1; inicio <= x2; inicio++) {
+      div.innerHTML += inicio + ' ';
+    }
+  }
+
+  var valor1 = prompt('Ingresa el valor inferior: ', 0);
+  var valor2 = prompt('Ingresa el valor superior: ', 0);
+
+  num1 = parseInt(valor1);
+  num2 = parseInt(valor2);
+
+  mostrarRango(valor1, valor2);
+}
