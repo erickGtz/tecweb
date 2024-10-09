@@ -222,7 +222,7 @@ function sentenciaFor() {
   }
 }
 
-//JS05 pag. 5
+//JS05 pag. 6
 function mensaje1() {
   var div = document.getElementById('implementacion1');
 
@@ -232,4 +232,18 @@ function mensaje1() {
   div.innerHTML += '<p>Ingresa tu documento correctamente</p>';
   div.innerHTML += '<p>Cuidado</p>';
   div.innerHTML += '<p>Ingresa tu documento correctamente</p>';
+}
+
+//JS05 pag. 7
+function mensaje1() {
+  var div = document.getElementById('implementacion2');
+
+  function mostrarMensaje() {
+    div.innerHTML += '<p>Cuidado</p>';
+    div.innerHTML += '<p>Ingresa tu documento correctamente</p>';
+  }
+
+  mostrarMensaje();
+  mostrarMensaje();
+  mostrarMensaje();
 }
