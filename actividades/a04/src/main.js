@@ -116,16 +116,42 @@ function valorComprendido() {
   var div = document.getElementById('switch');
 
   switch (valor) {
-    case 1: div.innerHTML = '<p>Uno</p>';
-            break;
-    case 2: div.innerHTML = '<p>Dos</p>';
-            break;
-    case 3: div.innerHTML = '<p>Tres</p>';
-            break;
-    case 4: div.innerHTML = '<p>Cuatro</p>';
-            break;
-    case 5: div.innerHTML = '<p>Cinco</p>';
-            break;
-    default: div.innerHTML = '<p>Debes ingresar un valor entre 1 y 5, necio uste.</p>';
+    case 1:
+      div.innerHTML = '<p>Uno</p>';
+      break;
+    case 2:
+      div.innerHTML = '<p>Dos</p>';
+      break;
+    case 3:
+      div.innerHTML = '<p>Tres</p>';
+      break;
+    case 4:
+      div.innerHTML = '<p>Cuatro</p>';
+      break;
+    case 5:
+      div.innerHTML = '<p>Cinco</p>';
+      break;
+    default:
+      div.innerHTML = '<p>Debes ingresar un valor entre 1 y 5, necio uste.</p>';
+  }
+}
+
+//JS03 pag. 18
+function cambiarColor() {
+  var col = prompt('Ingresa el color para pintar el fondo de la ventana (rojo, verde, azul): ','');
+  var div = document.getElementById('color');
+
+  switch (col) {
+    case 'rojo':
+      document.bgColor = '#ff0000';
+      break;
+    case 'verde':
+      document.bgColor = '#00ff00';
+      break;
+    case 'azul':
+      document.bgColor = '#0000ff';
+      break;
+    default:
+      div.innerHTML = '<p>No esta ese color, perdón.</p>';
   }
 }
