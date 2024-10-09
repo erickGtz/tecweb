@@ -48,5 +48,5 @@ function realizarOperaciones() {
 
   var div = document.getElementById('operaciones');
   div.innerHTML = '<p>La suma es: ' + suma + '</p>';
-  div.innerHTML = '<p>El producto es: ' + producto + '</p>';
+  div.innerHTML += '<p>El producto es: ' + producto + '</p>';
 }
