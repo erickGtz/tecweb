@@ -217,9 +217,7 @@ function sentenciaFor() {
   var f;
   var div = document.getElementById('sentencia-for');
 
-  div.innerHTML = '<p>';
   for (f = 1; f <= 10; f++) {
     div.innerHTML += (f + ' ');
   }
-  div.innerHTML += '</p>';
 }
