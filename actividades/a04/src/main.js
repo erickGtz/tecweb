@@ -113,6 +113,8 @@ function valorComprendido() {
   var valor = prompt('Ingresa un valor entre 1 y 5: ', 0);
   valor = parseInt(valor);
 
+  var div = document.getElementById('switch');
+
   switch (valor) {
     case 1: div.innerHTML = '<p>Uno</p>';
             break;
