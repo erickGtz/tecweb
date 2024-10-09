@@ -228,8 +228,8 @@ function mensaje1() {
 
   div.innerHTML = '<p>Cuidado</p>';
   div.innerHTML += '<p>Ingresa tu documento correctamente</p>';
-  div.innerHTML = '<p>Cuidado</p>';
+  div.innerHTML += '<p>Cuidado</p>';
   div.innerHTML += '<p>Ingresa tu documento correctamente</p>';
-  div.innerHTML = '<p>Cuidado</p>';
+  div.innerHTML += '<p>Cuidado</p>';
   div.innerHTML += '<p>Ingresa tu documento correctamente</p>';
 }
