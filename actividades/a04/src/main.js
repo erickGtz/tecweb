@@ -25,7 +25,7 @@ function mostrarDatosJuan() {
 
   var div = document.getElementById('datosJuan');
   div.innerHTML = '<p>Nombre: ' + nombre + '</p>';
-  div.innerHTML = '<p>Edad: ' + edad + '</p>';
-  div.innerHTML = '<p>Altura: ' + altura + '</p>';
-  div.innerHTML = '<p>Casado: ' + casado + '</p>';
+  div.innerHTML += '<p>Edad: ' + edad + '</p>';
+  div.innerHTML += '<p>Altura: ' + altura + '</p>';
+  div.innerHTML += '<p>Casado: ' + casado + '</p>';
 }
