@@ -53,12 +53,12 @@ function realizarOperaciones() {
 
 //JS03 pag. 8
 function calcularNota() {
-  var nombre = prompt('Ingresa tu nombre: ', 0);
+  var nombre = prompt('Ingresa tu nombre: ', '');
   var nota = prompt('Ingresa tu nota: ', 0);
 
   var div = document.getElementById('notas');
 
   if (nota >= 4) {
-      div.innerHTML = '<p>' + nombre + 'esta aprobado con' + nota + ' .</p>';
+      div.innerHTML = '<p>' + nombre + ' esta aprobado con ' + nota + ' .</p>';
   }
 }
