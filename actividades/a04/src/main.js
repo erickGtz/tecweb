@@ -60,5 +60,7 @@ function calcularNota() {
 
   if (nota >= 4) {
       div.innerHTML = '<p>' + nombre + ' esta aprobado con ' + nota + ' .</p>';
+  }else{
+      div.innerHTML = '<p>' + nombre + ' reprobaste con ' + nota + ', echale más ganas.</p>';
   }
 }
