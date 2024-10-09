@@ -203,11 +203,23 @@ function cicloDoWhile() {
       document.write(' 1 digito');
     } else {
       if (valor < 100) {
-        document.write('2 digitos');
+        document.write(' 2 digitos');
       } else {
-        document.write('3 digitos');
+        document.write(' 3 digitos');
       }
     }
     document.write('<br />');
   } while (valor != 0);
+}
+
+//JS04 pag. 16
+function sentenciaFor() {
+  var f;
+  var div = document.getElementById('sentencia-for');
+
+  div.innerHTML = '<p>';
+  for (f = 1; f <= 10; f++) {
+    div.innerHTML += (f + ' ');
+  }
+  div.innerHTML += '</p>';
 }
