@@ -155,3 +155,15 @@ function cambiarColor() {
       div.innerHTML = '<p>No esta ese color, perdón.</p>';
   }
 }
+
+//JS04 pag. 5
+
+function cicloWhile(){
+  var x = 1;
+    var div = document.getElementById('ciclo');
+
+    while(x <= 100){
+      div.innerHTML += x + '<br />';
+      x += 1;
+    }
+}
