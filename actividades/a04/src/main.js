@@ -35,5 +35,18 @@ function getDatosTeclado() {
   var edad = prompt('Ingresa tu edad: ', 0);
 
   var div = document.getElementById('datosTeclado');
-  div.innerHTML = '<p>Hola ' + nombre + ', asi que tienes '+ edad + ' años</p>';
+  div.innerHTML = '<p>Hola ' + nombre + ', asi que tienes '+ edad + ' años.</p>';
+}
+
+//JS03 pag. 3
+function realizarOperaciones() {
+  var valor1 = prompt('Introducir primer número: ', 0);
+  var valor2 = prompt('Introducir segundo número: ', 0);
+
+  var suma = parseInt(valor1) + parseInt(valor2);
+  var producto = parseInt(valor1) * parseInt(valor2);
+
+  var div = document.getElementById('operaciones');
+  div.innerHTML = '<p>La suma es: ' + suma + '</p>';
+  div.innerHTML = '<p>El producto es: ' + producto + '</p>';
 }
