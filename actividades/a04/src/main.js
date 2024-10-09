@@ -82,3 +82,28 @@ function calcularMayorMenor() {
     div.innerHTML = '<p>El mayor es ' + num2 + ' .</p>';
   }
 }
+
+//JS03 pag. 8
+function calcularPromedio() {
+  var nota1 = prompt('Ingresa 1ra. nota: ', 0);
+  var nota2 = prompt('Ingresa 2da. nota: ', 0);
+  var nota3 = prompt('Ingresa 3ra. nota: ', 0);
+
+  nota1 = parseInt(nota1);
+  nota2 = parseInt(nota2);
+  nota3 = parseInt(nota3);
+
+  var pro = (nota1 + nota2 + nota3) / 3;
+
+  var div = document.getElementById('promedio');
+
+  if (pro >= 7) {
+    div.innerHTML = '<p>Aprobado</p>';
+  } else {
+    if (pro >= 4) {
+      div.innerHTML = '<p>Regular</p>';
+    } else {
+      div.innerHTML = '<p>Reprobado</p>';
+    }
+  }
+}
