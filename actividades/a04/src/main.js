@@ -235,7 +235,7 @@ function mensaje1() {
 }
 
 //JS05 pag. 7
-function mensaje1() {
+function mensaje2() {
   var div = document.getElementById('implementacion2');
 
   function mostrarMensaje() {
