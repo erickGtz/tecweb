@@ -83,7 +83,7 @@ function calcularMayorMenor() {
   }
 }
 
-//JS03 pag. 8
+//JS03 pag. 15-16
 function calcularPromedio() {
   var nota1 = prompt('Ingresa 1ra. nota: ', 0);
   var nota2 = prompt('Ingresa 2da. nota: ', 0);
@@ -105,5 +105,25 @@ function calcularPromedio() {
     } else {
       div.innerHTML = '<p>Reprobado con: ' + pro + '</p>';
     }
+  }
+}
+
+//JS03 pag. 18
+function valorComprendido() {
+  var valor = prompt('Ingresa un valor entre 1 y 5: ', 0);
+  valor = parseInt(valor);
+
+  switch (valor) {
+    case 1: div.innerHTML = '<p>Uno</p>';
+            break;
+    case 2: div.innerHTML = '<p>Dos</p>';
+            break;
+    case 3: div.innerHTML = '<p>Tres</p>';
+            break;
+    case 4: div.innerHTML = '<p>Cuatro</p>';
+            break;
+    case 5: div.innerHTML = '<p>Cinco</p>';
+            break;
+    default: div.innerHTML = '<p>Debes ingresar un valor entre 1 y 5, necio uste.</p>';
   }
 }
