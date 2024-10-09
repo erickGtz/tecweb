@@ -1,5 +1,4 @@
 //Ejemplo mostrado en clase
-
 function getDatos() {
   var nombre = prompt('Nombre: ', '');
   var edad = prompt('Edad: ', 0);
@@ -12,7 +11,21 @@ function getDatos() {
 }
 
 //JS01 pag. 8
-
 function saludo() {
-  document.write('Hola mundo (=');
+  var div1 = document.getElementById('saludo');
+  div1.innerHTML = '<p> Hola mundo (= </p>';
+}
+
+//JS02 pag. 6
+function mostrarDatosJuan() {
+  var nombre = 'Juan';
+  var edad = '10';
+  var altura = '1.92';
+  var casado = 'false';
+
+  var div = document.getElementById('datosJuan');
+  div.innerHTML = '<p>Nombre: ' + nombre + '</p>';
+  div.innerHTML = '<p>Edad: ' + edad + '</p>';
+  div.innerHTML = '<p>Altura: ' + altura + '</p>';
+  div.innerHTML = '<p>Casado: ' + casado + '</p>';
 }
