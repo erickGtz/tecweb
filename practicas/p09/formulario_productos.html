@@ -19,14 +19,14 @@
         var div = document.getElementById('respuesta');
         var validado = 1;
 
-        if(nombre.value = 0){
+        if(nombre.value = null){
           alert('Nombre requerido');
           validado = 0;
-        } else{
-          if(nombre.length > 100){
+        }
+
+        if(nombre.length > 100){
             alert('Nombre debe ser menor o igual a 100 caracteres');
             validado = 0;
-          }
         }
 
 
