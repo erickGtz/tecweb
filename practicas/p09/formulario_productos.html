@@ -19,7 +19,7 @@
         var div = document.getElementById('respuesta');
         var validado = 1;
 
-        if(nombre.value == 0){
+        if(nombre.value == null){
           alert('Nombre requerido');
           validado = 0;
         }
@@ -32,7 +32,7 @@
 
         if(validado == 1){
           div.innerHTML = '<h3>Datos de producto agregado</h3>';
-          div.innerHTML += '<p>Nombre' + nombre + '</p>';
+          div.innerHTML += '<p>Nombre: ' + nombre + '</p>';
         }
       }
     </script>
