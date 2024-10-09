@@ -136,7 +136,7 @@ function valorComprendido() {
   }
 }
 
-//JS03 pag. 18
+//JS03 pag. 21
 function cambiarColor() {
   var col = prompt(
     'Ingresa el color para pintar el fondo de la ventana (rojo, verde, azul): ',
@@ -160,7 +160,6 @@ function cambiarColor() {
 }
 
 //JS04 pag. 5
-
 function cicloWhile() {
   var x = 1;
   var div = document.getElementById('ciclo');
@@ -172,7 +171,6 @@ function cicloWhile() {
 }
 
 //JS04 pag. 6
-
 function sumarValores() {
   var x = 1;
   var suma = 0;
@@ -189,4 +187,27 @@ function sumarValores() {
   }
 
   div.innerHTML = '<p>La suma de los valores es ' + suma + ' .</p>';
+}
+
+//JS04 pag. 12
+function cicloDoWhile() {
+  var valor;
+  var div = document.getElementById('ciclo-do');
+
+  do {
+    valor = prompt('Ingresa un valor entre el 0 y 999: ', 0);
+    valor = parseInt(valor);
+
+    div.innerHTML = '<p>El valor ' + valor + ' tiene';
+
+    if (valor < 10) {
+      div.innerHTML += '1 digito.</p>';
+    } else {
+      if (valor < 100) {
+        div.innerHTML += '2 digitos.</p>';
+      } else {
+        div.innerHTML += '3 digitos.</p>';
+      }
+    }
+  } while (valor != 0);
 }
