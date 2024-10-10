@@ -18,8 +18,10 @@
         var modelo = document.getElementById('form-modelo').value;
         var precio = document.getElementById('form-precio').value;
         var detalles = document.getElementById('form-detalles').value;
+        var unidades = document.getElementById('form-unidades').value;
 
         precio = parseFloat(precio);
+        unidades = parseInt(unidades);
 
         var validado = 1;
 
@@ -63,6 +65,16 @@
           validado = 0;
         }
 
+        if (isNaN(unidades)) {
+          alert('Unidades requeridas.');
+          validado = 0;
+        }
+
+        if (unidades < 0) {
+          alert('Las unidades deben ser mayores o igual a 0');
+          validado = 0;
+        }
+
         if (validado == 1) {
           alert('Producto registrado correctamente.');
         }
@@ -97,6 +109,7 @@
           <li><label for="form-unidades">Unidades: </label>
             <input type="number" name="unidades" id="form-unidades" placeholder="0">
           </li><br />
+
           <li><label for="form-img">Imagen: </label> <input type="text" name="img" id="form-img"
                    placeholder="img/ruta_de_imagen"></li>
         </ul>
