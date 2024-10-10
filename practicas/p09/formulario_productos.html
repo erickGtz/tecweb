@@ -19,6 +19,7 @@
         var precio = document.getElementById('form-precio').value;
         var detalles = document.getElementById('form-detalles').value;
         var unidades = document.getElementById('form-unidades').value;
+        var rutaImg = document.getElementById('form-img').value;
 
         precio = parseFloat(precio);
         unidades = parseInt(unidades);
@@ -73,6 +74,10 @@
         if (unidades < 0) {
           alert('Las unidades deben ser mayores o igual a 0');
           validado = 0;
+        }
+
+        if (rutaImg == '') {
+          rutaImg = 'img/default.png';
         }
 
         if (validado == 1) {
