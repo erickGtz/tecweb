@@ -67,6 +67,7 @@
             <th scope="col">Unidades</th>
             <th scope="col">Detalles</th>
             <th scope="col">Imagen</th>
+            <th scope="col">Editar</th>
           </tr>
         </thead>
         <tbody>
