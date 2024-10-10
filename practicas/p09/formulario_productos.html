@@ -16,7 +16,10 @@
         var nombre = document.getElementById('form-nombre').value;
         var marca = document.getElementById('form-marcas').value;
         var modelo = document.getElementById('form-modelo').value;
-        var div = document.getElementById('respuesta');
+        var precio = document.getElementById('form-precio').value;
+
+        precio = parseFloat(precio);
+
         var validado = 1;
 
         if (nombre == '') {
@@ -41,6 +44,16 @@
 
         if (modelo.length > 26) {
           alert('Modelo debe ser menor o igual a 25 caracteres.');
+          validado = 0;
+        }
+
+        if (precio == '') {
+          alert('Precio requerido.');
+          validado = 0;
+        }
+
+        if (precio <= 99.99) {
+          alert('Precio debe ser mayor a 99.99.');
           validado = 0;
         }
 
@@ -71,6 +84,7 @@
           <li><label for="form-precio">Precio: </label>
             <input type="number" name="precio" id="form-precio" step="0.01" placeholder="0.00">
           </li><br />
+
           <li><label for="form-detalles">Detalles del producto: </label><br><textarea name="detalles" rows="2" cols="40"
                       id="form-detalles" placeholder="Color blanco, resistente al agua, etc."></textarea></li><br />
           <li><label for="form-unidades">Unidades: </label>
