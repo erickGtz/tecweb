@@ -19,7 +19,9 @@
         var precio = document.getElementById('form-precio').value;
         var detalles = document.getElementById('form-detalles').value;
         var unidades = document.getElementById('form-unidades').value;
-        var rutaImg = document.getElementById('form-img').value;
+        var rutaImg = 'img/' + document.getElementById('form-img').value;
+
+
 
         precio = parseFloat(precio);
         unidades = parseInt(unidades);
@@ -77,7 +79,7 @@
         }
 
         if (rutaImg == '') {
-          rutaImg = 'img/default.png';
+          rutaImg = 'default.png';
         }
 
         if (validado == 1) {
@@ -116,7 +118,7 @@
           </li><br />
 
           <li><label for="form-img">Imagen: </label> <input type="text" name="img" id="form-img"
-                   placeholder="img/ruta_de_imagen"></li>
+                   placeholder="nombre_imagen.png"></li>
         </ul>
       </fieldset>
 
