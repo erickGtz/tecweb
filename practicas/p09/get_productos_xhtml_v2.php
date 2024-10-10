@@ -54,6 +54,12 @@
 
     <br />
 
+    <script>
+      function editarProducto(){
+        alert('Editando producto');
+      }
+    </script>
+
     <?php if (isset($data)): ?>
 
       <table class="table">
