@@ -2,36 +2,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
   <?php
   $data = array();
-    /** SE CREA EL OBJETO DE CONEXION */
-    @$link = new mysqli('localhost', 'root', 'fk1322', 'marketzone');
-    /** NOTA: con @ se suprime el Warning para gestionar el error por medio de código */
+  /** SE CREA EL OBJETO DE CONEXION */
+  @$link = new mysqli('localhost', 'root', 'fk1322', 'marketzone');
+  /** NOTA: con @ se suprime el Warning para gestionar el error por medio de código */
 
-    $link->set_charset("utf8");
+  $link->set_charset("utf8");
 
-    /** comprobar la conexión */
-    if ($link->connect_errno) {
-      die('Falló la conexión: ' . $link->connect_error . '<br/>');
-      //exit();
-    }
+  /** comprobar la conexión */
+  if ($link->connect_errno) {
+    die('Falló la conexión: ' . $link->connect_error . '<br/>');
+    //exit();
+  }
 
-    /** Crear una tabla que no devuelve un conjunto de resultados */
-    if ($result = $link->query("SELECT * FROM productos WHERE eliminado = 0")) {
-      /** Se extraen las tuplas obtenidas de la consulta */
-      $row = $result->fetch_all(MYSQLI_ASSOC);
+  /** Crear una tabla que no devuelve un conjunto de resultados */
+  if ($result = $link->query("SELECT * FROM productos WHERE eliminado = 0")) {
+    /** Se extraen las tuplas obtenidas de la consulta */
+    $row = $result->fetch_all(MYSQLI_ASSOC);
 
-      /** Se crea un arreglo con la estructura deseada */
-      foreach ($row as $num => $registro) {            // Se recorren tuplas
-        foreach ($registro as $key => $value) {      // Se recorren campos
-          $data[$num][$key] = $value;
-        }
+    /** Se crea un arreglo con la estructura deseada */
+    foreach ($row as $num => $registro) {            // Se recorren tuplas
+      foreach ($registro as $key => $value) {      // Se recorren campos
+        $data[$num][$key] = $value;
       }
-
-      /** útil para liberar memoria asociada a un resultado con demasiada información */
-      $result->free();
     }
 
-    $link->close();
-  
+    /** útil para liberar memoria asociada a un resultado con demasiada información */
+    $result->free();
+  }
+
+  $link->close();
+
   ?>
 
   <head>
@@ -46,6 +46,10 @@
 
     <br />
 
+    <script>
+
+    </script>
+
     <?php if (isset($data)): ?>
 
       <table class="table">
@@ -59,6 +63,7 @@
             <th scope="col">Unidades</th>
             <th scope="col">Detalles</th>
             <th scope="col">Imagen</th>
+            <th scope="col">Editar</th>
           </tr>
         </thead>
         <tbody>
@@ -73,6 +78,7 @@
             echo "<td>" . $productos['unidades'] . "</td>";
             echo "<td>" . htmlspecialchars($productos['detalles'], ENT_QUOTES, 'UTF-8') . "</td>";
             echo '<td><img src="' . $productos['imagen'] . '" /></td>';
+            echo '<td><input type="button" value="Editar"  onclick="editarProducto()" /></td>';
             echo "</tr>";
           }
           ?>
