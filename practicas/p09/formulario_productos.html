@@ -15,7 +15,7 @@
       function validarEntradas() {
         var nombre = document.getElementById('form-nombre').value;
         var marca = document.getElementById('form-marcas').value;
-        //var modelo = document.getElementById('form-modelo').value;
+        var modelo = document.getElementById('form-modelo').value;
         var div = document.getElementById('respuesta');
         var validado = 1;
 
@@ -31,6 +31,16 @@
 
         if (marca == '') {
           alert('Por favor selecciona una marca.');
+          validado = 0;
+        }
+
+        if (modelo == '') {
+          alert('Modelo requerido.');
+          validado = 0;
+        }
+
+        if (modelo.length > 26) {
+          alert('Modelo debe ser menor o igual a 25 caracteres.');
           validado = 0;
         }
 
@@ -57,6 +67,7 @@
           </li><br />
 
           <li><label for="form-modelo">Modelo: </label> <input type="text" name="modelo" id="form-modelo"></li><br />
+
           <li><label for="form-precio">Precio: </label>
             <input type="number" name="precio" id="form-precio" step="0.01" placeholder="0.00">
           </li><br />
