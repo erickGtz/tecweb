@@ -14,7 +14,7 @@
     <script type="text/javascript">
       function validarEntradas() {
         var nombre = document.getElementById('form-nombre').value;
-        //var marca = document.getElementById('form-marca').value;
+        var marca = document.getElementById('form-marcas').value;
         //var modelo = document.getElementById('form-modelo').value;
         var div = document.getElementById('respuesta');
         var validado = 1;
@@ -29,7 +29,7 @@
           validado = 0;
         }
 
-        if (categoria == '') {
+        if (marca == '') {
           alert('Por favor selecciona una marca.');
           validado = 0;
         }
