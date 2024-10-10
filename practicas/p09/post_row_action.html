@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet"
-              href= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+              href= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
               integrity= "sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
               crossorigin="anonymous" />
         <script>
@@ -14,7 +14,7 @@
                 // se obtienen los datos de la fila en forma de arreglo
                 var data = document.getElementById(rowId).querySelectorAll(".row-data");
                 /**
-                querySelectorAll() devuelve una lista de elementos (NodeList) que 
+                querySelectorAll() devuelve una lista de elementos (NodeList) que
                 coinciden con el grupo de selectores CSS indicados.
                 (ver: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)
 
@@ -32,7 +32,7 @@
         </script>
     </head>
     <body>
-        
+
         <table class="table">
             <tbody>
                 <tr>
@@ -46,8 +46,8 @@
                     <th scope="row">1</th>
                     <td class="row-data">Sara</td>
                     <td class="row-data">23</td>
-                    <td><input type="button" 
-                               value="submit" 
+                    <td><input type="button"
+                               value="submit"
                                onclick="show()" /></td>
                 </tr>
 
@@ -55,8 +55,8 @@
                     <th scope="row">2</th>
                     <td class="row-data">John</td>
                     <td class="row-data">30</td>
-                    <td><input type="button" 
-                               value="submit" 
+                    <td><input type="button"
+                               value="submit"
                                onclick="show()" /></td>
                 </tr>
 
@@ -64,8 +64,8 @@
                     <th scope="row">3</th>
                     <td class="row-data">Naman</td>
                     <td class="row-data">20</td>
-                    <td><input type="button" 
-                               value="submit" 
+                    <td><input type="button"
+                               value="submit"
                                onclick="show()" /></td>
                 </tr>
             </tbody>
@@ -89,7 +89,7 @@
                 console.log(form);
 
                 form.method = 'POST';
-                form.action = 'http://localhost/buap/tecweb/practicas/p07/formulario.php';  
+                form.action = 'http://localhost/tecweb/practicas/p09/formulario.php';
 
                 document.body.appendChild(form);
                 form.submit();
