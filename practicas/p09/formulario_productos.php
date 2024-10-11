@@ -78,6 +78,7 @@
 
         if (rutaImg == '') {
           rutaImg = 'img/default.png';
+          document.getElementById('form-img').value = rutaImg;
         }
 
         if (validado == 1) {
