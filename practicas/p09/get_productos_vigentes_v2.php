@@ -105,7 +105,16 @@
             echo "<td>" . $productos['unidades'] . "</td>";
             echo "<td>" . htmlspecialchars($productos['detalles'], ENT_QUOTES, 'UTF-8') . "</td>";
             echo '<td><img src="' . $productos['imagen'] . '" /></td>';
-            echo '<td><input type="button" value="Editar"  onclick="editarProducto()" /></td>';
+                    echo '<td><input type="button" value="Editar" onclick="editarProducto(' .
+              "'" . $productos['ID'] . "', " .
+              "'" . addslashes($productos['nombre']) . "', " .
+              "'" . addslashes($productos['marca']) . "', " .
+              "'" . addslashes($productos['modelo']) . "', " .
+              $productos['precio'] . ', ' .
+              $productos['unidades'] . ', ' .
+              "'" . addslashes($productos['detalles']) . "', " .
+              "'" . addslashes($productos['imagen']) . "'" .
+              ')" /></td>';
             echo "</tr>";
           }
           ?>

@@ -54,35 +54,35 @@
 
     <br />
 
-<script>
-  function editarProducto(id, nombre, marca, modelo, precio, unidades, detalles, imagen) {
-    var form = document.createElement("form");
-    form.method = "POST";
-    form.action = "http://localhost/tecweb/practicas/p09/formulario_productos.php";  
+    <script>
+      function editarProducto(id, nombre, marca, modelo, precio, unidades, detalles, imagen) {
+        var form = document.createElement("form");
+        form.method = "POST";
+        form.action = "http://localhost/tecweb/practicas/p09/formulario_productos.php";
 
-    var inputs = [
-      { name: 'form-id', value: id },
-      { name: 'form-nombre', value: nombre },
-      { name: 'form-marca', value: marca },
-      { name: 'form-modelo', value: modelo },
-      { name: 'form-precio', value: precio },
-      { name: 'form-unidades', value: unidades },
-      { name: 'form-detalles', value: detalles },
-      { name: 'form-imagen', value: imagen }
-    ];
+        var inputs = [
+          { name: 'form-id', value: id },
+          { name: 'form-nombre', value: nombre },
+          { name: 'form-marca', value: marca },
+          { name: 'form-modelo', value: modelo },
+          { name: 'form-precio', value: precio },
+          { name: 'form-unidades', value: unidades },
+          { name: 'form-detalles', value: detalles },
+          { name: 'form-imagen', value: imagen }
+        ];
 
-    inputs.forEach(function(inputData) {
-      var input = document.createElement("input");
-      input.type = "hidden";
-      input.name = inputData.name;
-      input.value = inputData.value;
-      form.appendChild(input);
-    });
+        inputs.forEach(function (inputData) {
+          var input = document.createElement("input");
+          input.type = "hidden";
+          input.name = inputData.name;
+          input.value = inputData.value;
+          form.appendChild(input);
+        });
 
-    document.body.appendChild(form);
-    form.submit();
-  }
-</script>
+        document.body.appendChild(form);
+        form.submit();
+      }
+    </script>
 
     <?php if (isset($data)): ?>
 
@@ -112,7 +112,16 @@
             echo "<td>" . $productos['unidades'] . "</td>";
             echo "<td>" . htmlspecialchars($productos['detalles'], ENT_QUOTES, 'UTF-8') . "</td>";
             echo '<td><img src="' . $productos['imagen'] . '" /></td>';
-            echo '<td><input type="button" value="Editar"  onclick="editarProducto()" /></td>';
+            echo '<td><input type="button" value="Editar" onclick="editarProducto(' .
+              "'" . $productos['ID'] . "', " .
+              "'" . addslashes($productos['nombre']) . "', " .
+              "'" . addslashes($productos['marca']) . "', " .
+              "'" . addslashes($productos['modelo']) . "', " .
+              $productos['precio'] . ', ' .
+              $productos['unidades'] . ', ' .
+              "'" . addslashes($productos['detalles']) . "', " .
+              "'" . addslashes($productos['imagen']) . "'" .
+              ')" /></td>';
             echo "</tr>";
           }
           ?>
