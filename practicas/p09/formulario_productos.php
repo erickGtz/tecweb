@@ -81,6 +81,7 @@
         }
 
         if (validado == 1) {
+          document.getElementById('formularioProducto').submit();
           alert('Producto registrado correctamente.');
         }
       }
@@ -144,7 +145,7 @@
       </fieldset>
 
       <p>
-        <input type="submit" value="Enviar" onclick="validarEntradas()">&nbsp;&nbsp;
+        <input type="button" value="Enviar" onclick="validarEntradas()">&nbsp;&nbsp;
         <input type="reset">
       </p>
     </form>
