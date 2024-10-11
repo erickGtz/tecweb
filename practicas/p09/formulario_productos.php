@@ -96,7 +96,7 @@
       $precio = isset($_POST['precio']) ? $_POST['precio'] : 'precio_producto';
       $detalles = isset($_POST['detalles']) ? $_POST['detalles'] : '';
       $unidades = isset($_POST['unidades']) ? $_POST['unidades'] : 'unidades_producto';
-      $imagen = isset($_POST['imagen']) ? $_POST['imagen'] : '';
+      $imagen = isset($_POST['imagen']) ? $_POST['imagen'] : 'imagen_producto';
     ?>
 
     <form id="formularioProducto" method="post" action="http://localhost/tecweb/practicas/p09/update_producto.php">
@@ -139,7 +139,7 @@
           </li><br />
 
           <li><label for="form-img">Imagen: </label> 
-              <input type="text" name="img" id="form-img" placeholder="nombre_imagen.png" value="<?php echo htmlspecialchars($imagen); ?>">
+              <input type="text" name="img" id="form-img" placeholder="img/nombre_imagen.png" value="<?php echo htmlspecialchars($imagen); ?>">
           </li>
         </ul>
       </fieldset>
