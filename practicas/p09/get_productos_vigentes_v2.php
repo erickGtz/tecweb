@@ -48,24 +48,21 @@
 
 <script>
   function editarProducto(id, nombre, marca, modelo, precio, unidades, detalles, imagen) {
-    // Crear el formulario dinámico
     var form = document.createElement("form");
     form.method = "POST";
-    form.action = "./formulario_productos.php";  // La página donde está tu formulario de edición
+    form.action = "http://localhost/tecweb/practicas/p09/formulario_productos.php";  
 
-    // Crear los campos ocultos con los datos del producto
     var inputs = [
-      { name: 'id', value: id },
-      { name: 'nombre', value: nombre },
-      { name: 'marca', value: marca },
-      { name: 'modelo', value: modelo },
-      { name: 'precio', value: precio },
-      { name: 'unidades', value: unidades },
-      { name: 'detalles', value: detalles },
-      { name: 'imagen', value: imagen }
+      { name: 'form-id', value: id },
+      { name: 'form-nombre', value: nombre },
+      { name: 'form-marca', value: marca },
+      { name: 'form-modelo', value: modelo },
+      { name: 'form-precio', value: precio },
+      { name: 'form-unidades', value: unidades },
+      { name: 'form-detalles', value: detalles },
+      { name: 'form-imagen', value: imagen }
     ];
 
-    // Añadir los campos al formulario
     inputs.forEach(function(inputData) {
       var input = document.createElement("input");
       input.type = "hidden";
@@ -74,7 +71,6 @@
       form.appendChild(input);
     });
 
-    // Añadir el formulario al cuerpo del documento y enviarlo
     document.body.appendChild(form);
     form.submit();
   }

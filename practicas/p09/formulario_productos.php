@@ -91,6 +91,7 @@
     <form id="formularioProducto" method="post">
       <fieldset>
         <ul>
+          <li><label for="form-id">ID: </label> <input type="hidden" name="id" id="form-id"></li><br />
           <li><label for="form-nombre">Nombre: </label> <input type="text" name="nombre" id="form-nombre"></li><br />
 
           <li><label for="form-marca">Marca: </label>
