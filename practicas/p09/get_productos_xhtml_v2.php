@@ -61,14 +61,14 @@
         form.action = "http://localhost/tecweb/practicas/p09/formulario_productos.php";
 
         var inputs = [
-          { name: 'form-id', value: id },
-          { name: 'form-nombre', value: nombre },
-          { name: 'form-marca', value: marca },
-          { name: 'form-modelo', value: modelo },
-          { name: 'form-precio', value: precio },
-          { name: 'form-unidades', value: unidades },
-          { name: 'form-detalles', value: detalles },
-          { name: 'form-imagen', value: imagen }
+          { name: 'id', value: id },
+          { name: 'nombre', value: nombre },
+          { name: 'marca', value: marca },
+          { name: 'modelo', value: modelo },
+          { name: 'precio', value: precio },
+          { name: 'unidades', value: unidades },
+          { name: 'detalles', value: detalles },
+          { name: 'imagen', value: imagen }
         ];
 
         inputs.forEach(function (inputData) {
