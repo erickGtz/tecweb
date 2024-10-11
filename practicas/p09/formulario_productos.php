@@ -21,8 +21,6 @@
         var unidades = document.getElementById('form-unidades').value;
         var rutaImg = 'img/' + document.getElementById('form-img').value;
 
-
-
         precio = parseFloat(precio);
         unidades = parseInt(unidades);
 
@@ -88,38 +86,60 @@
       }
     </script>
 
+    <?php
+      // Verificar si los datos han sido enviados por POST
+      $id = isset($_POST['id']) ? $_POST['id'] : 'id_producto';
+      $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : 'nombre_producto';
+      $marca = isset($_POST['marca']) ? $_POST['marca'] : 'marca_producto';
+      $modelo = isset($_POST['modelo']) ? $_POST['modelo'] : 'modelo_producto';
+      $precio = isset($_POST['precio']) ? $_POST['precio'] : 'precio_producto';
+      $detalles = isset($_POST['detalles']) ? $_POST['detalles'] : '';
+      $unidades = isset($_POST['unidades']) ? $_POST['unidades'] : 'unidades_producto';
+      $imagen = isset($_POST['imagen']) ? $_POST['imagen'] : '';
+    ?>
+
     <form id="formularioProducto" method="post">
       <fieldset>
         <ul>
-          <li><label for="form-id">ID: </label> <input type="hidden" name="id" id="form-id"></li><br />
-          <li><label for="form-nombre">Nombre: </label> <input type="text" name="nombre" id="form-nombre"></li><br />
+          <li><label for="form-id">ID: </label> 
+              <input type="hidden" name="id" id="form-id" value="<?php echo htmlspecialchars($id); ?>">
+              <?php echo htmlspecialchars($id); ?> <!-- Mostramos el ID solo como texto -->
+          </li><br />
+
+          <li><label for="form-nombre">Nombre: </label> 
+              <input type="text" name="nombre" id="form-nombre" value="<?php echo htmlspecialchars($nombre); ?>">
+          </li><br />
 
           <li><label for="form-marca">Marca: </label>
-            <select name="" id="form-marcas">
+            <select name="marca" id="form-marcas">
               <option value="">Seleccione una marca (editorial)</option>
-              <option value="rba">RBA</option>
-              <option value="alfaguara">Alfaguara</option>
-              <option value="penguin random house">Penguin Random House</option>
-              <option value="planeta">Planeta</option>
-              <option value="santillana">Santillana</option>
+              <option value="rba" <?php if ($marca == 'rba') echo 'selected'; ?>>RBA</option>
+              <option value="alfaguara" <?php if ($marca == 'alfaguara') echo 'selected'; ?>>Alfaguara</option>
+              <option value="penguin random house" <?php if ($marca == 'penguin random house') echo 'selected'; ?>>Penguin Random House</option>
+              <option value="planeta" <?php if ($marca == 'planeta') echo 'selected'; ?>>Planeta</option>
+              <option value="santillana" <?php if ($marca == 'santillana') echo 'selected'; ?>>Santillana</option>
             </select>
           </li><br />
 
-          <li><label for="form-modelo">Modelo: </label> <input type="text" name="modelo" id="form-modelo"></li><br />
+          <li><label for="form-modelo">Modelo: </label> 
+              <input type="text" name="modelo" id="form-modelo" value="<?php echo htmlspecialchars($modelo); ?>">
+          </li><br />
 
           <li><label for="form-precio">Precio: </label>
-            <input type="number" name="precio" id="form-precio" step="0.01" placeholder="0.00">
+              <input type="number" name="precio" id="form-precio" step="0.01" placeholder="0.00" value="<?php echo htmlspecialchars($precio); ?>">
           </li><br />
 
-          <li><label for="form-detalles">Detalles del producto: </label><br><textarea name="detalles" rows="3" cols="40"
-                      id="form-detalles" placeholder="Edicion especial, firmado por el autor, de colección, etc."></textarea></li><br />
+          <li><label for="form-detalles">Detalles del producto: </label><br>
+              <textarea name="detalles" rows="3" cols="40" id="form-detalles" placeholder="Edicion especial, firmado por el autor, de colección, etc."><?php echo htmlspecialchars($detalles); ?></textarea>
+          </li><br />
 
           <li><label for="form-unidades">Unidades: </label>
-            <input type="number" name="unidades" id="form-unidades" placeholder="0">
+              <input type="number" name="unidades" id="form-unidades" placeholder="0" value="<?php echo htmlspecialchars($unidades); ?>">
           </li><br />
 
-          <li><label for="form-img">Imagen: </label> <input type="text" name="img" id="form-img"
-                   placeholder="nombre_imagen.png"></li>
+          <li><label for="form-img">Imagen: </label> 
+              <input type="text" name="img" id="form-img" placeholder="nombre_imagen.png" value="<?php echo htmlspecialchars($imagen); ?>">
+          </li>
         </ul>
       </fieldset>
 
