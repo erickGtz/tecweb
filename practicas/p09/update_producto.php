@@ -27,7 +27,7 @@ if (mysqli_query($link, $sql)) {
 mysqli_close($link);
 
 echo '<br><br>';
-echo '<a href="get_productos_xhtml_v2.php">Ver todos los productos</a>';
-echo ' | ';
 echo '<a href="get_productos_vigentes_v2.php">Ver productos vigentes</a>';
+echo ' | ';
+echo '<a href="get_productos_xhtml_v2.php">Ver los productos por tope de unidades</a>';
 ?>
