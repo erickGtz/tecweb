@@ -98,7 +98,7 @@
       $imagen = isset($_POST['imagen']) ? $_POST['imagen'] : '';
     ?>
 
-    <form id="formularioProducto" method="post">
+    <form id="formularioProducto" method="post" action="update_producto.php">
       <fieldset>
         <ul>
           <li><label for="form-id">ID: </label> 
