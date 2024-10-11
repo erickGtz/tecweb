@@ -19,7 +19,7 @@
         var precio = document.getElementById('form-precio').value;
         var detalles = document.getElementById('form-detalles').value;
         var unidades = document.getElementById('form-unidades').value;
-        var rutaImg = 'img/' + document.getElementById('form-img').value;
+        var rutaImg = document.getElementById('form-img').value;
 
         precio = parseFloat(precio);
         unidades = parseInt(unidades);
@@ -77,7 +77,7 @@
         }
 
         if (rutaImg == '') {
-          rutaImg = 'default.png';
+          rutaImg = 'img/default.png';
         }
 
         if (validado == 1) {
