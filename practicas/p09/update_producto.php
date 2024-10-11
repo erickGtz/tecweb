@@ -1,43 +1,33 @@
 <?php
+/* MySQL Conexion */
 $link = mysqli_connect("localhost", "root", "fk1322", "marketzone");
-
+// Chequea coneccion
 if ($link === false) {
-  die("ERROR: No pudo conectarse con la base de datos. " . mysqli_connect_error());
+    die("ERROR: No pudo conectarse con la DB. " . mysqli_connect_error());
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Obtener los datos del formulario
+$id = $_POST['id'];
+$nombre = $_POST['nombre'];
+$marca = $_POST['marca'];
+$modelo = $_POST['modelo'];
+$precio = $_POST['precio'];
+$detalles = $_POST['detalles'];
+$unidades = $_POST['unidades'];
+$imagen = $_POST['img'];
 
-  if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['marca']) && isset($_POST['modelo']) && isset($_POST['precio']) && isset($_POST['unidades']) && isset($_POST['detalles']) && isset($_POST['img'])) {
-
-    $id = mysqli_real_escape_string($link, $_POST['id']);
-    $nombre = mysqli_real_escape_string($link, $_POST['nombre']);
-    $marca = mysqli_real_escape_string($link, $_POST['marca']);
-    $modelo = mysqli_real_escape_string($link, $_POST['modelo']);
-    $precio = mysqli_real_escape_string($link, $_POST['precio']);
-    $unidades = mysqli_real_escape_string($link, $_POST['unidades']);
-    $detalles = mysqli_real_escape_string($link, $_POST['detalles']);
-    $imagen = mysqli_real_escape_string($link, $_POST['img']);
-
-    $sql = "UPDATE productos SET 
-                    nombre='$nombre', 
-                    marca='$marca', 
-                    modelo='$modelo', 
-                    precio='$precio', 
-                    unidades='$unidades', 
-                    detalles='$detalles', 
-                    imagen='$imagen' 
-                WHERE ID='$id'";
-
-    if (mysqli_query($link, $sql)) {
-      echo "Producto actualizado exitosamente.";
-    } else {
-      echo "ERROR: No se pudo ejecutar la actualización. " . mysqli_error($link);
-    }
-  } else {
-    echo "Faltan datos en el formulario.";
-  }
+// Ejecuta la actualización del registro
+$sql = "UPDATE productos SET nombre='$nombre', marca='$marca', modelo='$modelo', precio='$precio', detalles='$detalles', unidades='$unidades', imagen='$imagen' WHERE id='$id'";
+if (mysqli_query($link, $sql)) {
+    echo '<p>Registro actualizado correctamente.</p>';
+} else {
+    echo '<p>ERROR: No se ejecutó $sql. ' . mysqli_error($link) . '</p>';
 }
 
-// Cierra la conexión
 mysqli_close($link);
+
+echo '<br><br>';
+echo '<a href="get_productos_xhtml_v2.php">Ver todos los productos</a>';
+echo ' | ';
+echo '<a href="get_productos_vigentes_v2.php">Ver productos vigentes</a>';
 ?>
