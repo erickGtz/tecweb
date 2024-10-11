@@ -46,11 +46,40 @@
 
     <br />
 
-    <script>
-      function editarProducto(){
-        alert('Editando producto');
-      }
-    </script>
+<script>
+  function editarProducto(id, nombre, marca, modelo, precio, unidades, detalles, imagen) {
+    // Crear el formulario dinámico
+    var form = document.createElement("form");
+    form.method = "POST";
+    form.action = "./formulario_productos.php";  // La página donde está tu formulario de edición
+
+    // Crear los campos ocultos con los datos del producto
+    var inputs = [
+      { name: 'id', value: id },
+      { name: 'nombre', value: nombre },
+      { name: 'marca', value: marca },
+      { name: 'modelo', value: modelo },
+      { name: 'precio', value: precio },
+      { name: 'unidades', value: unidades },
+      { name: 'detalles', value: detalles },
+      { name: 'imagen', value: imagen }
+    ];
+
+    // Añadir los campos al formulario
+    inputs.forEach(function(inputData) {
+      var input = document.createElement("input");
+      input.type = "hidden";
+      input.name = inputData.name;
+      input.value = inputData.value;
+      form.appendChild(input);
+    });
+
+    // Añadir el formulario al cuerpo del documento y enviarlo
+    document.body.appendChild(form);
+    form.submit();
+  }
+</script>
+
 
     <?php if (isset($data)): ?>
 
