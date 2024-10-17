@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8">
     <title>Product App</title>
   </head>
+
   <body onload="init()">
 
     <!-- BARRA DE NAVEGACIÓN  -->
     <nav>
       <a href="#">Product App</a>
-      
-        <ul></ul>
-        <form>
-          <input name="search" id="search" type="search" placeholder="ID">
-          <button type="submit" onclick="buscarID(event)">Buscar</button>
-        </form>
+
+      <ul></ul>
+      <form>
+        <select name="cat" id="cat">
+          <option value="nombre">Nombre</option>
+          <option value="marca">Marca</option>
+          <option value="detalles">Detalles</option>
+        </select>
+        <input name="search" id="search" type="search" placeholder="Busqueda">
+        <button type="submit" onclick="buscarProducto(event)">Buscar</button>
+      </form>
+
     </nav>
 
     <div>
@@ -28,7 +36,7 @@
             <textarea id="description" cols="30" rows="10" placeholder="JSON de producto"></textarea>
           </div>
           <input type="hidden" id="taskId">
-          <button type="submit" onclick="agregarProducto(event)" >
+          <button type="submit" onclick="agregarProducto(event)">
             Agregar Producto
           </button>
         </form>
@@ -54,4 +62,5 @@
     <!-- Lógica del Frontend -->
     <script src="./app.js"></script>
   </body>
+
 </html>

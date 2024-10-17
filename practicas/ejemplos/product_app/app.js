@@ -19,6 +19,7 @@ function buscarID(e) {
 
     // SE OBTIENE EL ID A BUSCAR
     var id = document.getElementById('search').value;
+    var cat = document.getElementById('cat').value;
 
     // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
     var client = getXMLHttpRequest();
@@ -59,6 +60,53 @@ function buscarID(e) {
     };
     client.send("id="+id);
 }
+
+function buscarProducto(e) {
+    e.preventDefault();
+
+    // SE OBTIENEN LOS VALORES DE BÚSQUEDA Y CATEGORÍA
+    var search = document.getElementById('search').value;
+    var cat = document.getElementById('cat').value;
+
+    // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
+    var client = getXMLHttpRequest();
+    client.open('POST', './backend/read.php', true);
+    client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    client.onreadystatechange = function () {
+        if (client.readyState == 4 && client.status == 200) {
+            console.log('[CLIENTE]\n'+client.responseText);
+            
+            let productos = JSON.parse(client.responseText);
+
+            if(productos.length > 0) {
+                let template = '';
+                productos.forEach(producto => {
+                    let descripcion = '';
+                    descripcion += `<li>precio: ${producto.precio}</li>`;
+                    descripcion += `<li>unidades: ${producto.unidades}</li>`;
+                    descripcion += `<li>modelo: ${producto.modelo}</li>`;
+                    descripcion += `<li>marca: ${producto.marca}</li>`;
+                    descripcion += `<li>detalles: ${producto.detalles}</li>`;
+
+                    template += `
+                        <tr>
+                            <td>${producto.ID}</td>
+                            <td>${producto.nombre}</td>
+                            <td><ul>${descripcion}</ul></td>
+                        </tr>
+                    `;
+                });
+
+                // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
+                document.getElementById("productos").innerHTML = template;
+            } else {
+                document.getElementById("productos").innerHTML = '<tr><td colspan="3">No se encontraron productos</td></tr>';
+            }
+        }
+    };
+    client.send("search="+search+"&cat="+cat);
+}
+
 
 // FUNCIÓN CALLBACK DE BOTÓN "Agregar Producto"
 function agregarProducto(e) {
