@@ -46,7 +46,7 @@ function buscarID(e) {
                 let template = '';
                     template += `
                         <tr>
-                            <td>${productos.id}</td>
+                            <td>${productos.ID}</td>
                             <td>${productos.nombre}</td>
                             <td><ul>${descripcion}</ul></td>
                         </tr>
