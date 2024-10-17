@@ -10,7 +10,7 @@
         $cat = $_POST['cat'];
 
         // SE REALIZA LA QUERY DE BÚSQUEDA USANDO LIKE
-        $query = "SELECT * FROM productos WHERE $cat LIKE '%{$search}%'";
+        $query = "SELECT * FROM productos WHERE $cat LIKE '%{$search}%' AND WHERE eliminado = 0";
         if ( $result = $conexion->query($query) ) {
             // SE OBTIENEN LOS RESULTADOS Y SE AGREGAN AL ARRAY DE RESPUESTA
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
