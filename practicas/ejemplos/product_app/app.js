@@ -87,13 +87,13 @@ function buscarProducto(e) {
                     descripcion += `<li>modelo: ${producto.modelo}</li>`;
                     descripcion += `<li>marca: ${producto.marca}</li>`;
                     descripcion += `<li>detalles: ${producto.detalles}</li>`;
-                    descripcion += `<li><img src="../../img/${producto.imagen}" alt="${producto.nombre}" width="100" height="100"></li>`;
 
                     template += `
                         <tr>
                             <td>${producto.ID}</td>
                             <td>${producto.nombre}</td>
                             <td><ul>${descripcion}</ul></td>
+                            <td><img src="../../img/${producto.imagen}" alt="${producto.nombre}" width="100" height="100" /></td>
                         </tr>
                     `;
                 });
