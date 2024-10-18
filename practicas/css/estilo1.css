@@ -68,11 +68,13 @@ body {
 
 /* Estilos para el formulario y la tabla al mismo nivel */
 .form-container {
+  margin-top: 15px;
   width: 30%; /* Ajusta el ancho del formulario */
 }
 
 .table-container {
-  width: 60%; /* Ajusta el ancho de la tabla */
+
+  width: 65%; /* Ajusta el ancho de la tabla */
 }
 
 /* Estilos para el formulario */
@@ -113,7 +115,6 @@ form button:hover {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
 }
 
 table thead {
