@@ -18,6 +18,7 @@
   justify-self: center;
   margin-top: 30px;
   margin-left: 40px;
+  margin-bottom: 30px;
   display: flex;
   align-items: center;
   width: 60%;
@@ -61,36 +62,17 @@ body {
   margin: 0 auto;
   padding: 20px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between; /* Ajusta el espacio entre el formulario y la tabla */
+  align-items: flex-start; /* Alinea al principio verticalmente */
 }
 
 /* Estilos para el formulario y la tabla al mismo nivel */
 .form-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%; /* Asegura que ocupe todo el ancho */
-}
-
-.form-container form {
-  width: 30%; 
+  width: 30%; /* Ajusta el ancho del formulario */
 }
 
 .table-container {
-  width: 60%; 
-}
-
-.table-container table {
-  width: 100%;
-}
-
-/* Ajuste para que todo quede centrado en la página */
-div.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 60%; /* Ajusta el ancho de la tabla */
 }
 
 /* Estilos para el formulario */
@@ -99,7 +81,6 @@ form {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
 }
 
 form input[type="text"],
@@ -133,7 +114,6 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 table thead {
@@ -155,9 +135,4 @@ table tbody img {
   max-width: 100px;
   height: auto;
   border-radius: 5px;
-}
-
-/* Espacio extra entre el formulario y la tabla */
-.form-container > * {
-  margin-right: 20px;
 }
