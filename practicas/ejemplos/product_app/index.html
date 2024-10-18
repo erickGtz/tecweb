@@ -15,10 +15,9 @@
   <body onload="init()">
 
     <!-- BARRA DE NAVEGACIÓN  -->
-    <nav>
+    <nav class="nav-bar">
       <a href="#">Product App</a>
 
-      <ul></ul>
       <form>
         <select name="cat" id="cat">
           <option value="nombre">Nombre</option>
@@ -46,25 +45,27 @@
             Agregar Producto
           </button>
         </form>
+
+        <!-- TABLA  -->
+        <div class="table-container">
+          <ul></ul>
+
+          <table>
+            <thead>
+              <tr>
+                <td>Id</td>
+                <td>Nombre</td>
+                <td>Descripcion</td>
+                <td>Imagen</td>
+              </tr>
+            </thead>
+            <tbody id="productos"></tbody>
+          </table>
+        </div>
       </div>
 
-      <!-- TABLA  -->
-      <div class="table-container">
-        <ul></ul>
-
-        <table>
-          <thead>
-            <tr>
-              <td>Id</td>
-              <td>Nombre</td>
-              <td>Descripcion</td>
-              <td>Imagen</td>
-            </tr>
-          </thead>
-          <tbody id="productos"></tbody>
-        </table>
-      </div>
     </div>
+
 
     <!-- Lógica del Frontend -->
     <script src="./app.js"></script>

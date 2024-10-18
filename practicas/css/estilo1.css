@@ -1,101 +1,163 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-}
-
-nav {
-  padding: 20px;
+/* Estilos para la barra de navegación */
+.nav-bar {
+  display: flex;
+  justify-content: center; /* Alinea el título y el formulario en el centro */
+  align-items: center; /* Alinea verticalmente */
   background-color: #343a40;
   color: white;
-  text-align: center;
 }
 
-nav a {
+.nav-bar a {
   color: white;
   text-decoration: none;
   font-size: 24px;
-  margin-right: 20px;
+  margin-left: 30px;
 }
 
-form {
+.nav-bar form {
+  justify-self: center;
+  margin-top: 30px;
+  margin-left: 40px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin: 20px 0;
-}
-
-form input, form select, form button {
-  margin-left: 10px;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 40px;
-}
-
-.form-container {
   width: 60%;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-textarea, input[type="text"] {
-  width: 100%;
-  padding: 10px;
+.nav-bar select,
+.nav-bar input,
+.nav-bar button {
+  margin-left: 10px;
+  padding: 8px;
   font-size: 16px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  margin-bottom: 20px;
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 16px;
+.nav-bar input {
+  width: 70%;
+}
+
+.nav-bar button {
   background-color: #28a745;
   color: white;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
 }
 
-button:hover {
+.nav-bar button:hover {
   background-color: #218838;
 }
 
-.table-container {
-  width: 80%;
-  margin-top: 20px;
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Estilos para el formulario y la tabla al mismo nivel */
+.form-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+.form-container form {
+  width: 30%; 
+}
+
+.table-container {
+  width: 60%; 
+}
+
+.table-container table {
+  width: 100%;
+}
+
+/* Ajuste para que todo quede centrado en la página */
+div.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos para el formulario */
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+form input[type="text"],
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+form button {
+  display: block;
+  margin: 0 auto;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para la tabla */
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-thead {
-  background-color: #343a40;
+table thead {
+  background-color: #007bff;
   color: white;
 }
 
-td {
-  padding: 15px;
-  text-align: center;
+table thead th {
+  padding: 10px;
+}
+
+table tbody td {
+  padding: 10px;
   border: 1px solid #ddd;
+  text-align: center;
 }
 
-img {
+table tbody img {
   max-width: 100px;
-  max-height: 100px;
+  height: auto;
+  border-radius: 5px;
 }
 
-tbody tr:hover {
-  background-color: #f1f1f1;
+/* Espacio extra entre el formulario y la tabla */
+.form-container > * {
+  margin-right: 20px;
 }
