@@ -115,8 +115,8 @@ function buscarProducto(e) {
                     descripcion += '<li>detalles: '+producto.detalles+'</li>';
                 
                     template += `
-                        <tr productId="${producto.id}">
-                            <td>${producto.id}</td>
+                        <tr productId="${producto.ID}">
+                            <td>${producto.ID}</td>
                             <td>${producto.nombre}</td>
                             <td><ul>${descripcion}</ul></td>
                             <td>
