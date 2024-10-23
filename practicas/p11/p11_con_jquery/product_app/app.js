@@ -122,7 +122,9 @@ $(document).ready(function () {
     if (confirm('Estás seguro de borrar este producto?')) {
       let element = $(this)[0].parentElement.parentElement;
       let id = $(element).attr('productoID');
+      console.log(id);
       $.post('backend/product-delete.php', { id }, function () {
+        console.log('ya lo envie');
         obtenerProductos();
       });
     }
