@@ -151,7 +151,7 @@ $(document).ready(function () {
       template += `
                 <tr productoID="${producto.ID}">
                     <td>${producto.ID}</td>
-                    <td>${producto.nombre}</td>
+                    <td><a href="#" class="product-item">${producto.nombre}</a></td>
                     <td><ul>${descripcion}</ul></td>
                     <td>
                         <button class="product-delete btn btn-danger">
@@ -174,4 +174,30 @@ $(document).ready(function () {
 
     $('#container-resultados').html(template_bar);
   }
+
+    $(document).on('click', '.product-item', function () {
+    let element = $(this).closest('tr');
+    let id = element.attr('productoID');
+
+    $.post('backend/product-single.php', { id }, function (response) {
+      const product = JSON.parse(response);
+      
+      // Cargar los valores en el formulario
+      $('#name').val(product.nombre);
+
+      // Crear un JSON para cargar en el campo de descripción
+      let descriptionJSON = {
+        precio: product.precio,
+        unidades: product.unidades,
+        modelo: product.modelo,
+        marca: product.marca,
+        detalles: product.detalles,
+        imagen: product.imagen,
+      };
+
+      // Mostrar el JSON en el campo de descripción
+      $('#description').val(JSON.stringify(descriptionJSON, null, 2));
+    });
+  });
+
 });
