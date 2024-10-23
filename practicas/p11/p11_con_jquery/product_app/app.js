@@ -32,13 +32,16 @@ $(document).ready(function () {
           let products = JSON.parse(response);
           console.log(products);
 
-          // Llamar a la función para mostrar los productos en la tabla
-          mostrarProductosEnTabla(products);
+          // Mostrar los nombres de los productos coincidentes en la barra de estado
+          mostrarNombresEnBarraEstado(products);
 
           if (products.length > 0) {
             $('#product-result').removeClass('d-none');
+            // Llamar a la función para mostrar los productos en la tabla
+            mostrarProductosEnTabla(products);
           } else {
             $('#product-result').addClass('d-none');
+            $('#container-resultados').html(''); // Limpiar la barra de estado si no hay coincidencias
           }
         },
       });
@@ -46,6 +49,7 @@ $(document).ready(function () {
       // Si no hay búsqueda, mostramos todos los productos
       obtenerProductos();
       $('#product-result').addClass('d-none');
+      $('#container-resultados').html(''); // Limpiar la barra de estado
     }
   });
 
@@ -160,5 +164,15 @@ $(document).ready(function () {
                 `;
     });
     $('#products').html(template);
+  }
+
+  function mostrarNombresEnBarraEstado(productos) {
+    let nombres = productos.map(producto => producto.nombre).join(', ');
+    let template_bar = `
+      <li>
+        ${nombres}
+      </li>
+    `;
+    $('#container-resultados').html(template_bar);
   }
 });
