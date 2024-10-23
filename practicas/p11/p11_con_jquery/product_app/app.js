@@ -167,11 +167,12 @@ $(document).ready(function () {
   }
 
   function mostrarNombresEnBarraEstado(productos) {
-    let template_bar = productos.map(producto => `
-      <li">
-        ${producto.nombre}
-      </li>
-    `).join('');
+    // Crear una lista con cada nombre como un elemento <li> separado
+    let template_bar = '<ul>';
+    productos.forEach(producto => {
+      template_bar += `<li>${producto.nombre}</li>`;
+    });
+    template_bar += '</ul>';
 
     $('#container-resultados').html(template_bar);
   }
