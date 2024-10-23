@@ -23,7 +23,7 @@ $(document).ready(function () {
   $('#search').keyup(function (e) {
     let search = $('#search').val();
     $.ajax({
-      url: 'product-search.php',
+      url: 'backend/product-search.php',
       type: 'POST',
       data: { search },
       success: function (response) {
