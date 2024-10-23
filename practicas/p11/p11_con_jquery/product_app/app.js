@@ -30,8 +30,6 @@ $(document).ready(function () {
         data: { search },
         success: function (response) {
           let products = JSON.parse(response);
-          console.log(products);
-
           // Mostrar los nombres de los productos coincidentes en la barra de estado
           mostrarNombresEnBarraEstado(products);
 
