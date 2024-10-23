@@ -50,4 +50,31 @@ $(document).ready(function () {
       $('#product-result').addClass('d-none');
     }
   });
+
+
+  $('#product-form').submit(function (e){
+    e.preventDefault(); // Prevenir el comportamiento por defecto de recargar la página
+
+    const postData = {
+        nombre: $('#name').val(),   
+        marca: baseJSON.marca,      
+        modelo: baseJSON.modelo,
+        precio: baseJSON.precio,
+        detalles: baseJSON.detalles,
+        unidades: baseJSON.unidades,
+        imagen: baseJSON.imagen
+    };
+
+    $.ajax({
+      url: 'backend/product-add.php',   
+      type: 'POST',                     
+      data: JSON.stringify(postData),    
+      contentType: 'application/json',   
+      success: function (response) {
+        console.log(response);          
+
+        $('#product-form').trigger('reset');
+      }
+    });
+  });
 });
