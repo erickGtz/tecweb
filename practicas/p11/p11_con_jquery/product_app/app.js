@@ -21,7 +21,6 @@ $(document).ready(function () {
   $('#search').keyup(function (e) {
     let search = $('#search').val();
     
-    // Solo hacer la petición si hay texto en el campo de búsqueda
     if (search.length > 0) {
       $.ajax({
         url: 'backend/product-search.php',
@@ -38,16 +37,17 @@ $(document).ready(function () {
                         </li>`;
           });
 
-          // Añadir los resultados al contenedor
           $('#container-resultados').html(template);
 
-          // Mostrar la sección de resultados
-          $('#product-result').show();
+          if (products.length > 0) {
+            $('#product-result').removeClass('d-none');
+          } else {
+            $('#product-result').addClass('d-none');
+          }
         },
       });
     } else {
-      // Si no hay texto en la búsqueda, ocultar los resultados
-      $('#product-result').hide();
+      $('#product-result').addClass('d-none');
     }
   });
 });
