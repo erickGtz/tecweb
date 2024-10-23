@@ -85,7 +85,8 @@ $(document).ready(function () {
       contentType: 'application/json',   // Asegurarse de enviar como JSON
       success: function (response) {
         console.log(response);           // Mostrar la respuesta en la consola
-        $('#product-form').trigger('reset');  // Limpiar el formulario
+        $('#product-form').trigger('reset');
+        init();
       },
     });
   });
