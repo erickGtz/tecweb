@@ -121,7 +121,7 @@ $(document).ready(function () {
   $(document).on('click', '.product-delete', function () {
     if (confirm('Estás seguro de borrar este producto?')) {
       let element = $(this).closest('tr'); // Usa closest para encontrar el <tr> más cercano
-      console.log('ID del producto a eliminar:', id);
+      let id = element.attr('productoID');
       $.post('backend/product-delete.php', { id }, function () {
         obtenerProductos();
       });
