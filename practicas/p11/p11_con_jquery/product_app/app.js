@@ -213,7 +213,6 @@ $(document).ready(function () {
                 $('#productId').val(product.ID);
                 edit = true;
 
-                // Cambiar el texto del botón
                 $('#product-form button[type="submit"]').text('Actualizar Producto');
             } catch (error) {
                 console.error('Error al cargar producto para edición:', error);
