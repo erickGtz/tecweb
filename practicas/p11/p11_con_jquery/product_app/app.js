@@ -9,10 +9,6 @@ var baseJSON = {
 };
 
 function init() {
-  /**
-   * Convierte el JSON a string para poder mostrarlo
-   * ver: https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/JSON
-   */
   var JsonString = JSON.stringify(baseJSON, null, 2);
   document.getElementById('description').value = JsonString;
 }
@@ -39,7 +35,7 @@ $(document).ready(function () {
               mostrarProductosEnTabla(products);
             } else {
               $('#product-result').addClass('d-none');
-              $('#container-resultados').html(''); // Limpiar la barra de estado si no hay coincidencias
+              $('#container-resultados').html('');
             }
           } catch (error) {
             console.error('Error al procesar JSON en la búsqueda:', error);
@@ -66,7 +62,6 @@ $(document).ready(function () {
   $('#product-form').submit(function (e) {
     e.preventDefault(); // Prevenir la recarga por defecto de la página
 
-    // Obtener el contenido del campo description como JSON
     let descriptionJSON;
     try {
       // Parsear el contenido del textarea como JSON
@@ -101,24 +96,15 @@ $(document).ready(function () {
       success: function (response) {
         console.log('Respuesta del servidor:', response); // Imprimir la respuesta completa
 
-        // Intenta analizar solo si la respuesta no es un string plano
-        if (typeof response === 'string') {
-          try {
-            let respuesta = JSON.parse(response);
-            // Aquí puedes continuar con tu lógica de éxito
-          } catch (error) {
-            console.error(
-              'Error al procesar JSON en la respuesta del servidor:',
-              error
-            );
-            $('#container-resultados').html(
-              '<li style="list-style: none;">Error al procesar la respuesta del servidor</li>'
-            );
-          }
-        } else {
-          console.error('La respuesta del servidor no es un string:', response);
+        // Manejar la respuesta directamente
+        if (response.status === "success") {
           $('#container-resultados').html(
-            '<li style="list-style: none;">La respuesta del servidor no es válida</li>'
+            '<li style="list-style: none;">' + response.message + '</li>'
+          );
+          obtenerProductos(); // Actualiza la lista de productos
+        } else {
+          $('#container-resultados').html(
+            '<li style="list-style: none;">' + response.message + '</li>'
           );
         }
       },
@@ -137,7 +123,7 @@ $(document).ready(function () {
   // Función eliminar producto
   $(document).on('click', '.product-delete', function () {
     if (confirm('Estás seguro de borrar este producto?')) {
-      let element = $(this).closest('tr'); // Usa closest para encontrar el <tr> más cercano
+      let element = $(this).closest('tr');
       let id = element.attr('productoID');
       $.post('backend/product-delete.php', { id }, function () {
         obtenerProductos();
@@ -197,7 +183,6 @@ $(document).ready(function () {
   }
 
   function mostrarNombresEnBarraEstado(productos) {
-    // Crear una lista con cada nombre como un elemento <li> separado
     let template_bar = '<ul>';
     productos.forEach((producto) => {
       template_bar += `<li>${producto.nombre}</li>`;
