@@ -196,7 +196,7 @@ $(document).ready(function () {
 
       // Mostrar el JSON en el campo de descripción
       $('#description').val(JSON.stringify(descriptionJSON, null, 2));
-      $('#productId').val(producto.ID);
+      $('#productId').val(product.ID);
       edit = true;
     });
   });
