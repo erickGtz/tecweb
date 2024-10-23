@@ -168,7 +168,9 @@ $(document).ready(function () {
 
   function mostrarNombresEnBarraEstado(productos) {
     let template_bar = productos.map(producto => `
-      <li style="list-style: none;">${producto.nombre}</li>
+      <li">
+        ${producto.nombre}
+      </li>
     `).join('');
 
     $('#container-resultados').html(template_bar);
