@@ -18,8 +18,6 @@ function init() {
 }
 
 $(document).ready(function () {
-  //$('#product-result').hide();
-
   $('#search').keyup(function (e) {
     let search = $('#search').val();
     $.ajax({
@@ -28,19 +26,27 @@ $(document).ready(function () {
       data: { search },
       success: function (response) {
         let products = JSON.parse(response);
-        console.log(products);
-        /*let template = '';
+        console.log(products);  // Puedes dejar esto para seguir depurando si es necesario
 
+        let template = '';  // Aquí generas el HTML de los productos
         products.forEach((product) => {
           template += `<li>
-                        ${product.nombre}
+                        <strong>${product.nombre}</strong> - 
+                        ${product.marca} - 
+                        ${product.detalles}
                     </li>`;
         });
-        console.log('estoy buscando')
 
+        // Añadir los resultados al contenedor
         $('#container-resultados').html(template);
-        $('#product-result').show();*/
+
+        // Mostrar la sección de resultados
+        $('#product-result').removeClass('d-none');
+      },
+      error: function (xhr, status, error) {
+        console.log('Error en la petición AJAX:', status, error);
       }
     });
   });
 });
+
