@@ -94,8 +94,6 @@ $(document).ready(function () {
       data: JSON.stringify(postData),
       contentType: 'application/json',
       success: function (response) {
-        console.log('Respuesta del servidor:', response); // Imprimir la respuesta completa
-
         // Manejar la respuesta directamente
         if (response.status === "success") {
           $('#container-resultados').html(
@@ -109,7 +107,6 @@ $(document).ready(function () {
         }
       },
       error: function (xhr, status, error) {
-        console.error('Error en la solicitud AJAX:', error);
         let template_bar = `
             <li style="list-style: none;">status: error</li>
             <li style="list-style: none;">message: Error con el producto</li>
