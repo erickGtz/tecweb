@@ -15,12 +15,16 @@ function init() {
    */
   var JsonString = JSON.stringify(baseJSON, null, 2);
   document.getElementById('description').value = JsonString;
+
+  obtenerProductos();
 }
 
 $(document).ready(function () {
+  obtenerProductos();
+
   $('#search').keyup(function (e) {
     let search = $('#search').val();
-    
+
     if (search.length > 0) {
       $.ajax({
         url: 'backend/product-search.php',
@@ -51,8 +55,7 @@ $(document).ready(function () {
     }
   });
 
-
-  $('#product-form').submit(function (e){
+  $('#product-form').submit(function (e) {
     e.preventDefault(); // Prevenir la recarga por defecto de la página
 
     // Obtener el contenido del campo description como JSON
@@ -68,26 +71,55 @@ $(document).ready(function () {
 
     // Crear el objeto con los datos del formulario
     const postData = {
-        nombre: $('#name').val(),         // Nombre del producto
-        marca: descriptionJSON.marca,     // Marca del JSON ingresado
-        modelo: descriptionJSON.modelo,   // Modelo del JSON ingresado
-        precio: descriptionJSON.precio,   // Precio del JSON ingresado
-        detalles: descriptionJSON.detalles, // Detalles del JSON ingresado
-        unidades: descriptionJSON.unidades, // Unidades del JSON ingresado
-        imagen: descriptionJSON.imagen    // Imagen del JSON ingresado
+      nombre: $('#name').val(), // Nombre del producto
+      marca: descriptionJSON.marca, // Marca del JSON ingresado
+      modelo: descriptionJSON.modelo, // Modelo del JSON ingresado
+      precio: descriptionJSON.precio, // Precio del JSON ingresado
+      detalles: descriptionJSON.detalles, // Detalles del JSON ingresado
+      unidades: descriptionJSON.unidades, // Unidades del JSON ingresado
+      imagen: descriptionJSON.imagen, // Imagen del JSON ingresado
     };
 
     // Enviar los datos como JSON usando $.ajax()
     $.ajax({
-      url: 'backend/product-add.php',   // Tu archivo PHP de agregar productos
-      type: 'POST',                     
-      data: JSON.stringify(postData),    // Enviar el objeto como JSON string
-      contentType: 'application/json',   // Asegurarse de enviar como JSON
+      url: 'backend/product-add.php', // Tu archivo PHP de agregar productos
+      type: 'POST',
+      data: JSON.stringify(postData), // Enviar el objeto como JSON string
+      contentType: 'application/json', // Asegurarse de enviar como JSON
       success: function (response) {
-        console.log(response);           // Mostrar la respuesta en la consola
+        console.log(response); // Mostrar la respuesta en la consola
         $('#product-form').trigger('reset');
         init();
       },
     });
   });
+
+  function obtenerProductos() {
+    $.ajax({
+      url: 'backend/product-list.php',
+      type: 'GET',
+      success: function (response) {
+        let productos = JSON.parse(response);
+        let template = '';
+
+        productos.forEach((producto) => {
+          let descripcion = '';
+          descripcion += '<li>precio: ' + producto.precio + '</li>';
+          descripcion += '<li>unidades: ' + producto.unidades + '</li>';
+          descripcion += '<li>modelo: ' + producto.modelo + '</li>';
+          descripcion += '<li>marca: ' + producto.marca + '</li>';
+          descripcion += '<li>detalles: ' + producto.detalles + '</li>';
+
+          template += `
+                    <tr>
+                        <td>${producto.ID}</td>
+                        <td>${producto.nombre}</td>
+                        <td><ul>${descripcion}</ul></td>
+                    </tr>
+                    `;
+        });
+        $('#products').html(template);
+      },
+    });
+  }
 });
