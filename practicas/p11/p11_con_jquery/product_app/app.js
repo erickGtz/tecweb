@@ -32,14 +32,8 @@ $(document).ready(function () {
           let products = JSON.parse(response);
           console.log(products);
 
-          let template = '';
-          products.forEach((product) => {
-            template += `<li>
-                          ${product.nombre}
-                        </li>`;
-          });
-
-          $('#container-resultados').html(template);
+          // Llamar a la función para mostrar los productos en la tabla
+          mostrarProductosEnTabla(products);
 
           if (products.length > 0) {
             $('#product-result').removeClass('d-none');
@@ -49,11 +43,13 @@ $(document).ready(function () {
         },
       });
     } else {
+      // Si no hay búsqueda, mostramos todos los productos
+      obtenerProductos();
       $('#product-result').addClass('d-none');
     }
   });
 
-  // Funcion agregarProducto()
+  // Función agregarProducto()
   $('#product-form').submit(function (e) {
     e.preventDefault(); // Prevenir la recarga por defecto de la página
 
@@ -134,31 +130,35 @@ $(document).ready(function () {
       type: 'GET',
       success: function (response) {
         let productos = JSON.parse(response);
-        let template = '';
-
-        productos.forEach((producto) => {
-          let descripcion = '';
-          descripcion += '<li>precio: ' + producto.precio + '</li>';
-          descripcion += '<li>unidades: ' + producto.unidades + '</li>';
-          descripcion += '<li>modelo: ' + producto.modelo + '</li>';
-          descripcion += '<li>marca: ' + producto.marca + '</li>';
-          descripcion += '<li>detalles: ' + producto.detalles + '</li>';
-
-          template += `
-                    <tr productoID="${producto.ID}">
-                        <td>${producto.ID}</td>
-                        <td>${producto.nombre}</td>
-                        <td><ul>${descripcion}</ul></td>
-                        <td>
-                            <button class="product-delete btn btn-danger">
-                                Eliminar
-                            </button>
-                        </td>
-                    </tr>
-                    `;
-        });
-        $('#products').html(template);
+        mostrarProductosEnTabla(productos);
       },
     });
+  }
+
+  function mostrarProductosEnTabla(productos) {
+    let template = '';
+
+    productos.forEach((producto) => {
+      let descripcion = '';
+      descripcion += '<li>precio: ' + producto.precio + '</li>';
+      descripcion += '<li>unidades: ' + producto.unidades + '</li>';
+      descripcion += '<li>modelo: ' + producto.modelo + '</li>';
+      descripcion += '<li>marca: ' + producto.marca + '</li>';
+      descripcion += '<li>detalles: ' + producto.detalles + '</li>';
+
+      template += `
+                <tr productoID="${producto.ID}">
+                    <td>${producto.ID}</td>
+                    <td>${producto.nombre}</td>
+                    <td><ul>${descripcion}</ul></td>
+                    <td>
+                        <button class="product-delete btn btn-danger">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+                `;
+    });
+    $('#products').html(template);
   }
 });
