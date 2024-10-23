@@ -95,10 +95,6 @@ $(document).ready(function () {
             data: JSON.stringify(postData),
             contentType: 'application/json',
             success: function (response) {
-                console.log('Respuesta del servidor:', response); // Imprimir la respuesta completa
-
-                // Aquí puedes continuar con tu lógica de éxito
-                // Restablecer el formulario después de la actualización
                 $('#product-form')[0].reset(); // Limpiar el formulario
                 $('#description').val(JSON.stringify(baseJSON, null, 2)); // Establecer el JSON base
                 $('#productId').val(''); // Limpiar el campo del ID
