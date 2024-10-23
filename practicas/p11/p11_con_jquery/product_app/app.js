@@ -18,7 +18,7 @@ function init() {
 }
 
 $(document).ready(function () {
-  $('#product-result').hide();
+  //$('#product-result').hide();
 
   $('#search').keyup(function (e) {
     let search = $('#search').val();
@@ -28,7 +28,8 @@ $(document).ready(function () {
       data: { search },
       success: function (response) {
         let products = JSON.parse(response);
-        let template = '';
+        console.log(products);
+        /*let template = '';
 
         products.forEach((product) => {
           template += `<li>
@@ -37,9 +38,9 @@ $(document).ready(function () {
         });
         console.log('estoy buscando')
 
-        $('#container').html(template);
-        $('#product-result').show();
-      },
+        $('#container-resultados').html(template);
+        $('#product-result').show();*/
+      }
     });
   });
 });
