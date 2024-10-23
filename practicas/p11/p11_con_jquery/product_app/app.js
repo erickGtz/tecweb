@@ -15,15 +15,10 @@ function init() {
    */
   var JsonString = JSON.stringify(baseJSON, null, 2);
   document.getElementById('description').value = JsonString;
-
-  // SE LISTAN TODOS LOS PRODUCTOS
-  listarProductos();
 }
 
 $(document).ready(function () {
   $('#product-result').hide();
-
-  console.log('Ya me inicie');
 
   $('#search').keyup(function (e) {
     let search = $('#search').val();
