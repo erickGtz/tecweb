@@ -15,8 +15,6 @@ function init() {
    */
   var JsonString = JSON.stringify(baseJSON, null, 2);
   document.getElementById('description').value = JsonString;
-
-  obtenerProductos();
 }
 
 $(document).ready(function () {
@@ -88,6 +86,7 @@ $(document).ready(function () {
       contentType: 'application/json', // Asegurarse de enviar como JSON
       success: function (response) {
         console.log(response); // Mostrar la respuesta en la consola
+        obtenerProductos();
         $('#product-form').trigger('reset');
         init();
       },
