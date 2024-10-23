@@ -118,6 +118,16 @@ $(document).ready(function () {
     });
   });
 
+  $(document).on('click', 'product-delete', function () {
+    if (confirm('Estás seguro de borrar este producto?')) {
+      let element = $(this)[0].parentElement.parentElement;
+      let id = $(element).attr('productoID');
+      $.post('backend/product-delete.php', { id }, function () {
+        obtenerProductos();
+      });
+    }
+  });
+
   function obtenerProductos() {
     $.ajax({
       url: 'backend/product-list.php',
@@ -135,10 +145,15 @@ $(document).ready(function () {
           descripcion += '<li>detalles: ' + producto.detalles + '</li>';
 
           template += `
-                    <tr>
+                    <tr productoID="${producto.ID}">
                         <td>${producto.ID}</td>
                         <td>${producto.nombre}</td>
                         <td><ul>${descripcion}</ul></td>
+                        <td>
+                            <button class="product-delete btn btn-danger">
+                                Eliminar
+                            </button>
+                        </td>
                     </tr>
                     `;
         });
