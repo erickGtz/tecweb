@@ -53,6 +53,7 @@ $(document).ready(function () {
     }
   });
 
+  // Funcion agregarProducto()
   $('#product-form').submit(function (e) {
     e.preventDefault(); // Prevenir la recarga por defecto de la página
 
@@ -85,10 +86,34 @@ $(document).ready(function () {
       data: JSON.stringify(postData), // Enviar el objeto como JSON string
       contentType: 'application/json', // Asegurarse de enviar como JSON
       success: function (response) {
-        console.log(response); // Mostrar la respuesta en la consola
-        obtenerProductos();
-        $('#product-form').trigger('reset');
-        init();
+        // Verificar si el producto fue agregado correctamente
+        let respuesta = JSON.parse(response);
+
+        // Plantilla para mensajes de error o éxito
+        let template_bar = `
+        <li style="list-style: none;">status: ${respuesta.status}</li>
+        <li style="list-style: none;">message: ${respuesta.message}</li>
+      `;
+
+        // Mostrar el mensaje en la barra de estado
+        $('#container-resultados').html(template_bar);
+        $('#product-result').removeClass('d-none'); // Mostrar el div de resultados
+
+        if (respuesta.status === 'success') {
+          // Si se agregó correctamente, reiniciar el formulario y restablecer JSON base
+          $('#product-form').trigger('reset');
+          init(); // Restablecer el JSON base en el textarea
+          obtenerProductos(); // Refrescar la lista de productos
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error('Error al agregar el producto:', error);
+        let template_bar = `
+        <li style="list-style: none;">status: error</li>
+        <li style="list-style: none;">message: Error al agregar el producto</li>
+      `;
+        $('#container-resultados').html(template_bar);
+        $('#product-result').removeClass('d-none');
       },
     });
   });
