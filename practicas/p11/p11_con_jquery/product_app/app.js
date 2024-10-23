@@ -163,7 +163,7 @@ $(document).ready(function () {
       template += `
                 <tr productoID="${producto.ID}">
                     <td>${producto.ID}</td>
-                    <td><a href="#" class="product-item">${producto.nombre}</a></td>
+                    <td><button class="product-item btn btn-link">${producto.nombre}</button></td>
                     <td><ul>${descripcion}</ul></td>
                     <td>
                         <button class="product-delete btn btn-danger">
