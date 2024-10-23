@@ -23,6 +23,8 @@ function init() {
 $(document).ready(function () {
   $('#product-result').hide();
 
+  console.log('Ya me inicie');
+
   $('#search').keyup(function (e) {
     let search = $('#search').val();
     $.ajax({
