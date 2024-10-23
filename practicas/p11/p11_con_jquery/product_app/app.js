@@ -18,6 +18,7 @@ function init() {
 }
 
 $(document).ready(function () {
+    let edit = false;
   obtenerProductos();
 
   $('#search').keyup(function (e) {
@@ -30,12 +31,10 @@ $(document).ready(function () {
         data: { search },
         success: function (response) {
           let products = JSON.parse(response);
-          // Mostrar los nombres de los productos coincidentes en la barra de estado
           mostrarNombresEnBarraEstado(products);
 
           if (products.length > 0) {
             $('#product-result').removeClass('d-none');
-            // Llamar a la función para mostrar los productos en la tabla
             mostrarProductosEnTabla(products);
           } else {
             $('#product-result').addClass('d-none');
@@ -44,10 +43,9 @@ $(document).ready(function () {
         },
       });
     } else {
-      // Si no hay búsqueda, mostramos todos los productos
       obtenerProductos();
       $('#product-result').addClass('d-none');
-      $('#container-resultados').html(''); // Limpiar la barra de estado
+      $('#container-resultados').html(''); 
     }
   });
 
@@ -68,47 +66,46 @@ $(document).ready(function () {
 
     // Crear el objeto con los datos del formulario
     const postData = {
-      nombre: $('#name').val(), // Nombre del producto
-      marca: descriptionJSON.marca, // Marca del JSON ingresado
-      modelo: descriptionJSON.modelo, // Modelo del JSON ingresado
-      precio: descriptionJSON.precio, // Precio del JSON ingresado
-      detalles: descriptionJSON.detalles, // Detalles del JSON ingresado
-      unidades: descriptionJSON.unidades, // Unidades del JSON ingresado
-      imagen: descriptionJSON.imagen, // Imagen del JSON ingresado
+      nombre: $('#name').val(), 
+      marca: descriptionJSON.marca, 
+      modelo: descriptionJSON.modelo, 
+      precio: descriptionJSON.precio, 
+      detalles: descriptionJSON.detalles, 
+      unidades: descriptionJSON.unidades, 
+      imagen: descriptionJSON.imagen, 
+      ID: $('#productId').val()
     };
+
+    let url = edit === false ? 'backend/product-add.php' : 'backend/product-edit.php';
 
     // Enviar los datos como JSON usando $.ajax()
     $.ajax({
-      url: 'backend/product-add.php', // Tu archivo PHP de agregar productos
+      url: url, 
       type: 'POST',
-      data: JSON.stringify(postData), // Enviar el objeto como JSON string
-      contentType: 'application/json', // Asegurarse de enviar como JSON
+      data: JSON.stringify(postData), 
+      contentType: 'application/json', 
       success: function (response) {
-        // Verificar si el producto fue agregado correctamente
         let respuesta = JSON.parse(response);
 
-        // Plantilla para mensajes de error o éxito
         let template_bar = `
         <li style="list-style: none;">status: ${respuesta.status}</li>
         <li style="list-style: none;">message: ${respuesta.message}</li>
       `;
 
-        // Mostrar el mensaje en la barra de estado
         $('#container-resultados').html(template_bar);
         $('#product-result').removeClass('d-none'); // Mostrar el div de resultados
 
         if (respuesta.status === 'success') {
-          // Si se agregó correctamente, reiniciar el formulario y restablecer JSON base
           $('#product-form').trigger('reset');
           init(); // Restablecer el JSON base en el textarea
           obtenerProductos(); // Refrescar la lista de productos
         }
       },
       error: function (xhr, status, error) {
-        console.error('Error al agregar el producto:', error);
+        console.error('Error con el producto:', error);
         let template_bar = `
         <li style="list-style: none;">status: error</li>
-        <li style="list-style: none;">message: Error al agregar el producto</li>
+        <li style="list-style: none;">message: Error con el producto</li>
       `;
         $('#container-resultados').html(template_bar);
         $('#product-result').removeClass('d-none');
@@ -116,6 +113,7 @@ $(document).ready(function () {
     });
   });
 
+    //Funcion eliminar producto
   $(document).on('click', '.product-delete', function () {
     if (confirm('Estás seguro de borrar este producto?')) {
       let element = $(this).closest('tr'); // Usa closest para encontrar el <tr> más cercano
@@ -175,6 +173,7 @@ $(document).ready(function () {
     $('#container-resultados').html(template_bar);
   }
 
+    //Funcion editar producto
     $(document).on('click', '.product-item', function () {
     let element = $(this).closest('tr');
     let id = element.attr('productoID');
@@ -197,6 +196,8 @@ $(document).ready(function () {
 
       // Mostrar el JSON en el campo de descripción
       $('#description').val(JSON.stringify(descriptionJSON, null, 2));
+      $('#productId').val(producto.ID);
+      edit = true;
     });
   });
 
