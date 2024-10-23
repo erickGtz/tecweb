@@ -89,42 +89,44 @@ $(document).ready(function () {
 
     // Enviar los datos como JSON usando $.ajax()
     $.ajax({
-      url: url, 
-      type: 'POST',
-      data: JSON.stringify(postData), 
-      contentType: 'application/json', 
-      success: function (response) {
-        try {
-          let respuesta = JSON.parse(response);
+  url: url, 
+  type: 'POST',
+  data: JSON.stringify(postData), 
+  contentType: 'application/json', 
+  success: function (response) {
+    console.log('Respuesta del servidor:', response); // Agregar esta línea para ver la respuesta completa
+    try {
+      let respuesta = JSON.parse(response);
 
-          let template_bar = `
-            <li style="list-style: none;">status: ${respuesta.status}</li>
-            <li style="list-style: none;">message: ${respuesta.message}</li>
-          `;
+      let template_bar = `
+        <li style="list-style: none;">status: ${respuesta.status}</li>
+        <li style="list-style: none;">message: ${respuesta.message}</li>
+      `;
 
-          $('#container-resultados').html(template_bar);
-          $('#product-result').removeClass('d-none'); // Mostrar el div de resultados
+      $('#container-resultados').html(template_bar);
+      $('#product-result').removeClass('d-none'); // Mostrar el div de resultados
 
-          if (respuesta.status === 'success') {
-            $('#product-form').trigger('reset');
-            init(); // Restablecer el JSON base en el textarea
-            obtenerProductos(); // Refrescar la lista de productos
-          }
-        } catch (error) {
-          console.error('Error al procesar JSON en la respuesta del servidor:', error);
-          $('#container-resultados').html('<li style="list-style: none;">Error al procesar la respuesta del servidor</li>');
-        }
-      },
-      error: function (xhr, status, error) {
-        console.error('Error en la solicitud AJAX:', error);
-        let template_bar = `
-          <li style="list-style: none;">status: error</li>
-          <li style="list-style: none;">message: Error con el producto</li>
-        `;
-        $('#container-resultados').html(template_bar);
-        $('#product-result').removeClass('d-none');
-      },
-    });
+      if (respuesta.status === 'success') {
+        $('#product-form').trigger('reset');
+        init(); // Restablecer el JSON base en el textarea
+        obtenerProductos(); // Refrescar la lista de productos
+      }
+    } catch (error) {
+      console.error('Error al procesar JSON en la respuesta del servidor:', error);
+      $('#container-resultados').html('<li style="list-style: none;">Error al procesar la respuesta del servidor</li>');
+    }
+  },
+  error: function (xhr, status, error) {
+    console.error('Error en la solicitud AJAX:', error);
+    let template_bar = `
+      <li style="list-style: none;">status: error</li>
+      <li style="list-style: none;">message: Error con el producto</li>
+    `;
+    $('#container-resultados').html(template_bar);
+    $('#product-result').removeClass('d-none');
+  },
+});
+
   });
 
   // Función eliminar producto
