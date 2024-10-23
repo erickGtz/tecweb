@@ -5,7 +5,7 @@ var baseJSON = {
   modelo: 'XX-000',
   marca: 'NA',
   detalles: 'NA',
-  imagen: 'img/default.png',
+  imagen: 'default.png',
 };
 
 function init() {
