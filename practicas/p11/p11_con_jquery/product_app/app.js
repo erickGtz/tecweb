@@ -118,7 +118,7 @@ $(document).ready(function () {
     });
   });
 
-  $(document).on('click', 'product-delete', function () {
+  $(document).on('click', '.product-delete', function () {
     console.log('me pucharon');
     if (confirm('Estás seguro de borrar este producto?')) {
       let element = $(this)[0].parentElement.parentElement;
