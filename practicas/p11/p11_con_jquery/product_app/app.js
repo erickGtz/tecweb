@@ -43,18 +43,22 @@ $(document).ready(function () {
             }
           } catch (error) {
             console.error('Error al procesar JSON en la búsqueda:', error);
-            $('#container-resultados').html('<li style="list-style: none;">Error al buscar productos</li>');
+            $('#container-resultados').html(
+              '<li style="list-style: none;">Error al buscar productos</li>'
+            );
           }
         },
         error: function (xhr, status, error) {
           console.error('Error en la solicitud de búsqueda:', error);
-          $('#container-resultados').html('<li style="list-style: none;">Error en la búsqueda de productos</li>');
-        }
+          $('#container-resultados').html(
+            '<li style="list-style: none;">Error en la búsqueda de productos</li>'
+          );
+        },
       });
     } else {
       obtenerProductos();
       $('#product-result').addClass('d-none');
-      $('#container-resultados').html(''); 
+      $('#container-resultados').html('');
     }
   });
 
@@ -75,58 +79,59 @@ $(document).ready(function () {
 
     // Crear el objeto con los datos del formulario
     const postData = {
-      nombre: $('#name').val(), 
-      marca: descriptionJSON.marca, 
-      modelo: descriptionJSON.modelo, 
-      precio: descriptionJSON.precio, 
-      detalles: descriptionJSON.detalles, 
-      unidades: descriptionJSON.unidades, 
-      imagen: descriptionJSON.imagen, 
-      ID: $('#productId').val()
+      nombre: $('#name').val(),
+      marca: descriptionJSON.marca,
+      modelo: descriptionJSON.modelo,
+      precio: descriptionJSON.precio,
+      detalles: descriptionJSON.detalles,
+      unidades: descriptionJSON.unidades,
+      imagen: descriptionJSON.imagen,
+      ID: $('#productId').val(),
     };
 
-    let url = edit === false ? 'backend/product-add.php' : 'backend/product-edit.php';
+    let url =
+      edit === false ? 'backend/product-add.php' : 'backend/product-edit.php';
 
     // Enviar los datos como JSON usando $.ajax()
     $.ajax({
-  url: url, 
-  type: 'POST',
-  data: JSON.stringify(postData), 
-  contentType: 'application/json', 
-  success: function (response) {
-    console.log('Respuesta del servidor:', response); // Agregar esta línea para ver la respuesta completa
-    try {
-      let respuesta = JSON.parse(response);
+      url: url,
+      type: 'POST',
+      data: JSON.stringify(postData),
+      contentType: 'application/json',
+      success: function (response) {
+        console.log('Respuesta del servidor:', response); // Imprimir la respuesta completa
 
-      let template_bar = `
-        <li style="list-style: none;">status: ${respuesta.status}</li>
-        <li style="list-style: none;">message: ${respuesta.message}</li>
-      `;
-
-      $('#container-resultados').html(template_bar);
-      $('#product-result').removeClass('d-none'); // Mostrar el div de resultados
-
-      if (respuesta.status === 'success') {
-        $('#product-form').trigger('reset');
-        init(); // Restablecer el JSON base en el textarea
-        obtenerProductos(); // Refrescar la lista de productos
-      }
-    } catch (error) {
-      console.error('Error al procesar JSON en la respuesta del servidor:', error);
-      $('#container-resultados').html('<li style="list-style: none;">Error al procesar la respuesta del servidor</li>');
-    }
-  },
-  error: function (xhr, status, error) {
-    console.error('Error en la solicitud AJAX:', error);
-    let template_bar = `
-      <li style="list-style: none;">status: error</li>
-      <li style="list-style: none;">message: Error con el producto</li>
-    `;
-    $('#container-resultados').html(template_bar);
-    $('#product-result').removeClass('d-none');
-  },
-});
-
+        // Intenta analizar solo si la respuesta no es un string plano
+        if (typeof response === 'string') {
+          try {
+            let respuesta = JSON.parse(response);
+            // Aquí puedes continuar con tu lógica de éxito
+          } catch (error) {
+            console.error(
+              'Error al procesar JSON en la respuesta del servidor:',
+              error
+            );
+            $('#container-resultados').html(
+              '<li style="list-style: none;">Error al procesar la respuesta del servidor</li>'
+            );
+          }
+        } else {
+          console.error('La respuesta del servidor no es un string:', response);
+          $('#container-resultados').html(
+            '<li style="list-style: none;">La respuesta del servidor no es válida</li>'
+          );
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error('Error en la solicitud AJAX:', error);
+        let template_bar = `
+            <li style="list-style: none;">status: error</li>
+            <li style="list-style: none;">message: Error con el producto</li>
+        `;
+        $('#container-resultados').html(template_bar);
+        $('#product-result').removeClass('d-none');
+      },
+    });
   });
 
   // Función eliminar producto
@@ -150,13 +155,17 @@ $(document).ready(function () {
           mostrarProductosEnTabla(productos);
         } catch (error) {
           console.error('Error al procesar JSON en obtenerProductos:', error);
-          $('#container-resultados').html('<li style="list-style: none;">Error al cargar productos</li>');
+          $('#container-resultados').html(
+            '<li style="list-style: none;">Error al cargar productos</li>'
+          );
         }
       },
       error: function (xhr, status, error) {
         console.error('Error en obtener productos:', error);
-        $('#container-resultados').html('<li style="list-style: none;">Error al obtener productos</li>');
-      }
+        $('#container-resultados').html(
+          '<li style="list-style: none;">Error al obtener productos</li>'
+        );
+      },
     });
   }
 
@@ -190,7 +199,7 @@ $(document).ready(function () {
   function mostrarNombresEnBarraEstado(productos) {
     // Crear una lista con cada nombre como un elemento <li> separado
     let template_bar = '<ul>';
-    productos.forEach(producto => {
+    productos.forEach((producto) => {
       template_bar += `<li>${producto.nombre}</li>`;
     });
     template_bar += '</ul>';
@@ -206,7 +215,7 @@ $(document).ready(function () {
     $.post('backend/product-single.php', { id }, function (response) {
       try {
         const product = JSON.parse(response);
-        
+
         // Cargar los valores en el formulario
         $('#name').val(product.nombre);
 
@@ -230,5 +239,4 @@ $(document).ready(function () {
       }
     });
   });
-
 });
