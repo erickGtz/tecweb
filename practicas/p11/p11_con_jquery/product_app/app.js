@@ -20,33 +20,34 @@ function init() {
 $(document).ready(function () {
   $('#search').keyup(function (e) {
     let search = $('#search').val();
-    $.ajax({
-      url: 'backend/product-search.php',
-      type: 'POST',
-      data: { search },
-      success: function (response) {
-        let products = JSON.parse(response);
-        console.log(products);  // Puedes dejar esto para seguir depurando si es necesario
+    
+    // Solo hacer la petición si hay texto en el campo de búsqueda
+    if (search.length > 0) {
+      $.ajax({
+        url: 'backend/product-search.php',
+        type: 'POST',
+        data: { search },
+        success: function (response) {
+          let products = JSON.parse(response);
+          console.log(products);
 
-        let template = '';  // Aquí generas el HTML de los productos
-        products.forEach((product) => {
-          template += `<li>
-                        <strong>${product.nombre}</strong> - 
-                        ${product.marca} - 
-                        ${product.detalles}
-                    </li>`;
-        });
+          let template = '';
+          products.forEach((product) => {
+            template += `<li>
+                          ${product.nombre}
+                        </li>`;
+          });
 
-        // Añadir los resultados al contenedor
-        $('#container-resultados').html(template);
+          // Añadir los resultados al contenedor
+          $('#container-resultados').html(template);
 
-        // Mostrar la sección de resultados
-        $('#product-result').removeClass('d-none');
-      },
-      error: function (xhr, status, error) {
-        console.log('Error en la petición AJAX:', status, error);
-      }
-    });
+          // Mostrar la sección de resultados
+          $('#product-result').show();
+        },
+      });
+    } else {
+      // Si no hay texto en la búsqueda, ocultar los resultados
+      $('#product-result').hide();
+    }
   });
 });
-
