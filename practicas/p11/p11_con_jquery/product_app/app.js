@@ -167,12 +167,10 @@ $(document).ready(function () {
   }
 
   function mostrarNombresEnBarraEstado(productos) {
-    let nombres = productos.map(producto => producto.nombre).join(', ');
-    let template_bar = `
-      <li>
-        ${nombres}
-      </li>
-    `;
+    let template_bar = productos.map(producto => `
+      <li style="list-style: none;">${producto.nombre}</li>
+    `).join('');
+
     $('#container-resultados').html(template_bar);
   }
 });
