@@ -53,28 +53,40 @@ $(document).ready(function () {
 
 
   $('#product-form').submit(function (e){
-    e.preventDefault(); // Prevenir el comportamiento por defecto de recargar la página
+    e.preventDefault(); // Prevenir la recarga por defecto de la página
 
+    // Obtener el contenido del campo description como JSON
+    let descriptionJSON;
+    try {
+      // Parsear el contenido del textarea como JSON
+      descriptionJSON = JSON.parse($('#description').val());
+    } catch (error) {
+      console.error('Error en el JSON:', error);
+      alert('El formato del JSON es inválido');
+      return;
+    }
+
+    // Crear el objeto con los datos del formulario
     const postData = {
-        nombre: $('#name').val(),   
-        marca: baseJSON.marca,      
-        modelo: baseJSON.modelo,
-        precio: baseJSON.precio,
-        detalles: baseJSON.detalles,
-        unidades: baseJSON.unidades,
-        imagen: baseJSON.imagen
+        nombre: $('#name').val(),         // Nombre del producto
+        marca: descriptionJSON.marca,     // Marca del JSON ingresado
+        modelo: descriptionJSON.modelo,   // Modelo del JSON ingresado
+        precio: descriptionJSON.precio,   // Precio del JSON ingresado
+        detalles: descriptionJSON.detalles, // Detalles del JSON ingresado
+        unidades: descriptionJSON.unidades, // Unidades del JSON ingresado
+        imagen: descriptionJSON.imagen    // Imagen del JSON ingresado
     };
 
+    // Enviar los datos como JSON usando $.ajax()
     $.ajax({
-      url: 'backend/product-add.php',   
+      url: 'backend/product-add.php',   // Tu archivo PHP de agregar productos
       type: 'POST',                     
-      data: JSON.stringify(postData),    
-      contentType: 'application/json',   
+      data: JSON.stringify(postData),    // Enviar el objeto como JSON string
+      contentType: 'application/json',   // Asegurarse de enviar como JSON
       success: function (response) {
-        console.log(response);          
-
-        $('#product-form').trigger('reset');
-      }
+        console.log(response);           // Mostrar la respuesta en la consola
+        $('#product-form').trigger('reset');  // Limpiar el formulario
+      },
     });
   });
 });
