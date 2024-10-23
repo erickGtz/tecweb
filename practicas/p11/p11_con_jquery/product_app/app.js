@@ -35,6 +35,7 @@ $(document).ready(function () {
                         ${product.nombre}
                     </li>`;
         });
+        console.log('estoy buscando')
 
         $('#container').html(template);
         $('#product-result').show();
