@@ -9,9 +9,11 @@ $data = array(
     'status' => 'error',
     'message' => 'Ya existe un producto con ese nombre'
 );
+
 if (!empty($producto)) {
-    // SE TRANSFORMA EL STRING DEL JASON A OBJETO
+    // SE TRANSFORMA EL STRING DEL JSON A OBJETO
     $jsonOBJ = json_decode($producto);
+
     // SE ASUME QUE LOS DATOS YA FUERON VALIDADOS ANTES DE ENVIARSE
     $sql = "SELECT * FROM productos WHERE nombre = '{$jsonOBJ->nombre}' AND eliminado = 0";
     $result = $conexion->query($sql);
@@ -32,7 +34,6 @@ if (!empty($producto)) {
     $conexion->close();
 }
 
-// SE HACE LA CONVERSIÓN DE ARRAY A JSON
-var_dump($data); // Verificar el contenido del array
+// DEVUELVE LA RESPUESTA COMO JSON
 echo json_encode($data, JSON_PRETTY_PRINT);
 ?>

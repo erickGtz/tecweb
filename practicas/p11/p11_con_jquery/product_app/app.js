@@ -91,7 +91,7 @@ $(document).ready(function () {
 
           // Si estamos en modo de agregar (edit == false), parseamos la respuesta
           if (!edit) {
-            result = response; // Intenta parsear la respuesta como JSON
+            result = JSON.parse(response); // Intenta parsear la respuesta como JSON
             console.log('Resultado parseado:', result);
           } else {
             result = response; // Usamos la respuesta directamente cuando edit es true
