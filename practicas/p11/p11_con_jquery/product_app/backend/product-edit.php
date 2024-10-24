@@ -5,7 +5,9 @@ ini_set('display_errors', 0);
 
 // Configurar la cabecera para devolver JSON
 header('Content-Type: application/json');
-ob_start(); // Iniciar captura de salida
+
+// Captura de salida para prevenir espacios en blanco u otro contenido
+ob_start();
 
 $producto = file_get_contents('php://input');
 file_put_contents('debug.txt', $producto . PHP_EOL, FILE_APPEND); // Para depuración
@@ -54,5 +56,5 @@ if(!empty($producto)) {
 }
 
 echo json_encode($data, JSON_PRETTY_PRINT);
-ob_end_flush(); // Enviar la salida
+ob_end_flush(); // Enviar la salida capturada
 ?>
