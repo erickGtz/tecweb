@@ -18,6 +18,7 @@
             $data = array(
                 'ID' => $row['ID'],
                 'nombre' => $row['nombre'],
+                'marca' => $row['marca'],
                 'precio' => $row['precio'],
                 'unidades' => $row['unidades'],
                 'modelo' => $row['modelo'],

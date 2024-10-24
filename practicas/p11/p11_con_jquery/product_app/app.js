@@ -26,29 +26,16 @@ $(document).ready(function () {
         type: 'POST',
         data: { search },
         success: function (response) {
-          try {
-            let products = JSON.parse(response);
-            mostrarNombresEnBarraEstado(products);
+          let products = JSON.parse(response);
+          mostrarNombresEnBarraEstado(products);
 
-            if (products.length > 0) {
-              $('#product-result').removeClass('d-none');
-              mostrarProductosEnTabla(products);
-            } else {
-              $('#product-result').addClass('d-none');
-              $('#container-resultados').html(''); // Limpiar la barra de estado si no hay coincidencias
-            }
-          } catch (error) {
-            console.error('Error al procesar JSON en la búsqueda:', error);
-            $('#container-resultados').html(
-              '<li style="list-style: none;">Error al buscar productos</li>'
-            );
+          if (products.length > 0) {
+            $('#product-result').removeClass('d-none');
+            mostrarProductosEnTabla(products);
+          } else {
+            $('#product-result').addClass('d-none');
+            $('#container-resultados').html(''); // Limpiar la barra de estado si no hay coincidencias
           }
-        },
-        error: function (xhr, status, error) {
-          console.error('Error en la solicitud de búsqueda:', error);
-          $('#container-resultados').html(
-            '<li style="list-style: none;">Error en la búsqueda de productos</li>'
-          );
         },
       });
     } else {
@@ -68,7 +55,6 @@ $(document).ready(function () {
       // Parsear el contenido del textarea como JSON
       descriptionJSON = JSON.parse($('#description').val());
     } catch (error) {
-      console.error('Error en el JSON:', error);
       alert('El formato del JSON es inválido');
       return;
     }
@@ -95,21 +81,24 @@ $(document).ready(function () {
       data: JSON.stringify(postData),
       contentType: 'application/json',
       success: function (response) {
-        $('#product-form')[0].reset(); // Limpiar el formulario
-        $('#description').val(JSON.stringify(baseJSON, null, 2)); // Establecer el JSON base
-        $('#productId').val(''); // Limpiar el campo del ID
-        $('#product-form button[type="submit"]').text('Agregar Producto'); // Restablecer el texto del botón
-        edit = false; // Reiniciar el estado de edición
-        obtenerProductos(); // Actualizar la lista de productos
-      },
-      error: function (xhr, status, error) {
-        console.error('Error en la solicitud AJAX:', error);
+        let result = JSON.parse(response);
+
+        // Mostrar el mensaje en la barra de estado
         let template_bar = `
-                    <li style="list-style: none;">status: error</li>
-                    <li style="list-style: none;">message: Error con el producto</li>
-                `;
+          <li style="list-style: none;">status: ${result.status}</li>
+          <li style="list-style: none;">message: ${result.message}</li>
+        `;
         $('#container-resultados').html(template_bar);
-        $('#product-result').removeClass('d-none');
+        $('#product-result').removeClass('d-none'); // Mostrar la barra de estado
+
+        if (result.status === 'success') {
+          $('#product-form')[0].reset(); // Limpiar el formulario
+          $('#description').val(JSON.stringify(baseJSON, null, 2)); // Restablecer el JSON base
+          $('#productId').val(''); // Limpiar el campo del ID
+          $('#product-form button[type="submit"]').text('Agregar Producto'); // Restablecer el texto del botón
+          edit = false; // Reiniciar el estado de edición
+          obtenerProductos(); // Actualizar la lista de productos
+        }
       },
     });
   });
@@ -117,10 +106,22 @@ $(document).ready(function () {
   // Función eliminar producto
   $(document).on('click', '.product-delete', function () {
     if (confirm('Estás seguro de borrar este producto?')) {
-      let element = $(this).closest('tr'); // Usa closest para encontrar el <tr> más cercano
+      let element = $(this).closest('tr');
       let id = element.attr('productoID');
-      $.post('backend/product-delete.php', { id }, function () {
-        obtenerProductos();
+      $.post('backend/product-delete.php', { id }, function (response) {
+        let result = JSON.parse(response);
+
+        // Mostrar mensaje en la barra de estado
+        let template_bar = `
+          <li style="list-style: none;">status: ${result.status}</li>
+          <li style="list-style: none;">message: ${result.message}</li>
+        `;
+        $('#container-resultados').html(template_bar);
+        $('#product-result').removeClass('d-none');
+
+        if (result.status === 'success') {
+          obtenerProductos(); // Actualizar la lista de productos
+        }
       });
     }
   });
@@ -130,21 +131,8 @@ $(document).ready(function () {
       url: 'backend/product-list.php',
       type: 'GET',
       success: function (response) {
-        try {
-          let productos = JSON.parse(response);
-          mostrarProductosEnTabla(productos);
-        } catch (error) {
-          console.error('Error al procesar JSON en obtenerProductos:', error);
-          $('#container-resultados').html(
-            '<li style="list-style: none;">Error al cargar productos</li>'
-          );
-        }
-      },
-      error: function (xhr, status, error) {
-        console.error('Error en obtener productos:', error);
-        $('#container-resultados').html(
-          '<li style="list-style: none;">Error al obtener productos</li>'
-        );
+        let productos = JSON.parse(response);
+        mostrarProductosEnTabla(productos);
       },
     });
   }
@@ -161,17 +149,15 @@ $(document).ready(function () {
       descripcion += '<li>detalles: ' + producto.detalles + '</li>';
 
       template += `
-                <tr productoID="${producto.ID}">
-                    <td>${producto.ID}</td>
-                    <td><button class="product-item btn btn-link">${producto.nombre}</button></td>
-                    <td><ul>${descripcion}</ul></td>
-                    <td>
-                        <button class="product-delete btn btn-danger">
-                            Eliminar
-                        </button>
-                    </td>
-                </tr>
-            `;
+        <tr productoID="${producto.ID}">
+          <td>${producto.ID}</td>
+          <td><button class="product-item btn btn-link">${producto.nombre}</button></td>
+          <td><ul>${descripcion}</ul></td>
+          <td>
+            <button class="product-delete btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+      `;
     });
     $('#products').html(template);
   }
@@ -192,32 +178,26 @@ $(document).ready(function () {
     let id = element.attr('productoID');
 
     $.post('backend/product-single.php', { id }, function (response) {
-      try {
-        const product = JSON.parse(response);
+      const product = JSON.parse(response);
 
-        // Cargar los valores en el formulario
-        $('#name').val(product.nombre);
+      // Cargar los valores en el formulario
+      $('#name').val(product.nombre);
 
-        // Crear un JSON para cargar en el campo de descripción
-        let descriptionJSON = {
-          precio: product.precio,
-          unidades: product.unidades,
-          modelo: product.modelo,
-          marca: product.marca,
-          detalles: product.detalles,
-          imagen: product.imagen,
-        };
+      let descriptionJSON = {
+        precio: product.precio,
+        unidades: product.unidades,
+        modelo: product.modelo,
+        marca: product.marca,
+        detalles: product.detalles,
+        imagen: product.imagen,
+      };
 
-        // Mostrar el JSON en el campo de descripción
-        $('#description').val(JSON.stringify(descriptionJSON, null, 2));
-        $('#productId').val(product.ID);
-        edit = true;
+      // Mostrar el JSON en el campo de descripción
+      $('#description').val(JSON.stringify(descriptionJSON, null, 2));
+      $('#productId').val(product.ID);
+      edit = true;
 
-        $('#product-form button[type="submit"]').text('Actualizar Producto');
-      } catch (error) {
-        console.error('Error al cargar producto para edición:', error);
-        alert('Error al cargar el producto');
-      }
+      $('#product-form button[type="submit"]').text('Actualizar Producto');
     });
   });
 });
