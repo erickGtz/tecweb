@@ -90,12 +90,7 @@ $(document).ready(function () {
           console.log('Respuesta del servidor:', response); // Imprimir la respuesta antes de procesarla
 
           // Si estamos en modo de agregar (edit == false), parseamos la respuesta
-          if (!edit) {
-            result = response; // Intenta parsear la respuesta como JSON
-            console.log('Resultado parseado:', result);
-          } else {
-            result = response; // Usamos la respuesta directamente cuando edit es true
-          }
+          result = response;
         } catch (error) {
           console.error('Error al parsear el JSON:', error);
           console.error('Respuesta no válida:', response);
