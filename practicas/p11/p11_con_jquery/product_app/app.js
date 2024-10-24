@@ -45,30 +45,30 @@ $(document).ready(function () {
     }
   });
 
-// Función agregarProducto()
-$('#product-form').submit(function (e) {
+  // Función agregarProducto()
+  $('#product-form').submit(function (e) {
     e.preventDefault(); // Prevenir la recarga por defecto de la página
 
     // Obtener el contenido del campo description como JSON
     let descriptionJSON;
     try {
-        // Parsear el contenido del textarea como JSON
-        descriptionJSON = JSON.parse($('#description').val());
+      // Parsear el contenido del textarea como JSON
+      descriptionJSON = JSON.parse($('#description').val());
     } catch (error) {
-        alert('El formato del JSON es inválido');
-        return;
+      alert('El formato del JSON es inválido');
+      return;
     }
 
     // Crear el objeto con los datos del formulario
     const postData = {
-        nombre: $('#name').val(),
-        marca: descriptionJSON.marca,
-        modelo: descriptionJSON.modelo,
-        precio: descriptionJSON.precio,
-        detalles: descriptionJSON.detalles,
-        unidades: descriptionJSON.unidades,
-        imagen: descriptionJSON.imagen,
-        ID: $('#productId').val(),
+      nombre: $('#name').val(),
+      marca: descriptionJSON.marca,
+      modelo: descriptionJSON.modelo,
+      precio: descriptionJSON.precio,
+      detalles: descriptionJSON.detalles,
+      unidades: descriptionJSON.unidades,
+      imagen: descriptionJSON.imagen,
+      ID: $('#productId').val(),
     };
 
     // Imprimir en consola el JSON del producto antes de enviarlo
@@ -76,55 +76,56 @@ $('#product-form').submit(function (e) {
     console.log('Valor de edit:', edit);
 
     let url =
-        edit === false ? 'backend/product-add.php' : 'backend/product-edit.php';
+      edit === false ? 'backend/product-add.php' : 'backend/product-edit.php';
 
     // Enviar los datos como JSON usando $.ajax()
     $.ajax({
-        url: url,
-        type: 'POST',
-        data: JSON.stringify(postData),
-        contentType: 'application/json',
-        success: function (response) {
-            let result;
-            try {
-                // Si estamos en modo de agregar (edit == false), parseamos la respuesta
-                if (!edit) {
-                    result = JSON.parse(response);  
-                                        console.log(result);
-                                        console.log('ayuda')  // Usamos la respuesta directamente cuando edit es true
-// Parsear la respuesta a JSON
-                } else {
-                    result = response;
-                    console.log(result);  // Usamos la respuesta directamente cuando edit es true
-                }
-            } catch (error) {
-                console.error('Error al parsear el JSON:', error);
-                console.error('Respuesta no válida:', response);
-                alert('Error: La respuesta del servidor no es un JSON válido.');
-                return;
-            }
+      url: url,
+      type: 'POST',
+      data: JSON.stringify(postData),
+      contentType: 'application/json',
+      success: function (response) {
+        let result;
+        try {
+          console.log('Respuesta del servidor:', response); // Imprimir la respuesta antes de procesarla
 
-            // Mostrar el mensaje en la barra de estado
-            let template_bar = `
-              <li style="list-style: none;">status: ${result.status}</li>
-              <li style="list-style: none;">message: ${result.message}</li>
-            `;
-            $('#container-resultados').html(template_bar);
-            $('#product-result').removeClass('d-none'); // Mostrar la barra de estado
+          // Si estamos en modo de agregar (edit == false), parseamos la respuesta
+          if (!edit) {
+            result = JSON.parse(response); // Intenta parsear la respuesta como JSON
+            console.log('Resultado parseado:', result);
+          } else {
+            result = response; // Usamos la respuesta directamente cuando edit es true
+          }
+        } catch (error) {
+          console.error('Error al parsear el JSON:', error);
+          console.error('Respuesta no válida:', response);
+          alert('Error: La respuesta del servidor no es un JSON válido.');
+          return;
+        }
 
-            if (result.status === 'success') {
-                $('#product-form')[0].reset(); // Limpiar el formulario
-                $('#description').val(JSON.stringify(baseJSON, null, 2)); // Restablecer el JSON base
-                $('#productId').val(''); // Limpiar el campo del ID
-                $('#product-form button[type="submit"]').text('Agregar Producto'); // Restablecer el texto del botón
-                edit = false; // Reiniciar el estado de edición
-                obtenerProductos(); // Actualizar la lista de productos
-            }
-        },
+        // Mostrar el mensaje en la barra de estado
+        let template_bar = `
+          <li style="list-style: none;">status: ${result.status}</li>
+          <li style="list-style: none;">message: ${result.message}</li>
+        `;
+        $('#container-resultados').html(template_bar);
+        $('#product-result').removeClass('d-none'); // Mostrar la barra de estado
+
+        if (result.status === 'success') {
+          $('#product-form')[0].reset(); // Limpiar el formulario
+          $('#description').val(JSON.stringify(baseJSON, null, 2)); // Restablecer el JSON base
+          $('#productId').val(''); // Limpiar el campo del ID
+          $('#product-form button[type="submit"]').text('Agregar Producto'); // Restablecer el texto del botón
+          edit = false; // Reiniciar el estado de edición
+          obtenerProductos(); // Actualizar la lista de productos
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error('Error en la solicitud AJAX:', status, error);
+        console.log('Detalles del error:', xhr.responseText); // Imprimir detalles del error si la solicitud falla
+      },
     });
-});
-
-
+  });
 
   // Función eliminar producto
   $(document).on('click', '.product-delete', function () {
