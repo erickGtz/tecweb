@@ -88,9 +88,12 @@ $('#product-form').submit(function (e) {
             try {
                 // Si estamos en modo de agregar (edit == false), parseamos la respuesta
                 if (!edit) {
-                    result = JSON.parse(response);  // Parsear la respuesta a JSON
+                    result = JSON.parse(response);  
+                                        console.log(response);  // Usamos la respuesta directamente cuando edit es true
+// Parsear la respuesta a JSON
                 } else {
-                    result = response;  // Usamos la respuesta directamente cuando edit es true
+                    result = response;
+                    console.log(response);  // Usamos la respuesta directamente cuando edit es true
                 }
             } catch (error) {
                 console.error('Error al parsear el JSON:', error);
