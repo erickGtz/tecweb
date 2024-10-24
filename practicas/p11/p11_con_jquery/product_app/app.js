@@ -89,7 +89,7 @@ $('#product-form').submit(function (e) {
 
             let result;
             try {
-                result = JSON.parse(response);  // Parsear la respuesta a JSON
+                result = response;  // Parsear la respuesta a JSON
             } catch (error) {
                 console.error('Error al parsear el JSON:', error);
                 console.error('Respuesta no válida:', response);
