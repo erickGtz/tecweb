@@ -86,7 +86,12 @@ $('#product-form').submit(function (e) {
         success: function (response) {
             let result;
             try {
-                result = response;  // Parsear la respuesta a JSON
+                // Si estamos en modo de agregar (edit == false), parseamos la respuesta
+                if (!edit) {
+                    result = JSON.parse(response);  // Parsear la respuesta a JSON
+                } else {
+                    result = response;  // Usamos la respuesta directamente cuando edit es true
+                }
             } catch (error) {
                 console.error('Error al parsear el JSON:', error);
                 console.error('Respuesta no válida:', response);
@@ -113,6 +118,7 @@ $('#product-form').submit(function (e) {
         },
     });
 });
+
 
 
   // Función eliminar producto
