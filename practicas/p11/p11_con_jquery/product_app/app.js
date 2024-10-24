@@ -86,18 +86,7 @@ $(document).ready(function () {
       contentType: 'application/json',
       success: function (response) {
         let result;
-        try {
-          console.log('Respuesta del servidor:', response); // Imprimir la respuesta antes de procesarla
-
-          // Si estamos en modo de agregar (edit == false), parseamos la respuesta
           result = response;
-        } catch (error) {
-          console.error('Error al parsear el JSON:', error);
-          console.error('Respuesta no válida:', response);
-          alert('Error: La respuesta del servidor no es un JSON válido.');
-          return;
-        }
-
         // Mostrar el mensaje en la barra de estado
         let template_bar = `
           <li style="list-style: none;">status: ${result.status}</li>
