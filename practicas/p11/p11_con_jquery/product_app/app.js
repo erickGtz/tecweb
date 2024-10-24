@@ -84,9 +84,6 @@ $('#product-form').submit(function (e) {
         data: JSON.stringify(postData),
         contentType: 'application/json',
         success: function (response) {
-            // Imprimir en consola la respuesta recibida
-            console.log('Respuesta del servidor:', response);
-
             let result;
             try {
                 result = response;  // Parsear la respuesta a JSON
