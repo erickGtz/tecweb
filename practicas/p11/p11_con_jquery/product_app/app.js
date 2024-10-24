@@ -73,6 +73,7 @@ $('#product-form').submit(function (e) {
 
     // Imprimir en consola el JSON del producto antes de enviarlo
     console.log('Producto a enviar:', postData);
+    console.log('Valor de edit:', edit);
 
     let url =
         edit === false ? 'backend/product-add.php' : 'backend/product-edit.php';
