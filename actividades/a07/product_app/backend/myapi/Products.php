@@ -37,7 +37,6 @@ class Products extends DataBase
         $data = array('error' => 'Producto no encontrado');
       }
       // LIBERAR EL RESULTADO
-      $result->free();
 
       // CERRAR LA CONEXIÓN
       $this->conexion->close();
