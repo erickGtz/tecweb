@@ -6,9 +6,7 @@ use TECWEB\BACKEND\MYAPI\DataBase;
 require_once __DIR__ . '/DataBase.php';
 class Products extends DataBase
 {
-
   private $data;
-
   public function __construct($user = 'root', $pass = 'fk1322', $db)
   {
     $this->data = array();
