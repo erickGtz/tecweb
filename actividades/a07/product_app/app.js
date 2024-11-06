@@ -59,6 +59,7 @@ $(document).ready(function () {
           mostrarNombresEnBarraEstado(products);
 
           if (products.length > 0) {
+            console.log('estoy aaqui');
             $('#product-result').removeClass('d-none');
             mostrarProductosEnTabla(products);
           } else {
