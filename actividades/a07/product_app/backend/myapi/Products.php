@@ -45,7 +45,7 @@ class Products extends DataBase
   }
 
   public function getData(): string{
-    return $this->data[0];
+    return $this->data;
   }
 
 }
