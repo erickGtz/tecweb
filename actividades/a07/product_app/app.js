@@ -176,43 +176,56 @@ $(document).ready(function () {
   }
 
   function mostrarProductosEnTabla(productos) {
-    let template = '';
+  let template = '';
 
-    productos.forEach((producto) => {
-      let descripcion = '';
-      descripcion += '<li>precio: ' + producto.precio + '</li>';
-      descripcion += '<li>unidades: ' + producto.unidades + '</li>';
-      descripcion += '<li>modelo: ' + producto.modelo + '</li>';
-      descripcion += '<li>marca: ' + producto.marca + '</li>';
-      descripcion += '<li>detalles: ' + producto.detalles + '</li>';
-
-      template += `
-        <tr productoID="${producto.ID}">
-          <td>${producto.ID}</td>
-          <td><button class="product-item btn btn-link">${producto.nombre}</button></td>
-          <td><ul>${descripcion}</ul></td>
-          <td>
-            <button class="product-delete btn btn-danger">Eliminar</button>
-          </td>
-        </tr>
-      `;
-    });
-    $('#products').html(template);
+  // Si productos es un solo objeto, lo convertimos en un array de un elemento
+  if (!Array.isArray(productos)) {
+    productos = [productos];
   }
 
-  function mostrarNombresEnBarraEstado(productos) {
+  productos.forEach((producto) => {
+    let descripcion = '';
+    descripcion += '<li>precio: ' + producto.precio + '</li>';
+    descripcion += '<li>unidades: ' + producto.unidades + '</li>';
+    descripcion += '<li>modelo: ' + producto.modelo + '</li>';
+    descripcion += '<li>marca: ' + producto.marca + '</li>';
+    descripcion += '<li>detalles: ' + producto.detalles + '</li>';
+
+    template += `
+      <tr productoID="${producto.ID}">
+        <td>${producto.ID}</td>
+        <td><button class="product-item btn btn-link">${producto.nombre}</button></td>
+        <td><ul>${descripcion}</ul></td>
+        <td>
+          <button class="product-delete btn btn-danger">Eliminar</button>
+        </td>
+      </tr>
+    `;
+  });
+  $('#products').html(template);
+}
+
+
+function mostrarNombresEnBarraEstado(productos) {
+  let template_bar = '<ul>';
+
   if (Array.isArray(productos)) {
-    let template_bar = '<ul>';
+    // Si es un array de productos
     productos.forEach((producto) => {
       template_bar += `<li>${producto.nombre}</li>`;
     });
-    template_bar += '</ul>';
-    $('#container-resultados').html(template_bar);
   } else if (productos.error) {
-    // Mostrar el mensaje de error en la barra de estado si hay un error
-    $('#container-resultados').html(`<li style="list-style: none;">${productos.error}</li>`);
+    // Si hay un error en la respuesta
+    template_bar = `<li style="list-style: none;">${productos.error}</li>`;
+  } else {
+    // Si es un solo objeto de producto
+    template_bar += `<li>${productos.nombre}</li>`;
   }
+
+  template_bar += '</ul>';
+  $('#container-resultados').html(template_bar);
 }
+
 
 
   // Función editar producto
