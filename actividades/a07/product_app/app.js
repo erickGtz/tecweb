@@ -214,6 +214,7 @@ $(document).ready(function () {
     let template_bar = '<ul>';
 
     if (Array.isArray(productos)) {
+      console.log('soy un array');
       // Si es un array de productos
       productos.forEach((producto) => {
         template_bar += `<li>${producto.nombre}</li>`;
@@ -222,6 +223,7 @@ $(document).ready(function () {
       // Si hay un error en la respuesta
       template_bar = `<li style="list-style: none;">${productos.error}</li>`;
     } else {
+      console.log('soy solo un objeto');
       // Si es un solo objeto de producto
       template_bar += `<li>${productos.nombre}</li>`;
     }
