@@ -16,7 +16,7 @@ function init() {
 $(document).ready(function () {
   let edit = false;
   obtenerProductos();
-/*
+  /*
   $('#search').keyup(function (e) {
     let search = $('#search').val();
 
@@ -57,12 +57,14 @@ $(document).ready(function () {
           console.log(response);
           let products = JSON.parse(response);
           mostrarNombresEnBarraEstado(products);
+          console.log('estoy aqui antes de que me impriman');
 
           if (products.length > 0) {
-            console.log('estoy aaqui');
+            console.log('estoy aqui x2');
             $('#product-result').removeClass('d-none');
             mostrarProductosEnTabla(products);
           } else {
+            console.log('estoy aqui x3');
             $('#product-result').addClass('d-none');
             $('#container-resultados').html(''); // Limpiar la barra de estado si no hay coincidencias
           }
@@ -116,7 +118,7 @@ $(document).ready(function () {
       contentType: 'application/json',
       success: function (response) {
         let result;
-          result = response;
+        result = response;
         // Mostrar el mensaje en la barra de estado
         let template_bar = `
           <li style="list-style: none;">status: ${result.status}</li>
@@ -176,22 +178,23 @@ $(document).ready(function () {
   }
 
   function mostrarProductosEnTabla(productos) {
-  let template = '';
+    console.log('estoy aqui en tabla');
+    let template = '';
 
-  // Si productos es un solo objeto, lo convertimos en un array de un elemento
-  if (!Array.isArray(productos)) {
-    productos = [productos];
-  }
+    // Si productos es un solo objeto, lo convertimos en un array de un elemento
+    if (!Array.isArray(productos)) {
+      productos = [productos];
+    }
 
-  productos.forEach((producto) => {
-    let descripcion = '';
-    descripcion += '<li>precio: ' + producto.precio + '</li>';
-    descripcion += '<li>unidades: ' + producto.unidades + '</li>';
-    descripcion += '<li>modelo: ' + producto.modelo + '</li>';
-    descripcion += '<li>marca: ' + producto.marca + '</li>';
-    descripcion += '<li>detalles: ' + producto.detalles + '</li>';
+    productos.forEach((producto) => {
+      let descripcion = '';
+      descripcion += '<li>precio: ' + producto.precio + '</li>';
+      descripcion += '<li>unidades: ' + producto.unidades + '</li>';
+      descripcion += '<li>modelo: ' + producto.modelo + '</li>';
+      descripcion += '<li>marca: ' + producto.marca + '</li>';
+      descripcion += '<li>detalles: ' + producto.detalles + '</li>';
 
-    template += `
+      template += `
       <tr productoID="${producto.ID}">
         <td>${producto.ID}</td>
         <td><button class="product-item btn btn-link">${producto.nombre}</button></td>
@@ -201,32 +204,30 @@ $(document).ready(function () {
         </td>
       </tr>
     `;
-  });
-  $('#products').html(template);
-}
-
-
-function mostrarNombresEnBarraEstado(productos) {
-  let template_bar = '<ul>';
-
-  if (Array.isArray(productos)) {
-    // Si es un array de productos
-    productos.forEach((producto) => {
-      template_bar += `<li>${producto.nombre}</li>`;
     });
-  } else if (productos.error) {
-    // Si hay un error en la respuesta
-    template_bar = `<li style="list-style: none;">${productos.error}</li>`;
-  } else {
-    // Si es un solo objeto de producto
-    template_bar += `<li>${productos.nombre}</li>`;
+    $('#products').html(template);
   }
 
-  template_bar += '</ul>';
-  $('#container-resultados').html(template_bar);
-}
+  function mostrarNombresEnBarraEstado(productos) {
+    console.log('estoy aqui en barra estado');
+    let template_bar = '<ul>';
 
+    if (Array.isArray(productos)) {
+      // Si es un array de productos
+      productos.forEach((producto) => {
+        template_bar += `<li>${producto.nombre}</li>`;
+      });
+    } else if (productos.error) {
+      // Si hay un error en la respuesta
+      template_bar = `<li style="list-style: none;">${productos.error}</li>`;
+    } else {
+      // Si es un solo objeto de producto
+      template_bar += `<li>${productos.nombre}</li>`;
+    }
 
+    template_bar += '</ul>';
+    $('#container-resultados').html(template_bar);
+  }
 
   // Función editar producto
   $(document).on('click', '.product-item', function () {
