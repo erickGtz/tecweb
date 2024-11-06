@@ -54,6 +54,7 @@ $(document).ready(function () {
         type: 'POST',
         data: { search },
         success: function (response) {
+          console.log(response);
           let products = JSON.parse(response);
           mostrarNombresEnBarraEstado(products);
 
