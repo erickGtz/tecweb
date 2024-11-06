@@ -200,14 +200,19 @@ $(document).ready(function () {
   }
 
   function mostrarNombresEnBarraEstado(productos) {
+  if (Array.isArray(productos)) {
     let template_bar = '<ul>';
     productos.forEach((producto) => {
       template_bar += `<li>${producto.nombre}</li>`;
     });
     template_bar += '</ul>';
-
     $('#container-resultados').html(template_bar);
+  } else if (productos.error) {
+    // Mostrar el mensaje de error en la barra de estado si hay un error
+    $('#container-resultados').html(`<li style="list-style: none;">${productos.error}</li>`);
   }
+}
+
 
   // Función editar producto
   $(document).on('click', '.product-item', function () {
