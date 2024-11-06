@@ -56,6 +56,7 @@ $(document).ready(function () {
         success: function (response) {
           console.log(response);
           let products = JSON.parse(response);
+          console.log(products);
           mostrarNombresEnBarraEstado(products);
           console.log('estoy aqui antes de que me impriman');
 
