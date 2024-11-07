@@ -16,9 +16,7 @@ class Products extends DataBase
   }
 
   public function singleByName($name)
-  {
-    echo $name;
-    
+  {    
     $sql = "SELECT * FROM productos WHERE nombre = '$name'";
     $result = $this->conexion->query($sql);
     // COMPROBAR SI SE ENCONTRÓ UN PRODUCTO
