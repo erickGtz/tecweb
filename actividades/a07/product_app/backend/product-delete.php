@@ -1,5 +1,5 @@
 <?php
-    include_once __DIR__.'/database.php';
+/*    include_once __DIR__.'/database.php';
 
     // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
     $data = array(
@@ -14,12 +14,18 @@
         if ( $conexion->query($sql) ) {
             $data['status'] =  "success";
             $data['message'] =  "Producto eliminado";
-		} else {
+        } else {
             $data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($conexion);
         }
-		$conexion->close();
+        $conexion->close();
     } 
     
     // SE HACE LA CONVERSIÓN DE ARRAY A JSON
-    echo json_encode($data, JSON_PRETTY_PRINT);
+    echo json_encode($data, JSON_PRETTY_PRINT);*/
+    use TECWEB\BACKEND\MYAPI\Products;
+    require_once __DIR__ . '/myapi/Products.php';
+
+    $producto = new Products('marketzone');
+    $producto->delete($_POST['id']);
+    echo $producto->getData();
 ?>
