@@ -45,7 +45,7 @@ class Products extends DataBase
     $this->conexion->close();
   }
 
-  public function getData(): array {
+  public function getData(): string {
     return $this->data;
   }
 
