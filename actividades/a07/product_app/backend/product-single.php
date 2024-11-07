@@ -5,5 +5,4 @@
     $producto = new Products('marketzone');
     $producto->single($_POST['id']);
     echo $producto->getData();
-
 ?>

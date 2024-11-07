@@ -1,4 +1,5 @@
 <?php
+/*
 header('Content-Type: application/json');
 
 include_once __DIR__ . '/database.php';
@@ -35,5 +36,12 @@ if (!empty($producto)) {
 }
 
 // DEVUELVE LA RESPUESTA COMO JSON
-echo json_encode($data, JSON_PRETTY_PRINT);
+echo json_encode($data, JSON_PRETTY_PRINT);*/
+    use TECWEB\BACKEND\MYAPI\Products;
+    require_once __DIR__.'/myapi/Products.php';
+
+    $producto = new Products('marketzone');
+    $producto->single($_POST['id']);
+    echo $producto->getData();
 ?>
+
