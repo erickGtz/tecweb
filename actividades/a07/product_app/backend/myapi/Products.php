@@ -22,7 +22,6 @@ class Products extends DataBase
     $sql = "SELECT * FROM productos WHERE nombre = '$name'";
     echo $sql;
     $result = $this->conexion->query($sql);
-    echo $result;
     // COMPROBAR SI SE ENCONTRÓ UN PRODUCTO
     if ($result) {
       $row = $result->fetch_assoc();
