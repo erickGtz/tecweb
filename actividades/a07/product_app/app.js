@@ -139,7 +139,6 @@ $(document).ready(function () {
       url: 'backend/product-list.php',
       type: 'GET',
       success: function (response) {
-        console.log(response);
         let productos = JSON.parse(response);
         mostrarProductosEnTabla(productos);
       },

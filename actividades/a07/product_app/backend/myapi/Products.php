@@ -52,7 +52,6 @@ class Products extends DataBase
 
   public function list()
   {
-
     // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
     if ($result = $this->conexion->query("SELECT * FROM productos WHERE eliminado = 0")) {
       // SE OBTIENEN LOS RESULTADOS
@@ -71,5 +70,32 @@ class Products extends DataBase
       die('Query Error: ' . mysqli_error($this->conexion));
     }
     $this->conexion->close();
+  }
+
+  public function single($id){
+    $sql = "SELECT * FROM productos WHERE ID = $id";
+        $result = $this->conexion->query($sql);
+
+        // COMPROBAR SI SE ENCONTRÓ UN PRODUCTO
+        if ($result) {
+            $row = $result->fetch_assoc();
+            $this->data = array(
+                'ID' => $row['ID'],
+                'nombre' => $row['nombre'],
+                'marca' => $row['marca'],
+                'precio' => $row['precio'],
+                'unidades' => $row['unidades'],
+                'modelo' => $row['modelo'],
+                'detalles' => $row['detalles'],
+                'imagen' => $row['imagen']
+            );
+        } else {
+            // Si no se encuentra el producto, devolvemos un mensaje de error
+            $this->data = array('error' => 'Producto no encontrado');
+        }
+        // LIBERAR EL RESULTADO
+        $result->free();
+        // CERRAR LA CONEXIÓN
+        $this->conexion->close();
   }
 }
