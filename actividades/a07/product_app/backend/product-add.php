@@ -41,7 +41,7 @@ echo json_encode($data, JSON_PRETTY_PRINT);*/
     require_once __DIR__.'/myapi/Products.php';
 
     $producto = new Products('marketzone');
-    $producto->single($_POST['id']);
+    $producto->add(file_get_contents('php://input'));
     echo $producto->getData();
 ?>
 
