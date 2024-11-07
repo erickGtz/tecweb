@@ -16,7 +16,7 @@ function init() {
 $(document).ready(function () {
   let edit = false;
   obtenerProductos();
-  /*
+
   $('#search').keyup(function (e) {
     let search = $('#search').val();
 
@@ -36,40 +36,6 @@ $(document).ready(function () {
             $('#product-result').addClass('d-none');
             $('#container-resultados').html(''); // Limpiar la barra de estado si no hay coincidencias
           }
-        },
-      });
-    } else {
-      obtenerProductos();
-      $('#product-result').addClass('d-none');
-      $('#container-resultados').html('');
-    }
-  });*/
-
-  $('#search').keyup(function (e) {
-    let search = $('#search').val();
-
-    if (search.length > 0) {
-      $.ajax({
-        url: 'backend/product-single-by-name.php',
-        type: 'POST',
-        data: { search },
-        success: function (response) {
-          console.log(response);
-          let products = JSON.parse(response);
-          console.log(products);
-          mostrarNombresEnBarraEstado(products);
-          console.log('estoy aqui antes de que me impriman');
-          $('#product-result').removeClass('d-none');
-
-          /*if (products.length > 0) {
-            console.log('estoy aqui x2');
-            $('#product-result').removeClass('d-none');
-            mostrarProductosEnTabla(products);
-          } else {
-            console.log('estoy aqui x3');
-            $('#product-result').addClass('d-none');
-            $('#container-resultados').html(''); // Limpiar la barra de estado si no hay coincidencias
-          }*/
         },
       });
     } else {
@@ -120,7 +86,7 @@ $(document).ready(function () {
       contentType: 'application/json',
       success: function (response) {
         let result;
-        result = response;
+          result = response;
         // Mostrar el mensaje en la barra de estado
         let template_bar = `
           <li style="list-style: none;">status: ${result.status}</li>
@@ -180,13 +146,7 @@ $(document).ready(function () {
   }
 
   function mostrarProductosEnTabla(productos) {
-    console.log('estoy aqui en tabla');
     let template = '';
-
-    // Si productos es un solo objeto, lo convertimos en un array de un elemento
-    if (!Array.isArray(productos)) {
-      productos = [productos];
-    }
 
     productos.forEach((producto) => {
       let descripcion = '';
@@ -197,39 +157,26 @@ $(document).ready(function () {
       descripcion += '<li>detalles: ' + producto.detalles + '</li>';
 
       template += `
-      <tr productoID="${producto.ID}">
-        <td>${producto.ID}</td>
-        <td><button class="product-item btn btn-link">${producto.nombre}</button></td>
-        <td><ul>${descripcion}</ul></td>
-        <td>
-          <button class="product-delete btn btn-danger">Eliminar</button>
-        </td>
-      </tr>
-    `;
+        <tr productoID="${producto.ID}">
+          <td>${producto.ID}</td>
+          <td><button class="product-item btn btn-link">${producto.nombre}</button></td>
+          <td><ul>${descripcion}</ul></td>
+          <td>
+            <button class="product-delete btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+      `;
     });
     $('#products').html(template);
   }
 
   function mostrarNombresEnBarraEstado(productos) {
-    console.log('estoy aqui en barra estado');
     let template_bar = '<ul>';
-
-    if (Array.isArray(productos)) {
-      console.log('soy un array');
-      // Si es un array de productos
-      productos.forEach((producto) => {
-        template_bar += `<li>${producto.nombre}</li>`;
-      });
-    } else if (productos.error) {
-      // Si hay un error en la respuesta
-      template_bar = `<li style="list-style: none;">${productos.error}</li>`;
-    } else {
-      console.log('soy solo un objeto');
-      // Si es un solo objeto de producto
-      template_bar += `<li>${productos.nombre}</li>`;
-    }
-
+    productos.forEach((producto) => {
+      template_bar += `<li>${producto.nombre}</li>`;
+    });
     template_bar += '</ul>';
+
     $('#container-resultados').html(template_bar);
   }
 
