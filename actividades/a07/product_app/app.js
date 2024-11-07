@@ -215,6 +215,7 @@ $(document).ready(function () {
     let nombre = element.attr('productoNombre');
 
     $.post('backend/product-single-by-name.php', { nombre }, function (response) {
+      console.log(response);
       const product = JSON.parse(response);
 
       // Cargar los valores en el formulario
@@ -231,7 +232,7 @@ $(document).ready(function () {
 
       // Mostrar el JSON en el campo de descripción
       $('#description').val(JSON.stringify(descriptionJSON, null, 2));
-      $('#productNombre').val(product.nombre);
+      $('#productId').val(product.ID);
       edit = true;
 
       $('#product-form button[type="submit"]').text('Actualizar Producto');
