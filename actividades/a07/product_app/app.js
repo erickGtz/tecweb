@@ -85,15 +85,18 @@ $(document).ready(function () {
       data: JSON.stringify(postData),
       contentType: 'application/json',
       success: function (response) {
-        let result;
-        console.log(response);
-          result = response;
-          console.log(result.status);
-          console.log(result.message);
+        // Parsear la respuesta si es un string JSON
+        let result =
+          typeof response === 'string' ? JSON.parse(response) : response;
+
+        // Mostrar en consola para verificación
+        console.log(result.status);
+        console.log(result.message);
+
         let template_bar = `
-          <li style="list-style: none;">status: ${result.status}</li>
-          <li style="list-style: none;">message: ${result.message}</li>
-        `;
+        <li style="list-style: none;">status: ${result.status}</li>
+        <li style="list-style: none;">message: ${result.message}</li>
+      `;
         $('#container-resultados').html(template_bar);
         $('#product-result').removeClass('d-none'); // Mostrar la barra de estado
 
