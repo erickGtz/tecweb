@@ -19,7 +19,7 @@ class Products extends DataBase
   {
     echo $name;
     
-    $sql = "SELECT * FROM productos WHERE nombre = {$name}";
+    $sql = "SELECT * FROM productos WHERE nombre = '$name'";
     echo $sql;
     $result = $this->conexion->query($sql);
     echo $result;
