@@ -158,8 +158,8 @@ $(document).ready(function () {
 
       template += `
         <tr productoID="${producto.ID}">
-          <td>${producto.ID}</td>
-          <td><button class="product-item btn btn-link">${producto.nombre}</button></td>
+          <td><button class="product-item btn btn-link">${producto.ID}</button></td>
+          <td><button btn btn-link">${producto.nombre}</button></td>
           <td><ul>${descripcion}</ul></td>
           <td>
             <button class="product-delete btn btn-danger">Eliminar</button>
