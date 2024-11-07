@@ -59,6 +59,7 @@ $(document).ready(function () {
           console.log(products);
           mostrarNombresEnBarraEstado(products);
           console.log('estoy aqui antes de que me impriman');
+          $('#product-result').removeClass('d-none');
 
           /*if (products.length > 0) {
             console.log('estoy aqui x2');
