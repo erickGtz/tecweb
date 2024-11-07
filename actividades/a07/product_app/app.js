@@ -60,7 +60,7 @@ $(document).ready(function () {
           mostrarNombresEnBarraEstado(products);
           console.log('estoy aqui antes de que me impriman');
 
-          if (products.length > 0) {
+          /*if (products.length > 0) {
             console.log('estoy aqui x2');
             $('#product-result').removeClass('d-none');
             mostrarProductosEnTabla(products);
@@ -68,7 +68,7 @@ $(document).ready(function () {
             console.log('estoy aqui x3');
             $('#product-result').addClass('d-none');
             $('#container-resultados').html(''); // Limpiar la barra de estado si no hay coincidencias
-          }
+          }*/
         },
       });
     } else {
