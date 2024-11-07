@@ -20,7 +20,6 @@ class Products extends DataBase
     echo $name;
     
     $sql = "SELECT * FROM productos WHERE nombre = '$name'";
-    echo $sql;
     $result = $this->conexion->query($sql);
     // COMPROBAR SI SE ENCONTRÓ UN PRODUCTO
     if ($result) {
@@ -39,7 +38,6 @@ class Products extends DataBase
       // Si no se encuentra el producto, devolvemos un mensaje de error
       $this->data = array('error' => 'Producto no encontrado');
     }
-    // LIBERAR EL RESULTADO
     // CERRAR LA CONEXIÓN
     $this->conexion->close();
   }
