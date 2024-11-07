@@ -126,7 +126,7 @@ class Products extends DataBase
 
   public function add($producto)
   {
-    $data = array(
+    $this->data = array(
       'status' => 'error',
       'message' => 'Ya existe un producto con ese nombre'
     );

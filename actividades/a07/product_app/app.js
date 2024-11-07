@@ -86,8 +86,8 @@ $(document).ready(function () {
       contentType: 'application/json',
       success: function (response) {
         let result;
+        console.log(response);
           result = response;
-        // Mostrar el mensaje en la barra de estado
         let template_bar = `
           <li style="list-style: none;">status: ${result.status}</li>
           <li style="list-style: none;">message: ${result.message}</li>
