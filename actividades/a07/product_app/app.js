@@ -88,6 +88,8 @@ $(document).ready(function () {
         let result;
         console.log(response);
           result = response;
+          console.log(result.status);
+          console.log(result.message);
         let template_bar = `
           <li style="list-style: none;">status: ${result.status}</li>
           <li style="list-style: none;">message: ${result.message}</li>
