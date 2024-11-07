@@ -45,7 +45,8 @@ class Products extends DataBase
     $this->conexion->close();
   }
 
-  public function getData(): string{
+  public function getData(): string
+  {
     return json_encode($this->data);
   }
 
@@ -72,30 +73,54 @@ class Products extends DataBase
     $this->conexion->close();
   }
 
-  public function single($id){
+  public function single($id)
+  {
     $sql = "SELECT * FROM productos WHERE ID = $id";
-        $result = $this->conexion->query($sql);
+    $result = $this->conexion->query($sql);
 
-        // COMPROBAR SI SE ENCONTRÓ UN PRODUCTO
-        if ($result) {
-            $row = $result->fetch_assoc();
-            $this->data = array(
-                'ID' => $row['ID'],
-                'nombre' => $row['nombre'],
-                'marca' => $row['marca'],
-                'precio' => $row['precio'],
-                'unidades' => $row['unidades'],
-                'modelo' => $row['modelo'],
-                'detalles' => $row['detalles'],
-                'imagen' => $row['imagen']
-            );
-        } else {
-            // Si no se encuentra el producto, devolvemos un mensaje de error
-            $this->data = array('error' => 'Producto no encontrado');
+    // COMPROBAR SI SE ENCONTRÓ UN PRODUCTO
+    if ($result) {
+      $row = $result->fetch_assoc();
+      $this->data = array(
+        'ID' => $row['ID'],
+        'nombre' => $row['nombre'],
+        'marca' => $row['marca'],
+        'precio' => $row['precio'],
+        'unidades' => $row['unidades'],
+        'modelo' => $row['modelo'],
+        'detalles' => $row['detalles'],
+        'imagen' => $row['imagen']
+      );
+    } else {
+      // Si no se encuentra el producto, devolvemos un mensaje de error
+      $this->data = array('error' => 'Producto no encontrado');
+    }
+    // LIBERAR EL RESULTADO
+    $result->free();
+    // CERRAR LA CONEXIÓN
+    $this->conexion->close();
+  }
+
+  public function search($search)
+  {
+    // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
+    $sql = "SELECT * FROM productos WHERE (ID = '{$search}' OR nombre LIKE '%{$search}%' OR marca LIKE '%{$search}%' OR detalles LIKE '%{$search}%') AND eliminado = 0";
+    if ($result = $this->conexion->query($sql)) {
+      // SE OBTIENEN LOS RESULTADOS
+      $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+      if (!is_null($rows)) {
+        // SE CODIFICAN A UTF-8 LOS DATOS Y SE MAPEAN AL ARREGLO DE RESPUESTA
+        foreach ($rows as $num => $row) {
+          foreach ($row as $key => $value) {
+            $this->data[$num][$key] = $value;
+          }
         }
-        // LIBERAR EL RESULTADO
-        $result->free();
-        // CERRAR LA CONEXIÓN
-        $this->conexion->close();
+      }
+      $result->free();
+    } else {
+      die('Query Error: ' . mysqli_error($this->conexion));
+    }
+    $this->conexion->close();
   }
 }
