@@ -215,7 +215,6 @@ $(document).ready(function () {
     let nombre = element.attr('productoNombre');
 
     $.post('backend/product-single-by-name.php', { nombre }, function (response) {
-      console.log(response);
       const product = JSON.parse(response);
 
       // Cargar los valores en el formulario
