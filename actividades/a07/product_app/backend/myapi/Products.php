@@ -45,28 +45,30 @@ class Products extends DataBase
     $this->conexion->close();
   }
 
-  public function getData(): string {
-    return $this->data;
+  public function getData(): string{
+    return json_encode($this->data);
   }
 
-  public function list(){
+
+  public function list()
+  {
 
     // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
-    if ( $result = $this->conexion->query("SELECT * FROM productos WHERE eliminado = 0") ) {
-        // SE OBTIENEN LOS RESULTADOS
-        $rows = $result->fetch_all(MYSQLI_ASSOC);
+    if ($result = $this->conexion->query("SELECT * FROM productos WHERE eliminado = 0")) {
+      // SE OBTIENEN LOS RESULTADOS
+      $rows = $result->fetch_all(MYSQLI_ASSOC);
 
-        if(!is_null($rows)) {
-            // SE CODIFICAN A UTF-8 LOS DATOS Y SE MAPEAN AL ARREGLO DE RESPUESTA
-            foreach($rows as $num => $row) {
-                foreach($row as $key => $value) {
-                    $this->data[$num][$key] = $value;
-                }
-            }
+      if (!is_null($rows)) {
+        // SE CODIFICAN A UTF-8 LOS DATOS Y SE MAPEAN AL ARREGLO DE RESPUESTA
+        foreach ($rows as $num => $row) {
+          foreach ($row as $key => $value) {
+            $this->data[$num][$key] = $value;
+          }
         }
-        $result->free();
+      }
+      $result->free();
     } else {
-        die('Query Error: '.mysqli_error($this->conexion));
+      die('Query Error: ' . mysqli_error($this->conexion));
     }
     $this->conexion->close();
   }
