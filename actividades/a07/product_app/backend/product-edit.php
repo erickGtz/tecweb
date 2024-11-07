@@ -1,6 +1,6 @@
 <?php
 // Desactivar errores visibles
-error_reporting(0);
+/*error_reporting(0);
 ini_set('display_errors', 0);
 
 // Configurar la cabecera para devolver JSON
@@ -56,5 +56,11 @@ if(!empty($producto)) {
 }
 
 echo json_encode($data, JSON_PRETTY_PRINT);
-ob_end_flush(); // Enviar la salida capturada
+ob_end_flush(); // Enviar la salida capturada*/
+    use TECWEB\BACKEND\MYAPI\Products;
+    require_once __DIR__.'/myapi/Products.php';
+
+    $producto = new Products('marketzone');
+    $producto->edit(file_get_contents('php://input'));
+    echo $producto->getData();
 ?>

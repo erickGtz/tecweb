@@ -88,11 +88,6 @@ $(document).ready(function () {
         // Parsear la respuesta si es un string JSON
         let result =
           typeof response === 'string' ? JSON.parse(response) : response;
-
-        // Mostrar en consola para verificación
-        console.log(result.status);
-        console.log(result.message);
-
         let template_bar = `
         <li style="list-style: none;">status: ${result.status}</li>
         <li style="list-style: none;">message: ${result.message}</li>

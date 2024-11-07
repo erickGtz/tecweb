@@ -155,4 +155,49 @@ class Products extends DataBase
       $this->conexion->close();
     }
   }
+
+  public function edit($producto)
+  {
+    $this->data = array(
+      'status' => 'error',
+      'message' => 'Hubo un problema al editar el producto'
+    );
+
+    if (!empty($producto)) {
+      $jsonOBJ = json_decode($producto);
+
+      if (isset($jsonOBJ->ID) && !empty($jsonOBJ->ID)) {
+
+        $id = $this->conexion->real_escape_string($jsonOBJ->ID);
+        $nombre = $this->conexion->real_escape_string($jsonOBJ->nombre);
+        $marca = $this->conexion->real_escape_string($jsonOBJ->marca);
+        $modelo = $this->conexion->real_escape_string($jsonOBJ->modelo);
+        $precio = floatval($jsonOBJ->precio);
+        $detalles = $this->conexion->real_escape_string($jsonOBJ->detalles);
+        $unidades = intval($jsonOBJ->unidades);
+        $imagen = $this->conexion->real_escape_string($jsonOBJ->imagen);
+
+        $sql = "UPDATE productos 
+                SET nombre = '$nombre', 
+                    marca = '$marca', 
+                    modelo = '$modelo', 
+                    precio = $precio, 
+                    detalles = '$detalles', 
+                    unidades = $unidades, 
+                    imagen = '$imagen' 
+                WHERE ID = $id";
+
+        if ($this->conexion->query($sql)) {
+          $this->data['status'] = "success";
+          $this->data['message'] = "Producto modificado exitosamente";
+        } else {
+          $this->data['message'] = "ERROR: No se pudo ejecutar $sql. " . $this->conexion->error;
+        }
+      } else {
+        $this->data['message'] = "El ID del producto es inválido";
+      }
+    } else {
+      $this->data['message'] = "No se recibieron datos del producto";
+    }
+  }
 }
