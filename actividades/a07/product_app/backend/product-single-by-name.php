@@ -3,7 +3,6 @@
     require_once __DIR__.'/myapi/Products.php';
 
     $producto = new Products('marketzone');
-    $producto->singleByName($_POST['search']);
+    $producto->singleByName($_POST['nombre']);
     echo $producto->getData();
-
 ?>

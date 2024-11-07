@@ -17,12 +17,12 @@ class Products extends DataBase
 
   public function singleByName($name)
   {
-    // SE REALIZA LA QUERY DE BÚSQUEDA
-    $sql = "SELECT * FROM productos WHERE nombre = '$name'";
+    $sql = "SELECT * FROM productos WHERE nombre = $name";
     $result = $this->conexion->query($sql);
 
     // COMPROBAR SI SE ENCONTRÓ UN PRODUCTO
-    if ($result && $row = $result->fetch_assoc()) {
+    if ($result) {
+      $row = $result->fetch_assoc();
       $this->data = array(
         'ID' => $row['ID'],
         'nombre' => $row['nombre'],
@@ -35,13 +35,11 @@ class Products extends DataBase
       );
     } else {
       // Si no se encuentra el producto, devolvemos un mensaje de error
-      $data = array('error' => 'Producto no encontrado');
+      $this->data = array('error' => 'Producto no encontrado');
     }
-
-    // Asignar el JSON a $this->data en lugar de imprimirlo directamente
-    $this->data = json_encode($this->data, JSON_PRETTY_PRINT);
-
-    // LIBERAR EL RESULTADO Y CERRAR LA CONEXIÓN
+    // LIBERAR EL RESULTADO
+    $result->free();
+    // CERRAR LA CONEXIÓN
     $this->conexion->close();
   }
 

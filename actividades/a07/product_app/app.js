@@ -157,9 +157,9 @@ $(document).ready(function () {
       descripcion += '<li>detalles: ' + producto.detalles + '</li>';
 
       template += `
-        <tr productoID="${producto.ID}">
+        <tr productoID="${producto.ID}" productoNombre="${producto.nombre}">
           <td><button class="product-item btn btn-link">${producto.ID}</button></td>
-          <td><button btn btn-link">${producto.nombre}</button></td>
+          <td><button class="product-item-name btn btn-link">${producto.nombre}</button></td>
           <td><ul>${descripcion}</ul></td>
           <td>
             <button class="product-delete btn btn-danger">Eliminar</button>
@@ -180,7 +180,7 @@ $(document).ready(function () {
     $('#container-resultados').html(template_bar);
   }
 
-  // Función editar producto
+  // Función editar producto por ID
   $(document).on('click', '.product-item', function () {
     let element = $(this).closest('tr');
     let id = element.attr('productoID');
@@ -208,4 +208,34 @@ $(document).ready(function () {
       $('#product-form button[type="submit"]').text('Actualizar Producto');
     });
   });
+
+  // Función editar producto por Nombre
+  $(document).on('click', '.product-item-name', function () {
+    let element = $(this).closest('tr');
+    let nombre = element.attr('productoNombre');
+
+    $.post('backend/product-single-by-name.php', { nombre }, function (response) {
+      const product = JSON.parse(response);
+
+      // Cargar los valores en el formulario
+      $('#name').val(product.nombre);
+
+      let descriptionJSON = {
+        precio: product.precio,
+        unidades: product.unidades,
+        modelo: product.modelo,
+        marca: product.marca,
+        detalles: product.detalles,
+        imagen: product.imagen,
+      };
+
+      // Mostrar el JSON en el campo de descripción
+      $('#description').val(JSON.stringify(descriptionJSON, null, 2));
+      $('#productId').val(product.ID);
+      edit = true;
+
+      $('#product-form button[type="submit"]').text('Actualizar Producto');
+    });
+  });
+
 });
