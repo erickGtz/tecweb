@@ -40,8 +40,8 @@ $(document).ready(function(){
                         descripcion += '<li>detalles: '+producto.detalles+'</li>';
                     
                         template += `
-                            <tr productId="${producto.id}">
-                                <td>${producto.id}</td>
+                            <tr productId="${producto.ID}">
+                                <td>${producto.ID}</td>
                                 <td><a href="#" class="product-item">${producto.nombre}</a></td>
                                 <td><ul>${descripcion}</ul></td>
                                 <td>
