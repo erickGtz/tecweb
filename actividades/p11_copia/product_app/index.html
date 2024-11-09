@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8">
     <title>ProductApp</title>
     <!-- BOOTSTRAP 4  -->
     <link rel="stylesheet" href="https://bootswatch.com/4/superhero/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
   </head>
+
   <body>
 
     <!-- BARRA DE NAVEGACIÓN  -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href=".">ProductApp</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto"></ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" name="search" id="search" type="search" placeholder="ID, marca o descripción" aria-label="Search">
-            <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
-          </form>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" name="search" id="search" type="search"
+                 placeholder="ID, marca o descripción" aria-label="Search">
+          <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
       </div>
     </nav>
 
@@ -29,19 +34,68 @@
         <div class="col-md-5">
           <div class="card">
             <div class="card-body">
+
               <!-- FORMULARIO PARA AGREGAR PRODUCTO -->
               <form id="product-form">
                 <div class="form-group">
                   <input class="form-control" type="text" id="name" placeholder="Nombre de producto">
                 </div>
                 <div class="form-group">
-                  <textarea class="form-control" id="description" cols="30" rows="10" placeholder="JSON de producto"></textarea>
+                  <!--<textarea class="form-control" id="description" cols="30" rows="10"
+                            placeholder="JSON de producto"></textarea>-->
+
+                  <fieldset>
+                    <ul>
+                      <li>
+                        <label for="form-id">ID: </label>
+                        <span id="form-id-display"></span>
+                        <input type="hidden" id="form-id">
+                      </li>
+
+                      <li><label for="form-marca">Marca: </label>
+                        <select name="marca" id="form-marcas">
+                          <option value="">Seleccione una marca (editorial)</option>
+                          <option value="rba">RBA</option>
+                          <option value="alfaguara">Alfaguara
+                          </option>
+                          <option value="penguin random house">Penguin Random House</option>
+                          <option value="planeta">Planeta</option>
+                          <option value="santillana">Santillana
+                          </option>
+                        </select>
+                      </li><br />
+
+                      <li><label for="form-modelo">Modelo: </label>
+                        <input type="text" name="modelo" id="form-modelo">
+                      </li><br />
+
+                      <li><label for="form-precio">Precio: </label>
+                        <input type="number" name="precio" id="form-precio" step="0.01" placeholder="0.00">
+                      </li><br />
+
+                      <li><label for="form-detalles">Detalles del producto: </label><br>
+                        <textarea name="detalles" rows="5" cols="30" id="form-detalles"
+                                  placeholder="Edicion especial, firmado por el autor, de colección, etc.">
+                        </textarea>
+                      </li><br />
+
+                      <li><label for="form-unidades">Unidades: </label>
+                        <input type="number" name="unidades" id="form-unidades" placeholder="0">
+                      </li><br />
+
+                      <li><label for="form-img">Imagen: </label>
+                        <input type="text" name="img" id="form-img" placeholder="img/nombre_imagen.png">
+                      </li>
+                    </ul>
+                  </fieldset>
+
                 </div>
                 <input type="hidden" id="productId">
                 <button class="btn btn-primary btn-block text-center" type="submit">
                   Agregar Producto
                 </button>
               </form>
+
             </div>
           </div>
         </div>
@@ -70,8 +124,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"></script>
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <!-- Lógica del Frontend -->
     <script src="app.js"></script>
   </body>
