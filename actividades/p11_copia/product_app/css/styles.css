@@ -1,0 +1,22 @@
+/* Cambiar el color del borde según la validación */
+input.valid {
+    border-color: green;
+}
+input.invalid {
+    border-color: red;
+}
+
+/* Barra de estado */
+.validation-status {
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+.validation-status.valid {
+    color: green;
+}
+
+.validation-status.invalid {
+    color: red;
+}
