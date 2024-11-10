@@ -1,0 +1,26 @@
+/* Cambiar el color y grosor del borde según la validación */
+input.valid {
+    border-color: #36f32c;
+    border-width: 3px; 
+    border-style: solid; 
+}
+
+input.invalid {
+    border-color: red;
+    border-width: 3px; 
+    border-style: solid;
+}
+
+.validation-status {
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+.validation-status.valid {
+    color:  #36f32c;
+}
+
+.validation-status.invalid {
+    color: red;
+}

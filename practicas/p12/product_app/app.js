@@ -1,47 +1,160 @@
-// JSON BASE A MOSTRAR EN FORMULARIO
-var baseJSON = {
-    "precio": 0.0,
-    "unidades": 1,
-    "modelo": "XX-000",
-    "marca": "NA",
-    "detalles": "NA",
-    "imagen": "img/default.png"
-  };
+$(document).ready(function () {
+  let edit = false;
+  limpiarForm();
 
-$(document).ready(function(){
-    let edit = false;
+  $('#name').keyup(function () {
+    let isValid = true;
+    let message = '';
+    const name = $(this).val();
 
-    let JsonString = JSON.stringify(baseJSON,null,2);
-    $('#description').val(JsonString);
-    $('#product-result').hide();
-    listarProductos();
+    if (!name) {
+      isValid = false;
+      message = 'Nombre requerido';
+      updateFieldState($('#name'), isValid, message);
+    } else if (name.length > 100) {
+      isValid = false;
+      message = 'Nombre debe ser menor o igual a 100 caracteres';
+      updateFieldState($('#name'), isValid, message);
+    } else {
+      // Realizar la validación de existencia de nombre en la base de datos
+      $.ajax({
+        url: './backend/product-search-by-name.php?name=' + name,
+        type: 'GET',
+        success: function (response) {
+          const resultado = JSON.parse(response);
+          if (resultado.exists) {
+            isValid = false;
+            message = 'Este nombre de producto ya existe';
+          }
+          updateFieldState($('#name'), isValid, message);
+        },
+      });
+    }
+  });
 
-    function listarProductos() {
-        $.ajax({
-            url: './backend/product-list.php',
-            type: 'GET',
-            success: function(response) {
-                console.log(response);
-                // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
-                const productos = JSON.parse(response);
-            
-                // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
-                if(Object.keys(productos).length > 0) {
-                    // SE CREA UNA PLANTILLA PARA CREAR LAS FILAS A INSERTAR EN EL DOCUMENTO HTML
-                    let template = '';
+  $('#form-marcas').blur(function () {
+    let isValid = true;
+    let message = '';
 
-                    productos.forEach(producto => {
-                        // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
-                        let descripcion = '';
-                        descripcion += '<li>precio: '+producto.precio+'</li>';
-                        descripcion += '<li>unidades: '+producto.unidades+'</li>';
-                        descripcion += '<li>modelo: '+producto.modelo+'</li>';
-                        descripcion += '<li>marca: '+producto.marca+'</li>';
-                        descripcion += '<li>detalles: '+producto.detalles+'</li>';
-                    
-                        template += `
-                            <tr productId="${producto.id}">
-                                <td>${producto.id}</td>
+    if (!$(this).val()) {
+      isValid = false;
+      message = 'Por favor selecciona una marca.';
+    }
+
+    // Actualizar el estado del campo
+    updateFieldState($('#form-marcas'), isValid, message);
+  });
+
+  $('#form-modelo').blur(function () {
+    let isValid = true;
+    let message = '';
+
+    if (!$(this).val()) {
+      isValid = false;
+      message = 'Modelo requerido.';
+    } else if ($(this).val().length > 25) {
+      isValid = false;
+      message = 'Modelo debe ser menor o igual a 25 caracteres.';
+    }
+
+    // Actualizar el estado del campo
+    updateFieldState($('#form-modelo'), isValid, message);
+  });
+
+  $('#form-precio').blur(function () {
+    let isValid = true;
+    let message = '';
+
+    let precio = parseFloat($(this).val());
+    if (isNaN(precio)) {
+      isValid = false;
+      message = 'Precio requerido.';
+    } else if (precio <= 99.99) {
+      isValid = false;
+      message = 'Precio debe ser mayor a 99.99.';
+    }
+
+    // Actualizar el estado del campo
+    updateFieldState($('#form-precio'), isValid, message);
+  });
+
+  $('#form-detalles').blur(function () {
+    let isValid = true;
+    let message = '';
+
+    if ($(this).val().length > 250) {
+      isValid = false;
+      message = 'Los detalles deben ser menores o igual a 250 caracteres';
+    }
+
+    // Actualizar el estado del campo
+    updateFieldState($('#form-detalles'), isValid, message);
+  });
+
+  $('#form-unidades').blur(function () {
+    let isValid = true;
+    let message = '';
+
+    let unidades = parseInt($(this).val());
+    if (isNaN(unidades)) {
+      isValid = false;
+      message = 'Unidades requeridas.';
+    } else if (unidades < 0) {
+      isValid = false;
+      message = 'Las unidades deben ser mayores o igual a 0';
+    }
+
+    // Actualizar el estado del campo
+    updateFieldState($('#form-unidades'), isValid, message);
+  });
+
+  function updateFieldState(field, isValid, message) {
+  // Cambiar el color del borde
+  if (isValid) {
+    field.addClass('valid').removeClass('invalid');
+  } else {
+    field.addClass('invalid').removeClass('valid');
+  }
+
+  // Mostrar el mensaje de validación solo si no es válido
+  let statusElement = field.siblings('.validation-status');
+  if (!statusElement.length) {
+    statusElement = $('<div class="validation-status"></div>');
+    field.after(statusElement);
+  }
+
+  if (!isValid) {
+    statusElement.text(message).addClass('invalid').removeClass('valid').show();
+  } else {
+    statusElement.text('').hide();  // Oculta el mensaje si es válido
+  }
+}
+
+
+  $('#product-result').hide();
+  listarProductos();
+
+  function listarProductos() {
+    $.ajax({
+      url: './backend/product-list.php',
+      type: 'GET',
+      success: function (response) {
+        const productos = JSON.parse(response);
+
+        if (Object.keys(productos).length > 0) {
+          let template = '';
+
+          productos.forEach((producto) => {
+            let descripcion = '';
+            descripcion += '<li>precio: ' + producto.precio + '</li>';
+            descripcion += '<li>unidades: ' + producto.unidades + '</li>';
+            descripcion += '<li>modelo: ' + producto.modelo + '</li>';
+            descripcion += '<li>marca: ' + producto.marca + '</li>';
+            descripcion += '<li>detalles: ' + producto.detalles + '</li>';
+
+            template += `
+                            <tr productId="${producto.ID}">
+                                <td>${producto.ID}</td>
                                 <td><a href="#" class="product-item">${producto.nombre}</a></td>
                                 <td><ul>${descripcion}</ul></td>
                                 <td>
@@ -51,44 +164,40 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                         `;
-                    });
-                    // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
-                    $('#products').html(template);
-                }
-            }
-        });
-    }
+          });
+          $('#products').html(template);
+        }
+      },
+    });
+    limpiarForm();
+  }
 
-    $('#search').keyup(function() {
-        if($('#search').val()) {
-            let search = $('#search').val();
-            $.ajax({
-                url: './backend/product-search.php?search='+$('#search').val(),
-                data: {search},
-                type: 'GET',
-                success: function (response) {
-                    if(!response.error) {
-                        // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
-                        const productos = JSON.parse(response);
-                        
-                        // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
-                        if(Object.keys(productos).length > 0) {
-                            // SE CREA UNA PLANTILLA PARA CREAR LAS FILAS A INSERTAR EN EL DOCUMENTO HTML
-                            let template = '';
-                            let template_bar = '';
+  $('#search').keyup(function () {
+    if ($('#search').val()) {
+      let search = $('#search').val();
+      $.ajax({
+        url: './backend/product-search.php?search=' + $('#search').val(),
+        data: { search },
+        type: 'GET',
+        success: function (response) {
+          if (!response.error) {
+            const productos = JSON.parse(response);
 
-                            productos.forEach(producto => {
-                                // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
-                                let descripcion = '';
-                                descripcion += '<li>precio: '+producto.precio+'</li>';
-                                descripcion += '<li>unidades: '+producto.unidades+'</li>';
-                                descripcion += '<li>modelo: '+producto.modelo+'</li>';
-                                descripcion += '<li>marca: '+producto.marca+'</li>';
-                                descripcion += '<li>detalles: '+producto.detalles+'</li>';
-                            
-                                template += `
-                                    <tr productId="${producto.id}">
-                                        <td>${producto.id}</td>
+            if (Object.keys(productos).length > 0) {
+              let template = '';
+              let template_bar = '';
+
+              productos.forEach((producto) => {
+                let descripcion = '';
+                descripcion += '<li>precio: ' + producto.precio + '</li>';
+                descripcion += '<li>unidades: ' + producto.unidades + '</li>';
+                descripcion += '<li>modelo: ' + producto.modelo + '</li>';
+                descripcion += '<li>marca: ' + producto.marca + '</li>';
+                descripcion += '<li>detalles: ' + producto.detalles + '</li>';
+
+                template += `
+                                    <tr productId="${producto.ID}">
+                                        <td>${producto.ID}</td>
                                         <td><a href="#" class="product-item">${producto.nombre}</a></td>
                                         <td><ul>${descripcion}</ul></td>
                                         <td>
@@ -99,99 +208,155 @@ $(document).ready(function(){
                                     </tr>
                                 `;
 
-                                template_bar += `
+                template_bar += `
                                     <li>${producto.nombre}</il>
                                 `;
-                            });
-                            // SE HACE VISIBLE LA BARRA DE ESTADO
-                            $('#product-result').show();
-                            // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
-                            $('#container').html(template_bar);
-                            // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
-                            $('#products').html(template);    
-                        }
-                    }
-                }
-            });
-        }
-        else {
-            $('#product-result').hide();
-        }
-    });
+              });
+              $('#product-result').show();
+              $('#container').html(template_bar);
+              $('#products').html(template);
+            }
+          }
+        },
+      });
+    } else {
+      $('#product-result').hide();
+    }
+    limpiarForm();
+  });
 
-    $('#product-form').submit(e => {
-        e.preventDefault();
+  $('#product-form').submit((e) => {
+    e.preventDefault();
 
-        // SE CONVIERTE EL JSON DE STRING A OBJETO
-        let postData = JSON.parse( $('#description').val() );
-        // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
-        postData['nombre'] = $('#name').val();
-        postData['id'] = $('#productId').val();
+    let productData = {
+      nombre: $('#name').val(),
+      marca: $('#form-marcas').val(),
+      modelo: $('#form-modelo').val(),
+      precio: parseFloat($('#form-precio').val()),
+      detalles: $('#form-detalles').val(),
+      unidades: parseInt($('#form-unidades').val()),
+      img: $('#form-img').val(),
+    };
 
-        /**
-         * AQUÍ DEBES AGREGAR LAS VALIDACIONES DE LOS DATOS EN EL JSON
-         * --> EN CASO DE NO HABER ERRORES, SE ENVIAR EL PRODUCTO A AGREGAR
-         **/
+    if (edit) {
+      productData.id = $('#productId').val();
+    }
 
-        const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
-        
-        $.post(url, postData, (response) => {
-            console.log(response);
-            // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
-            let respuesta = JSON.parse(response);
-            // SE CREA UNA PLANTILLA PARA CREAR INFORMACIÓN DE LA BARRA DE ESTADO
-            let template_bar = '';
-            template_bar += `
+    if (validarEntradas(productData)) {
+      const url =
+        edit === false
+          ? './backend/product-add.php'
+          : './backend/product-edit.php';
+
+      $.post(url, productData, (response) => {
+        let respuesta = JSON.parse(response);
+        let template_bar = `
+          <li style="list-style: none;">status: ${respuesta.status}</li>
+          <li style="list-style: none;">message: ${respuesta.message}</li>
+        `;
+        $('#product-result').show();
+        $('#container').html(template_bar);
+        listarProductos();
+        limpiarForm();
+        edit = false;
+      });
+    }
+  });
+
+  $(document).on('click', '.product-delete', (e) => {
+    if (confirm('¿Realmente deseas eliminar el producto?')) {
+      const element = $(this)[0].activeElement.parentElement.parentElement;
+      const id = $(element).attr('productId');
+      $.post('./backend/product-delete.php', { id }, (response) => {
+        let respuesta = JSON.parse(response);
+        let template_bar = '';
+        template_bar += `
                         <li style="list-style: none;">status: ${respuesta.status}</li>
                         <li style="list-style: none;">message: ${respuesta.message}</li>
                     `;
-            // SE REINICIA EL FORMULARIO
-            $('#name').val('');
-            $('#description').val(JsonString);
-            // SE HACE VISIBLE LA BARRA DE ESTADO
-            $('#product-result').show();
-            // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
-            $('#container').html(template_bar);
-            // SE LISTAN TODOS LOS PRODUCTOS
-            listarProductos();
-            // SE REGRESA LA BANDERA DE EDICIÓN A false
-            edit = false;
-        });
-    });
+        $('#name').val('');
+        $('#description').val('');
+        $('#product-result').show();
+        $('#container').html(template_bar);
+        listarProductos();
+      });
+    }
+    limpiarForm();
+  });
 
-    $(document).on('click', '.product-delete', (e) => {
-        if(confirm('¿Realmente deseas eliminar el producto?')) {
-            const element = $(this)[0].activeElement.parentElement.parentElement;
-            const id = $(element).attr('productId');
-            $.post('./backend/product-delete.php', {id}, (response) => {
-                $('#product-result').hide();
-                listarProductos();
-            });
-        }
-    });
+  $(document).on('click', '.product-item', (e) => {
+    const element = $(this)[0].activeElement.parentElement.parentElement;
+    const id = $(element).attr('productId');
+    $.post('./backend/product-single.php', { id }, (response) => {
+      let product = JSON.parse(response);
 
-    $(document).on('click', '.product-item', (e) => {
-        const element = $(this)[0].activeElement.parentElement.parentElement;
-        const id = $(element).attr('productId');
-        $.post('./backend/product-single.php', {id}, (response) => {
-            // SE CONVIERTE A OBJETO EL JSON OBTENIDO
-            let product = JSON.parse(response);
-            // SE INSERTAN LOS DATOS ESPECIALES EN LOS CAMPOS CORRESPONDIENTES
-            $('#name').val(product.nombre);
-            // EL ID SE INSERTA EN UN CAMPO OCULTO PARA USARLO DESPUÉS PARA LA ACTUALIZACIÓN
-            $('#productId').val(product.id);
-            // SE ELIMINA nombre, eliminado E id PARA PODER MOSTRAR EL JSON EN EL <textarea>
-            delete(product.nombre);
-            delete(product.eliminado);
-            delete(product.id);
-            // SE CONVIERTE EL OBJETO JSON EN STRING
-            let JsonString = JSON.stringify(product,null,2);
-            // SE MUESTRA STRING EN EL <textarea>
-            $('#description').val(JsonString);
-            
-            // SE PONE LA BANDERA DE EDICIÓN EN true
-            edit = true;
-        });
-        e.preventDefault();
-    });    
+      $('#name').val(product.nombre);
+      $('#form-id-display').text(product.ID);
+      $('#productId').val(product.ID);
+      $('#form-marcas').val(product.marca);
+      $('#form-modelo').val(product.modelo);
+      $('#form-precio').val(parseFloat(product.precio));
+      $('#form-detalles').val(product.detalles);
+      $('#form-unidades').val(parseInt(product.unidades));
+      $('#form-img').val(product.imagen);
+
+      delete product.nombre;
+      delete product.eliminado;
+      delete product.ID;
+
+      edit = true;
+    });
+    e.preventDefault();
+    limpiarForm();
+  });
+
+  function validarEntradas(productData) {
+    if (!productData.nombre || String(productData.nombre).trim() === '') {
+      alert('El campo nombre no puede estar vacío.');
+      return false;
+    }
+    if (
+      !productData.precio ||
+      isNaN(productData.precio) ||
+      productData.precio <= 99.99
+    ) {
+      alert('El campo precio es requerido y debe ser mayor a 99.99.');
+      return false;
+    }
+    if (
+      !productData.unidades ||
+      isNaN(productData.unidades) ||
+      productData.unidades < 0
+    ) {
+      alert('El campo unidades es requerido y debe ser mayor o igual a 0.');
+      return false;
+    }
+    if (!productData.modelo || String(productData.modelo).trim() === '') {
+      alert('El campo modelo no puede estar vacío.');
+      return false;
+    }
+    if (
+      !productData.marca ||
+      productData.marca === 'Seleccione una marca (editorial)'
+    ) {
+      alert('Por favor selecciona una marca.');
+      return false;
+    }
+    if (!productData.img || String(productData.img).trim() === '') {
+      productData.img = 'default.png';
+    }
+    return true;
+  }
+
+  function limpiarForm() {
+    $('#name').val('');
+    $('#form-id-display').text('');
+    $('#productId').val('');
+    $('#form-marcas').val('');
+    $('#form-modelo').val('');
+    $('#form-precio').val('');
+    $('#form-detalles').val('');
+    $('#form-unidades').val('');
+    $('#form-img').val('');
+  }
 });
