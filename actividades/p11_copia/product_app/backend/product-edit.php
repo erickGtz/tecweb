@@ -12,7 +12,7 @@
         // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
         $sql =  "UPDATE productos SET nombre='{$jsonOBJ->nombre}', marca='{$jsonOBJ->marca}',";
         $sql .= "modelo='{$jsonOBJ->modelo}', precio={$jsonOBJ->precio}, detalles='{$jsonOBJ->detalles}',"; 
-        $sql .= "unidades={$jsonOBJ->unidades}, imagen='{$jsonOBJ->imagen}' WHERE ID={$jsonOBJ->id}";
+        $sql .= "unidades={$jsonOBJ->unidades}, imagen='{$jsonOBJ->img}' WHERE ID={$jsonOBJ->id}";
         $conexion->set_charset("utf8");
         if ( $conexion->query($sql) ) {
             $data['status'] =  "success";

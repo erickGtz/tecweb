@@ -1,40 +1,36 @@
 $(document).ready(function () {
   let edit = false;
-  console.log(edit);
-
-  $('#form-detalles').val('');
+  limpiarForm();
 
   $('#name').keyup(function () {
-  let isValid = true;
-  let message = '';
-  const name = $(this).val();
+    let isValid = true;
+    let message = '';
+    const name = $(this).val();
 
-  if (!name) {
-    isValid = false;
-    message = 'Nombre requerido';
-    updateFieldState($('#name'), isValid, message);
-  } else if (name.length > 100) {
-    isValid = false;
-    message = 'Nombre debe ser menor o igual a 100 caracteres';
-    updateFieldState($('#name'), isValid, message);
-  } else {
-    // Realizar la validación de existencia de nombre en la base de datos
-    $.ajax({
-      url: './backend/product-search-by-name.php?name=' + name,
-      type: 'GET',
-      success: function (response) {
-        const resultado = JSON.parse(response);
-        if (resultado.exists) {
-          isValid = false;
-          message = 'Este nombre de producto ya existe';
-        }
-        updateFieldState($('#name'), isValid, message);
-      },
-    });
-  }
-});
-
-
+    if (!name) {
+      isValid = false;
+      message = 'Nombre requerido';
+      updateFieldState($('#name'), isValid, message);
+    } else if (name.length > 100) {
+      isValid = false;
+      message = 'Nombre debe ser menor o igual a 100 caracteres';
+      updateFieldState($('#name'), isValid, message);
+    } else {
+      // Realizar la validación de existencia de nombre en la base de datos
+      $.ajax({
+        url: './backend/product-search-by-name.php?name=' + name,
+        type: 'GET',
+        success: function (response) {
+          const resultado = JSON.parse(response);
+          if (resultado.exists) {
+            isValid = false;
+            message = 'Este nombre de producto ya existe';
+          }
+          updateFieldState($('#name'), isValid, message);
+        },
+      });
+    }
+  });
 
   $('#form-marcas').blur(function () {
     let isValid = true;
@@ -178,6 +174,7 @@ $(document).ready(function () {
         }
       },
     });
+    limpiarForm();
   }
 
   $('#search').keyup(function () {
@@ -230,6 +227,7 @@ $(document).ready(function () {
     } else {
       $('#product-result').hide();
     }
+    limpiarForm();
   });
 
   $('#product-form').submit((e) => {
@@ -245,32 +243,28 @@ $(document).ready(function () {
       img: $('#form-img').val(),
     };
 
-    if (validarEntradas(productData)) {
-      console.log('SI se validaron las entradas');
-      let postData = JSON.stringify(productData);
-      console.log(postData);
+    if (edit) {
+      productData.id = $('#productId').val();
+    }
 
+    if (validarEntradas(productData)) {
       const url =
         edit === false
           ? './backend/product-add.php'
           : './backend/product-edit.php';
 
-      $.post(url, postData, (response) => {
+      $.post(url, productData, (response) => {
         let respuesta = JSON.parse(response);
-        let template_bar = '';
-        template_bar += `
-                        <li style="list-style: none;">status: ${respuesta.status}</li>
-                        <li style="list-style: none;">message: ${respuesta.message}</li>
-                    `;
-        $('#name').val('');
-        $('#description').val('');
+        let template_bar = `
+          <li style="list-style: none;">status: ${respuesta.status}</li>
+          <li style="list-style: none;">message: ${respuesta.message}</li>
+        `;
         $('#product-result').show();
         $('#container').html(template_bar);
         listarProductos();
+        limpiarForm();
         edit = false;
       });
-    } else {
-      console.log('no se validaron las entradas');
     }
   });
 
@@ -292,6 +286,7 @@ $(document).ready(function () {
         listarProductos();
       });
     }
+    limpiarForm();
   });
 
   $(document).on('click', '.product-item', (e) => {
@@ -299,18 +294,25 @@ $(document).ready(function () {
     const id = $(element).attr('productId');
     $.post('./backend/product-single.php', { id }, (response) => {
       let product = JSON.parse(response);
+
       $('#name').val(product.nombre);
       $('#form-id-display').text(product.ID);
       $('#productId').val(product.ID);
+      $('#form-marcas').val(product.marca);
+      $('#form-modelo').val(product.modelo);
+      $('#form-precio').val(parseFloat(product.precio));
+      $('#form-detalles').val(product.detalles);
+      $('#form-unidades').val(parseInt(product.unidades));
+      $('#form-img').val(product.imagen);
+
       delete product.nombre;
       delete product.eliminado;
       delete product.ID;
-      let JsonString = JSON.stringify(product, null, 2);
-      $('#description').val(JsonString);
 
       edit = true;
     });
     e.preventDefault();
+    limpiarForm();
   });
 
   function validarEntradas(productData) {
@@ -351,4 +353,15 @@ $(document).ready(function () {
     return true;
   }
 
+  function limpiarForm() {
+    $('#name').val('');
+    $('#form-id-display').text('');
+    $('#productId').val('');
+    $('#form-marcas').val('');
+    $('#form-modelo').val('');
+    $('#form-precio').val('');
+    $('#form-detalles').val('');
+    $('#form-unidades').val('');
+    $('#form-img').val('');
+  }
 });
