@@ -109,32 +109,27 @@ $(document).ready(function () {
   });
 
   function updateFieldState(field, isValid, message) {
-    // Cambiar el color del borde
-    if (isValid) {
-      field.addClass('valid').removeClass('invalid');
-    } else {
-      field.addClass('invalid').removeClass('valid');
-    }
-
-    // Mostrar el mensaje de validación en la barra de estado
-    let statusElement = field.siblings('.validation-status');
-    if (!statusElement.length) {
-      // Si no existe la barra de estado, creamos una nueva
-      statusElement = $('<div class="validation-status"></div>');
-      field.after(statusElement);
-    }
-
-    // Actualizar el mensaje de estado
-    statusElement.text(message).removeClass('valid invalid');
-    if (isValid) {
-      statusElement.addClass('valid').removeClass('invalid');
-    } else {
-      statusElement.addClass('invalid').removeClass('valid');
-    }
-
-    // Mostrar la barra de estado
-    statusElement.show();
+  // Cambiar el color del borde
+  if (isValid) {
+    field.addClass('valid').removeClass('invalid');
+  } else {
+    field.addClass('invalid').removeClass('valid');
   }
+
+  // Mostrar el mensaje de validación solo si no es válido
+  let statusElement = field.siblings('.validation-status');
+  if (!statusElement.length) {
+    statusElement = $('<div class="validation-status"></div>');
+    field.after(statusElement);
+  }
+
+  if (!isValid) {
+    statusElement.text(message).addClass('invalid').removeClass('valid').show();
+  } else {
+    statusElement.text('').hide();  // Oculta el mensaje si es válido
+  }
+}
+
 
   $('#product-result').hide();
   listarProductos();
