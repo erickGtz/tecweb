@@ -4,21 +4,37 @@ $(document).ready(function () {
 
   $('#form-detalles').val('');
 
-  $('#name').blur(function () {
-    let isValid = true;
-    let message = '';
+  $('#name').keyup(function () {
+  let isValid = true;
+  let message = '';
+  const name = $(this).val();
 
-    if (!$(this).val()) {
-      isValid = false;
-      message = 'Nombre requerido';
-    } else if ($(this).val().length > 100) {
-      isValid = false;
-      message = 'Nombre debe ser menor o igual a 100 caracteres';
-    }
-
-    // Actualizar el estado del campo
+  if (!name) {
+    isValid = false;
+    message = 'Nombre requerido';
     updateFieldState($('#name'), isValid, message);
-  });
+  } else if (name.length > 100) {
+    isValid = false;
+    message = 'Nombre debe ser menor o igual a 100 caracteres';
+    updateFieldState($('#name'), isValid, message);
+  } else {
+    // Realizar la validación de existencia de nombre en la base de datos
+    $.ajax({
+      url: './backend/product-search-by-name.php?name=' + name,
+      type: 'GET',
+      success: function (response) {
+        const resultado = JSON.parse(response);
+        if (resultado.exists) {
+          isValid = false;
+          message = 'Este nombre de producto ya existe';
+        }
+        updateFieldState($('#name'), isValid, message);
+      },
+    });
+  }
+});
+
+
 
   $('#form-marcas').blur(function () {
     let isValid = true;
@@ -234,7 +250,6 @@ $(document).ready(function () {
       let postData = JSON.stringify(productData);
       console.log(postData);
 
-      /*
       const url =
         edit === false
           ? './backend/product-add.php'
@@ -254,7 +269,6 @@ $(document).ready(function () {
         listarProductos();
         edit = false;
       });
-      */
     } else {
       console.log('no se validaron las entradas');
     }
@@ -265,7 +279,16 @@ $(document).ready(function () {
       const element = $(this)[0].activeElement.parentElement.parentElement;
       const id = $(element).attr('productId');
       $.post('./backend/product-delete.php', { id }, (response) => {
-        $('#product-result').hide();
+        let respuesta = JSON.parse(response);
+        let template_bar = '';
+        template_bar += `
+                        <li style="list-style: none;">status: ${respuesta.status}</li>
+                        <li style="list-style: none;">message: ${respuesta.message}</li>
+                    `;
+        $('#name').val('');
+        $('#description').val('');
+        $('#product-result').show();
+        $('#container').html(template_bar);
         listarProductos();
       });
     }
@@ -327,4 +350,5 @@ $(document).ready(function () {
     }
     return true;
   }
+
 });

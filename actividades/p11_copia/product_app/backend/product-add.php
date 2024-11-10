@@ -19,8 +19,8 @@ if (isset($jsonOBJ->nombre)) {
     if ($result->num_rows == 0) {
         // Establece el juego de caracteres y realiza la inserción
         $conexion->set_charset("utf8");
-        $sql = "INSERT INTO productos (ID, nombre, marca, modelo, precio, detalles, unidades, imagen, eliminado) VALUES 
-                (NULL, '{$jsonOBJ->nombre}', '{$jsonOBJ->marca}', '{$jsonOBJ->modelo}', 
+        $sql = "INSERT INTO productos (nombre, marca, modelo, precio, detalles, unidades, imagen, eliminado) VALUES 
+                ('{$jsonOBJ->nombre}', '{$jsonOBJ->marca}', '{$jsonOBJ->modelo}', 
                 {$jsonOBJ->precio}, '{$jsonOBJ->detalles}', {$jsonOBJ->unidades}, '{$jsonOBJ->img}', 0)";
                 
         if ($conexion->query($sql)) {
