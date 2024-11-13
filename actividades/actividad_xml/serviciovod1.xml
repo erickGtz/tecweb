@@ -1,0 +1,104 @@
+<catalogoVOD>
+  <cuenta>
+    <correo>
+      correo.mio.gtz@gmail.com
+    </correo>
+    <perfiles>
+      <perfil>
+        <usuario>Erick</usuario>
+        <idioma>Español</idioma>
+      </perfil>
+      <perfil>
+        <usuario>Mama</usuario>
+        <idioma>Español</idioma>
+      </perfil>
+    </perfiles>
+  </cuenta>
+
+  <contenido>
+
+    <peliculas>
+      <genero>
+        <nombre>Terror</nombre>
+        <titulo>
+          <nombre>Santo vs Las momias de Guanajuato</nombre>
+          <duracion>1h 27m</duracion>
+        </titulo>
+        <titulo>
+          <nombre>La cosa</nombre>
+          <duracion>1h 49m</duracion>
+        </titulo>
+        <titulo>
+          <nombre>IT</nombre>
+          <duracion>2h 17m</duracion>
+        </titulo>
+        <titulo>
+          <nombre>Chucky</nombre>
+          <duracion>1h 53m</duracion>
+        </titulo>
+      </genero>
+
+      <genero>
+        <nombre>Comedia</nombre>
+        <titulo>
+          <nombre>El bolero de Raquel</nombre>
+          <duracion>1h 21m</duracion>
+        </titulo>
+        <titulo>
+          <nombre>Sube y baja</nombre>
+          <duracion>1h 39m</duracion>
+        </titulo>
+        <titulo>
+          <nombre>El patrullero 777</nombre>
+          <duracion>1h 15m</duracion>
+        </titulo>
+        <titulo>
+          <nombre>Ahi esta el detalle</nombre>
+          <duracion>1h 30m</duracion>
+        </titulo>
+      </genero>
+    </peliculas>
+
+    <programas>
+      <genero>
+        <nombre>Deportivos</nombre>
+        <titulo>
+          <nombre>Protagonistas</nombre>
+          <duracion>1h</duracion>
+        </titulo>
+        <titulo>
+          <nombre>Accion</nombre>
+          <duracion>1h 30m</duracion>
+        </titulo>
+        <titulo>
+          <nombre>La ultima palabra</nombre>
+          <duracion>1h 40m</duracion>
+        </titulo>
+        <titulo>
+          <nombre>Luchas CMLL</nombre>
+          <duracion>2h</duracion>
+        </titulo>
+      </genero>
+
+      <genero>
+        <nombre>Reallity Shows</nombre>
+        <titulo>
+          <nombre>Master Chef</nombre>
+          <duracion>2h 10m</duracion>
+        </titulo>
+        <titulo>
+          <nombre>Master Chef Celebrity</nombre>
+          <duracion>2h</duracion>
+        </titulo>
+        <titulo>
+          <nombre>La casa de los famosos</nombre>
+          <duracion>1h 30m</duracion>
+        </titulo>
+        <titulo>
+          <nombre>La mascara</nombre>
+          <duracion>2h 30m</duracion>
+        </titulo>
+      </genero>
+    </programas>
+  </contenido>
+</catalogoVOD> 
