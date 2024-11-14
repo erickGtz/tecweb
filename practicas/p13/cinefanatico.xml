@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cinefanatico SYSTEM "cinefanatico.dtd">
+<cinefanatico>
+    <tarjeta noserie="12435" visitas="45" puntos="117">
+        <nombre>Rodrigo Villanueva</nombre>
+        <correo>elrodris@correo.com</correo>
+        <telefono tipo="movil">2227486315</telefono>
+    </tarjeta>
+</cinefanatico>

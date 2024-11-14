@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT CatalogoVOD (cuenta, contenido)+> 
+
+<!ELEMENT cuenta (perfiles)>
+<!ELEMENT perfiles (perfil+)>
+<!ELEMENT perfil EMPTY>
+
+<!ATTLIST cuenta 
+correo CDATA #REQUIRED 
+> 
+<!ATTLIST perfil 
+usuario CDATA #REQUIRED
+idioma CDATA #REQUIRED 
+> 
+
+<!ELEMENT contenido (peliculas, programas)> 
+<!ELEMENT peliculas (genero+)>
+<!ELEMENT programas (genero+)>
+<!ELEMENT genero (titulo+)>
+<!ELEMENT titulo (#PCDATA)>
+
+<!ATTLIST genero 
+nombre CDATA #REQUIRED 
+> 
+<!ATTLIST titulo 
+duracion CDATA #REQUIRED
+> 
