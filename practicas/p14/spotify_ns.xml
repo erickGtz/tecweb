@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tw:Spotify xmlns:tw="http://tecnologiasweb.com.mx"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://tecnologiasweb.com.mx spotify_ns.xsd"
+    version="1.0">
+    <tw:Cuenta id="001" fechaFin="2024-01-01">
+        <tw:Nombre>Rodrigo Villanueva</tw:Nombre>
+        <tw:Correo>rodogonio@email.com</tw:Correo>
+        <tw:Telefono tipo="móvil">123-456-7890</tw:Telefono>
+    </tw:Cuenta>
+    <tw:Cuenta id="002" plan="Free" fechaIni="2023-05-01">
+        <tw:Nombre>Marcos Gonzales</tw:Nombre>
+        <tw:Correo>marcos.gonz@email.com</tw:Correo>
+        <tw:Telefono tipo="casa">987-654-3210</tw:Telefono>
+    </tw:Cuenta>
+    <tw:Cuenta id="003" plan="Premium" fechaIni="2023-07-01" fechaFin="2024-07-01">
+        <tw:Nombre>Xavier López</tw:Nombre>
+        <tw:Correo>xavier.lopez@email.com</tw:Correo>
+        <tw:Telefono tipo="móvil">456-789-0123</tw:Telefono>
+    </tw:Cuenta>
+</tw:Spotify>

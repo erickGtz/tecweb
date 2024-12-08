@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl"? href="catalogovod.xsl"?>
 <!DOCTYPE CatalogoVOD SYSTEM "serviciovod_ep.dtd">
 <CatalogoVOD>
-    <cuenta correo="tony.stark@gmail.com">
+    <cuenta correo="gtz.erick@gmail.com">
         <perfiles>
-            <perfil usuario="Robert Downey Jr." idioma="English"/>
-            <perfil usuario="Chris Evans" idioma="English"/>
+            <perfil usuario="Erick Gutierrez" idioma="Español"/>
+            <perfil usuario="Laura Sanchez" idioma="Español"/>
         </perfiles>
     </cuenta>
     <contenido>
         <peliculas region="USA">
             <genero nombre="Super Héroes">
-                <titulo duracion="02:04:00">Capitán América: El primer vengador.</titulo>
-                <titulo duracion="02:06:00">Iron Man: el hombre de hierro</titulo>
+                <titulo duracion="02:35:00">Batman: El caballero de la noche</titulo>
+                <titulo duracion="01:40:00">Hancock</titulo>
             </genero>
             <genero nombre="Terror">
-                <titulo duracion="01:51:00">Halloween: la noche final</titulo>
-                <titulo duracion="01:42:00">Scream</titulo>
+                <titulo duracion="01:31:00">Evil Dead 2</titulo>
+                <titulo duracion="01:50:00">Scream</titulo>
             </genero>
         </peliculas>
         <series region="MEX">

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar al Catálogo VOD</title>
+</head>
+<body>
+    <h1>Agregar al Catálogo VOD</h1>
+    <form action="serviciovod_add.php" method="post">
+        <h2>Nuevo Perfil</h2>
+        <label for="usuario">Nombre de Usuario:</label>
+        <input type="text" id="usuario" name="usuario" required><br>
+        <label for="idioma">Idioma:</label>
+        <input type="text" id="idioma" name="idioma" required><br>
+
+        <h2>Nuevo Género de Películas</h2>
+        <label for="genero_peliculas">Nombre del Género:</label>
+        <input type="text" id="genero_peliculas" name="genero_peliculas" required><br>
+        <label for="titulo_pelicula1">Título de la Película 1:</label>
+        <input type="text" id="titulo_pelicula1" name="titulo_pelicula1" required><br>
+        <label for="duracion_pelicula1">Duración de la Película 1:</label>
+        <input type="text" id="duracion_pelicula1" name="duracion_pelicula1" required><br>
+        <label for="titulo_pelicula2">Título de la Película 2:</label>
+        <input type="text" id="titulo_pelicula2" name="titulo_pelicula2" required><br>
+        <label for="duracion_pelicula2">Duración de la Película 2:</label>
+        <input type="text" id="duracion_pelicula2" name="duracion_pelicula2" required><br>
+
+        <h2>Nuevo Género de Series</h2>
+        <label for="genero_series">Nombre del Género:</label>
+        <input type="text" id="genero_series" name="genero_series" required><br>
+        <label for="titulo_serie1">Título de la Serie 1:</label>
+        <input type="text" id="titulo_serie1" name="titulo_serie1" required><br>
+        <label for="duracion_serie1">Duración de la Serie 1:</label>
+        <input type="text" id="duracion_serie1" name="duracion_serie1" required><br>
+        <label for="titulo_serie2">Título de la Serie 2:</label>
+        <input type="text" id="titulo_serie2" name="titulo_serie2" required><br>
+        <label for="duracion_serie2">Duración de la Serie 2:</label>
+        <input type="text" id="duracion_serie2" name="duracion_serie2" required><br>
+
+        <input type="submit" value="Agregar al Catálogo">
+    </form>
+</body>
+</html>

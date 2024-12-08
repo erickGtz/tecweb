@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="catalogovod.xsl"?>
+<!DOCTYPE CatalogoVOD SYSTEM "serviciovod_ep.dtd">
+<CatalogoVOD>
+    <cuenta correo="mi.correo@example.com">
+        <perfiles>
+            <perfil usuario="Harold" idioma="Español"/>
+            <perfil usuario="Erick" idioma="Español"/>
+        <perfil usuario="Paquito" idioma="Español"/></perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas region="USA">
+            <genero nombre="Acción">
+                <titulo duracion="02:10:00">Mad Max: Fury Road</titulo>
+                <titulo duracion="02:30:00">Gladiator</titulo>
+            </genero>
+            <genero nombre="Ciencia Ficción">
+                <titulo duracion="02:28:00">Interstellar</titulo>
+                <titulo duracion="02:16:00">Blade Runner 2049</titulo>
+            </genero>
+        <genero nombre="Terror"><titulo duracion="2 horas">dios esta aqui</titulo><titulo duracion="1 hora 50 minutos">la pasion de cristo</titulo></genero><genero nombre="Accion"><titulo duracion="01:53:00">Rambo</titulo><titulo duracion="01:28:00">Rambo 2: El regreso</titulo></genero></peliculas>
+        <series region="USA">
+            <genero nombre="Drama">
+                <titulo duracion="00:50:00">Breaking Bad</titulo>
+                <titulo duracion="00:55:00">The Crown</titulo>
+            </genero>
+            <genero nombre="Comedia">
+                <titulo duracion="00:22:00">Brooklyn Nine-Nine</titulo>
+                <titulo duracion="00:25:00">Parks and Recreation</titulo>
+            </genero>
+        <genero nombre="drama"><titulo duracion="5 horas">sin ti</titulo><titulo duracion="9 horas">fuera de aqui</titulo></genero><genero nombre="Comedia"><titulo duracion="00:35:00">40 y 20</titulo><titulo duracion="00:30:00">El chavo animado</titulo></genero></series>
+    </contenido>
+</CatalogoVOD>
